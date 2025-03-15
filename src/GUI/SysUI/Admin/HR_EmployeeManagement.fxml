@@ -18,6 +18,32 @@
    <children>
       <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
+            <Tab text="                Employees">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="16.0" layoutY="38.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
+                           <children>
+                              <Label layoutX="13.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="View Active Employees" />
+                              <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="65.0" prefHeight="456.0" prefWidth="1023.0" stylesheets="@../../resources/resource.css">
+                                <columns>
+                                  <TableColumn fx:id="idC" editable="false" prefWidth="65.0" text="ID" />
+                                  <TableColumn fx:id="fnameC" editable="false" prefWidth="113.0" text="First Name" />
+                                    <TableColumn fx:id="lnameC" editable="false" prefWidth="110.0" text="Last Name" />
+                                    <TableColumn fx:id="emailC" editable="false" prefWidth="157.0" text="Email" />
+                                    <TableColumn fx:id="hdateC" editable="false" prefWidth="102.0" text="Hired Date" />
+                                    <TableColumn fx:id="contactC" editable="false" prefWidth="146.0" text="Contact" />
+                                    <TableColumn fx:id="deptC" editable="false" prefWidth="156.0" text="Department" />
+                                    <TableColumn fx:id="postC" editable="false" minWidth="0.0" prefWidth="163.0" text="Position" />
+                                </columns>
+                                 
+                              </TableView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="                Add Employee">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="577.0" prefWidth="1080.0">
@@ -29,31 +55,31 @@
                                  <children>
                                     <Pane prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter First Name" />
+                                          <TextField fx:id="Tfname" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter First Name" />
                                           <Label layoutX="20.0" layoutY="6.0" styleClass="tfieldLabel" text="First Name" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Middle Name (Optional)" />
+                                          <TextField fx:id="Tmname" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Middle Name (Optional)" />
                                           <Label layoutX="20.0" layoutY="6.0" styleClass="tfieldLabel" text="Middle Name" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="10.0" layoutY="98.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Last Name" />
+                                          <TextField fx:id="Tlname" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Last Name" />
                                           <Label layoutX="20.0" layoutY="6.0" styleClass="tfieldLabel" text="Last Name" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="10.0" layoutY="186.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Address" />
+                                          <TextField fx:id="Tadd" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Address" />
                                           <Label layoutX="20.0" layoutY="6.0" styleClass="tfieldLabel" text="Address" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="10.0" layoutY="274.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Email Address" />
+                                          <TextField fx:id="Temail" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Email Address" />
                                           <Label layoutX="20.0" layoutY="6.0" styleClass="tfieldLabel" text="Email Address" />
                                        </children>
                                     </Pane>
@@ -63,7 +89,7 @@
                                  <children>
                                     <Pane prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Age" />
+                                          <TextField fx:id="Tage" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Age" />
                                           <Label layoutX="21.0" layoutY="6.0" styleClass="tfieldLabel" text="Age" />
                                        </children>
                                     </Pane>
@@ -99,7 +125,7 @@
                                     </Pane>
                                     <Pane layoutX="10.0" layoutY="10.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
-                                          <TextField alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Contact Number" />
+                                          <TextField fx:id="Tcontact" alignment="CENTER" layoutX="14.0" layoutY="21.0" prefHeight="41.0" prefWidth="297.0" promptText="Enter Contact Number" />
                                           <Label layoutX="21.0" layoutY="6.0" styleClass="tfieldLabel" text="Contact Number" />
                                        </children>
                                     </Pane>
@@ -121,61 +147,16 @@
                                     <Pane layoutX="10.0" layoutY="98.0" prefHeight="88.0" prefWidth="325.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="6.0" styleClass="tfieldLabel" text="Hired Date" />
-                                          <DatePicker layoutX="14.0" layoutY="22.0" prefHeight="41.0" prefWidth="297.0" stylesheets="@hr_css.css" />
+                                          <DatePicker fx:id="Tdate" layoutX="14.0" layoutY="22.0" prefHeight="41.0" prefWidth="297.0" stylesheets="@hr_css.css" />
                                        </children>
                                     </Pane>
                                     <Pane prefHeight="102.0" prefWidth="325.0">
                                        <children>
-                                          <Button layoutX="14.0" layoutY="24.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="297.0" styleClass="btnsub" text="Submit" />
+                                          <Button fx:id="submit" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#AddEmployee" prefHeight="41.0" prefWidth="297.0" styleClass="btnsub" text="Submit" />
                                        </children>
                                     </Pane>
                                  </children>
                               </VBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="                View Employee/s">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane layoutX="16.0" layoutY="15.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="View Active Employees" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="                Update Employee">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane layoutX="16.0" layoutY="15.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="376.0" styleClass="caption" text="Update Employee's Credentials" />
-                              <TableView layoutX="14.0" layoutY="65.0" prefHeight="463.0" prefWidth="1024.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="                Delete Employee">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane layoutX="16.0" layoutY="15.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="363.0" styleClass="caption" text="Delete Employee's Credentials" />
                            </children>
                         </Pane>
                      </children>

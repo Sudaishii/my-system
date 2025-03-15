@@ -9,47 +9,49 @@ import java.sql.Statement;
 
 public class dbConnect {
 
-    private Connection connect;
+    private static final String URL = "jdbc:mysql://localhost:3306/sys_db";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
 
-    public dbConnect() {
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public int insertData(String sql) {
+        int result = 0;
+        try (Connection connect = getConnection(); // Get a new connection
+             PreparedStatement pst = connect.prepareStatement(sql)) {
+            pst.executeUpdate();
+            System.out.println("Inserted Successfully!");
+            result = 1;
+        } catch (SQLException ex) {
+            System.out.println("Connection Error: " + ex);
+        }
+        return result;
+    }
+
+    //Function to retrieve data
+    public ResultSet getData(String sql) throws SQLException {
+        Connection connect = getConnection(); // Get a new connection
+        Statement stmt = null;
+        ResultSet rst = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/sys_db"; 
-            String user = "root";
-            String password = "";
-
-            connect = DriverManager.getConnection(url, user, password);
-            System.out.println("Database connected successfully!");
-        } catch (SQLException e) {
-            System.err.println("Database connection failed: " + e.getMessage()); 
-            connect = null; 
-        }
-    }
-
-    public Connection getConnection() {
-        return connect; 
-    }
-
-    public int insertData(String sql){
-            int result;
-            try{
-                PreparedStatement pst = connect.prepareStatement(sql);
-                pst.executeUpdate();
-                System.out.println("Inserted Successfully!");
-                pst.close();
-                result =1;
-            }catch(SQLException ex){
-                System.out.println("Connection Error: "+ex);
-                result =0;
+            stmt = connect.createStatement();
+            rst = stmt.executeQuery(sql);
+            return rst; // Be very careful returning ResultSet here!
+            // Consider processing the ResultSet and returning a List instead.
+        } catch (SQLException ex) {
+            // It's important to close the connection even if an error occurs
+            if (connect != null) {
+                connect.close();
             }
-            return result;
+            if (stmt != null) {
+                stmt.close();
+            }
+            throw ex; // Re-throw the exception to be handled by the caller
+        } finally {
+            // The calling method will need to handle closing the ResultSet and Connection
+            // if you return the ResultSet directly. This is generally not recommended.
         }
-        
-        //Function to retrieve data
-        public ResultSet getData(String sql) throws SQLException{
-            Statement stmt = connect.createStatement();
-            ResultSet rst = stmt.executeQuery(sql);
-            return rst;
-        }
-           
-       
+    }
 }

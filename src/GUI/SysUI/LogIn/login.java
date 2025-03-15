@@ -54,8 +54,7 @@ public class login extends Application {
        stage.getIcons().add(new Image("/GUI/images/money.png"));
        stage.setTitle("PayFuse");
        
-       Font.loadFont(getClass().getResource("/GUI/fonts/Poppins/Poppins-Regular.ttf").toExternalForm(), 14);
-       Font.loadFont(getClass().getResource("/GUI/fonts/Poppins/Poppins-Bold.ttf").toExternalForm(), 14);
+       
 
        
  
@@ -63,7 +62,7 @@ public class login extends Application {
        stage.setScene(scene);
       
        stage.show();
-     
+    
     }
     
     

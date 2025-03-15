@@ -5,6 +5,7 @@
  */
 package GUI.SysUI.Admin;
 
+import GUI.config.Session;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -46,6 +47,8 @@ public class HR_DashboardController implements Initializable {
     private Label TotalEmp;
     @FXML
     private Label grss;
+    @FXML
+    private Label greet;
 
     /**
      * Initializes the controller class.
@@ -70,9 +73,8 @@ public class HR_DashboardController implements Initializable {
         monthCombo.setPromptText("    Select Month");
         
         
-        
         Calendar calendar = Calendar.getInstance();
-      calendar.setTimeZone(TimeZone.getTimeZone("Asia/Manila")); 
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Manila")); 
 
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;
@@ -93,6 +95,12 @@ public class HR_DashboardController implements Initializable {
         if (date != null) {
             date.setText(formattedFirstDay + " - " + formattedLastDay);
         }
+        
+        Session ses = new Session();
+        
+        String uname;
+        uname = ses.getUname();
+        
     }    
     
 }

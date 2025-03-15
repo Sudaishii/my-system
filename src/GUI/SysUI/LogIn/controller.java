@@ -91,7 +91,7 @@ public class controller {
    
     registrationPane.translateXProperty().set(scene.getWidth()); 
 
-       rootPane.getChildren().add(registrationPane);
+    rootPane.getChildren().add(registrationPane);
 
  
     Timeline timeline = new Timeline();

@@ -39,6 +39,11 @@
                         <Image url="@../../images/icons8-calendar-50.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="greet" layoutX="738.0" layoutY="8.0" prefHeight="45.0" prefWidth="246.0" styleClass="salary-amount" stylesheets="@dashboard.css" text="0">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <AnchorPane layoutX="801.0" layoutY="99.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@dashboard.css">

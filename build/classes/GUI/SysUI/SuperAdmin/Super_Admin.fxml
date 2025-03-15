@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../Admin/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="710.0" prefWidth="1080.0">
@@ -34,9 +33,9 @@
                   </ImageView>
                   <HBox layoutX="180.0" layoutY="-2.0" prefHeight="64.0" prefWidth="765.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="191.0" styleClass="btnH" text="Dashboard" />
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="215.0" styleClass="btnH" text="User Management" />
-                        <Button layoutX="201.0" layoutY="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="226.0" styleClass="btnH" text="Time Management" />
+                        <Button mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="61.0" prefWidth="191.0" styleClass="btnH" text="Dashboard" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manageusers" prefHeight="61.0" prefWidth="215.0" styleClass="btnH" text="Manage Users" />
+                        <Button layoutX="201.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manageroles" prefHeight="61.0" prefWidth="226.0" styleClass="btnH" text="Manage Roles" />
                         <Button layoutX="392.0" layoutY="10.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="191.0" styleClass="btnH" text="Payslip Management" />
                      </children>
                   </HBox>

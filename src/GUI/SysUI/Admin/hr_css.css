@@ -144,7 +144,7 @@
     -fx-text-alignment: center;
 }
 
-/* Style the DatePicker's calendar button */
+
 .date-picker .arrow-button {
     -fx-background-color: #D4B88E; 
     -fx-background-radius: 5;      

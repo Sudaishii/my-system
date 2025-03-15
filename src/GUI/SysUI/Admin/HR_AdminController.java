@@ -51,7 +51,7 @@ public class HR_AdminController implements Initializable {
    @FXML
    private void employee(MouseEvent event) {
         
-        loadPage("/GUI/SysUI/Admin/HR_EmployeeManagement.fxml");
+        loadPage("/GUI/SysUI/SuperAdmin/SU_UserManagement.fxml");
         
     }
 
