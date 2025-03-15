@@ -150,61 +150,56 @@ public class SU_UserManagementController implements Initializable {
     config configUtil = new config(); 
     
     @FXML
-    private void activateBtn(MouseEvent event) {
-        
+private void activateBtn(MouseEvent event) {
     User selectedUser = UserView1.getSelectionModel().getSelectedItem();
 
     if (selectedUser != null) {
-    String currentStatus = selectedUser.getStatus();
-    
-    
-    usersUpdate.clear();
-    
-    if ("Newly Registered".equalsIgnoreCase(currentStatus)) {
-        try (Connection conn = db.getConnection()) {
-            if (conn == null) {
-                configUtil.showAlert(Alert.AlertType.ERROR, "Database Error", "Database connection failed.");
-                return;
-            }
+        String currentStatus = selectedUser.getStatus();
 
-            String sql = "UPDATE users SET status = 'Active' WHERE user_id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, selectedUser.getId());
-            pstmt.executeUpdate();
-
-            updateUsers();
-            
-            
-            configUtil.showAlert(Alert.AlertType.INFORMATION, "Success", "User activated successfully!");
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    configUtil.showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to update user status.");
-                }
-
-            } else if ("Active".equalsIgnoreCase(currentStatus)) {
-                configUtil.showAlert(Alert.AlertType.WARNING, "Already Active", "Selected user is already active.");
-            } else {
-                configUtil.showAlert(Alert.AlertType.WARNING, "Invalid Status", "Selected user is not in 'Newly Registered' or 'Active' status.");
-            }
-
-        } else {
-            configUtil.showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a user from the table.");
+        if ("Active".equalsIgnoreCase(currentStatus)) {
+            configUtil.showAlert(Alert.AlertType.WARNING, "Already Active", "Selected user is already active.");
+            return; // Exit here to prevent further execution
         }
 
+        if ("Newly Registered".equalsIgnoreCase(currentStatus)) {
+            try (Connection conn = db.getConnection()) {
+                if (conn == null) {
+                    configUtil.showAlert(Alert.AlertType.ERROR, "Database Error", "Database connection failed.");
+                    return;
+                }
+
+                String sql = "UPDATE users SET status = 'Active' WHERE user_id = ?";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, selectedUser.getId());
+                pstmt.executeUpdate();
+
+                updateUsers(); // ✅ Ensure this method correctly refreshes the table
+
+                configUtil.showAlert(Alert.AlertType.INFORMATION, "Success", "User activated successfully!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                configUtil.showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to update user status.");
+            }
+        } else {
+            configUtil.showAlert(Alert.AlertType.WARNING, "Invalid Status", "Selected user is not in 'Newly Registered' status.");
+        }
+    } else {
+        configUtil.showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a user from the table.");
+    }
 }
+
 
     @FXML
     private void addUser(MouseEvent event) throws IOException {
         
            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/SuperAdmin/UserAdd.fxml"));
-            Parent addUserContent = loader.load(); // Rename to avoid confusion
+            Parent addUserContent = loader.load(); 
 
-            // Get the controller instance
+            
             UserAddController controller = loader.getController();
 
-            // Scene and root pane setup
+            
             Scene scene = addBtn.getScene();
             Pane rootPane = (Pane) scene.getRoot();
 

@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -62,7 +63,6 @@ public class HR_EmployeeManagementController implements Initializable {
     private DatePicker Tdate;
     @FXML
     private Button submit;
-    @FXML
     private ObservableList<Employees> empList;
     @FXML
     private TableView<Employees> EmployeeView;
@@ -88,6 +88,12 @@ public class HR_EmployeeManagementController implements Initializable {
     private TableColumn<Employees, String> deptC;
     @FXML
     private TableColumn<Employees, String> postC;
+    @FXML
+    private ComboBox<String> filterView1;
+    @FXML
+    private ImageView refreshButton;
+    @FXML
+    private Button update;
    
 
     @Override
@@ -246,5 +252,13 @@ public class HR_EmployeeManagementController implements Initializable {
             deptcombo1.setValue("Choose Department");
             poscombo1.setValue("Choose Position");
 }
+
+    @FXML
+    private void refreshButton(MouseEvent event) {
+    }
+
+    @FXML
+    private void updateBtn(MouseEvent event) {
+    }
     
 }

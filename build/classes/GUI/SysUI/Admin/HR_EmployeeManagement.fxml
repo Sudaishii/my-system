@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -24,8 +25,8 @@
                      <children>
                         <Pane layoutX="16.0" layoutY="38.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
                            <children>
-                              <Label layoutX="13.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="View Active Employees" />
-                              <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="65.0" prefHeight="456.0" prefWidth="1023.0" stylesheets="@../../resources/resource.css">
+                              <Label layoutX="13.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="Employee Management" />
+                              <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="82.0" prefHeight="434.0" prefWidth="1023.0" stylesheets="@../../resources/resource.css">
                                 <columns>
                                   <TableColumn fx:id="idC" editable="false" prefWidth="65.0" text="ID" />
                                   <TableColumn fx:id="fnameC" editable="false" prefWidth="113.0" text="First Name" />
@@ -38,6 +39,13 @@
                                 </columns>
                                  
                               </TableView>
+                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="1002.0" layoutY="43.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons8-refresh-26.png" />
+                                 </image>
+                              </ImageView>
+                              <ComboBox fx:id="filterView1" layoutX="820.0" layoutY="37.0" prefHeight="34.0" prefWidth="176.0" />
+                              <Button fx:id="update" layoutX="688.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#updateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@hr_css.css" text="UPDATE" />
                            </children>
                         </Pane>
                      </children>

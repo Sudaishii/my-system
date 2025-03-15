@@ -63,7 +63,7 @@ public class HR_DashboardController implements Initializable {
         );
        
        ObservableList<String> departments = FXCollections.observableArrayList(
-               "    Overall", "    IT", "    Finance"
+               "    Overall", "    Human Resources", "    Front Office", "    House Keeping", "    Maintenance", "    IT"
        );
        
         deptcombo.setItems(departments);
