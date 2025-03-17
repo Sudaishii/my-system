@@ -3,6 +3,7 @@ package GUI.SysUI.Admin;
 import GUI.SysUI.SuperAdmin.users;
 import GUI.config.config;
 import GUI.config.dbConnect;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +14,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +33,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -91,10 +99,9 @@ public class HR_EmployeeManagementController implements Initializable {
     @FXML
     private ComboBox<String> filterView1;
     @FXML
-    private ImageView refreshButton;
-    @FXML
     private Button update;
    
+//    empTransfer trans = new empTransfer
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -257,8 +264,81 @@ public class HR_EmployeeManagementController implements Initializable {
     private void refreshButton(MouseEvent event) {
     }
 
-    @FXML
-    private void updateBtn(MouseEvent event) {
+ 
+@FXML
+private void updateBtn(MouseEvent event) {
+    Employees selectedEmployee = EmployeeView.getSelectionModel().getSelectedItem();
+
+    if (selectedEmployee != null) {
+        try {
+            // Extract selected employee ID
+            int selectedEmployeeId = selectedEmployee.getId();
+
+            
+            Employees fullEmployeeData = getEmployeeById(selectedEmployeeId);
+
+            if (fullEmployeeData != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("updateEmployee.fxml"));
+                Parent updateContent = loader.load();
+
+                UpdateEmployeeController controller = loader.getController();
+                
+                // Pass the full employee data to the controller
+                controller.setEmployeeData(fullEmployeeData);
+
+                Scene scene = update.getScene(); 
+                Pane rootPane = (Pane) scene.getRoot();
+
+                AnchorPane overlayPane = new AnchorPane(updateContent);
+                overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+
+                overlayPane.prefWidthProperty().bind(scene.widthProperty());
+                overlayPane.prefHeightProperty().bind(scene.heightProperty());
+
+                controller.setOverlayPane(overlayPane);
+                controller.setRootPane(rootPane);
+
+                rootPane.getChildren().add(overlayPane);
+
+                // Fade-in effect
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane);
+                fadeIn.setFromValue(0);
+                fadeIn.setToValue(1);
+                fadeIn.play();
+
+                overlayPane.setOnMouseClicked(e -> {
+                    if (e.getTarget() == overlayPane) {
+                        FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
+                        fadeOut.setFromValue(1);
+                        fadeOut.setToValue(0);
+                        fadeOut.setOnFinished(ev -> rootPane.getChildren().remove(overlayPane));
+                        fadeOut.play();
+                    }
+                });
+            } else {
+                config conf = new config();
+                conf.showAlert(Alert.AlertType.WARNING, "Warning", "Employee details not found.");
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    } else {
+        config conf = new config();
+        conf.showAlert(Alert.AlertType.WARNING, "Warning", "Please select an employee to update.");
     }
+}
+
+
+        private Employees getEmployeeById(int employeeId) {
+            for (Employees emp : empList) { // Assuming employeeList contains full details
+                if (emp.getId() == employeeId) {
+                    return emp; // Return the matched employee
+                }
+            }
+            return null; // Return null if no match is found
+        }
+    
+    
     
 }

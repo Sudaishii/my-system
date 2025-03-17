@@ -16,11 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-/**
- * FXML Controller class
- *
- * @author kerjan
- */
+
 public class Super_AdminController implements Initializable {
     
     
@@ -30,17 +26,16 @@ public class Super_AdminController implements Initializable {
     @FXML
     private BorderPane rootPane;
 
-    /**
-     * Initializes the controller class.
-     */
+   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          loadPage("/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
+          loadPageUser("/GUI/SysUI/SuperAdmin/SU_Dashboard.fxml");
           instance = this;
     }    
     
     
-     public void loadPage(String targetFXML) {
+     public void loadPageUser(String targetFXML) {
             try {
                 rootPane.setCenter(null); 
                 Parent root = FXMLLoader.load(getClass().getResource(targetFXML));
@@ -53,14 +48,17 @@ public class Super_AdminController implements Initializable {
 
     @FXML
     private void dashboard(MouseEvent event) {
+       loadPageUser("/GUI/SysUI/SuperAdmin/SU_Dashboard.fxml");
     }
 
     @FXML
     private void manageusers(MouseEvent event) {
+         loadPageUser("/GUI/SysUI/SuperAdmin/SU_UserManagement.fxml");
     }
 
     @FXML
     private void manageroles(MouseEvent event) {
+        
     }
     
 }

@@ -1,39 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.config;
 
-/**
- *
- * @author Rasheed
- */
 public class Session {
-   
-    private static int userId;
-    private static String username;
+    private static Session instance;
+    private int userId;
+    private String uname;
 
+    // Private constructor to enforce singleton pattern
+    private Session() {}
 
-    public static void createSession(int id, String uName) {
-        
-        userId = id;
-        username = uName;
-       
+    // Singleton instance method
+    public static Session getInstance() {
+        if (instance == null) {
+            instance = new Session();
+        }
+        return instance;
     }
 
-    public static String getUname() {
-        return username;
+    // Create session
+    public void createSession(int userId, String uname) {
+        this.userId = userId;
+        this.uname = uname;
     }
 
-    public static int getUserId() {
-        return userId;
+    // Retrieve username
+    public String getUname() {
+        return uname;
     }
 
-    public static void clearSession() {
+    // Clear session
+    public void clearSession() {
         userId = 0;
-        username = null;
-        
+        uname = null;
     }
 }
-

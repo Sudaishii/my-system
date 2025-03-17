@@ -8,6 +8,7 @@ package GUI.SysUI.LogIn;
 import java.awt.Color;
 import java.awt.Paint;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,7 +34,7 @@ import javafx.stage.StageStyle;
 public class login extends Application {
     
         public static void main(String[] args) {
-               
+            
             launch(args);
     }
         

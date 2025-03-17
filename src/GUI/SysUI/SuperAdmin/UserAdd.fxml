@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,7 @@
                <children>
                   <Pane prefHeight="67.0" prefWidth="329.0">
                      <children>
-                        <TextField fx:id="unF" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
+                        <TextField fx:id="unF" alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
                         <Label layoutX="34.0" text="Username">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -29,7 +30,7 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="10.0" prefHeight="67.0" prefWidth="329.0">
                      <children>
-                        <TextField fx:id="emF" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
+                        <TextField fx:id="emF" alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
                         <Label layoutX="34.0" text="Email">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -39,18 +40,18 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="77.0" prefHeight="67.0" prefWidth="329.0">
                      <children>
-                        <TextField fx:id="passF" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
                         <Label layoutX="34.0" text="Password">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
+                        <PasswordField fx:id="passF" alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
                      </children>
                   </Pane>
                </children>
             </VBox>
             <Button layoutX="137.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#createBtn" styleClass="create-btn" text="Create User" />
-            <ImageView fitHeight="36.0" fitWidth="31.0" layoutX="10.0" layoutY="13.0" onMouseClicked="#closeBtn" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="closeBtn" fitHeight="36.0" fitWidth="31.0" layoutX="10.0" layoutY="13.0" onMouseClicked="#closeBtn" pickOnBounds="true" preserveRatio="true" styleClass="closeBtn">
                <image>
                   <Image url="@../../images/icons8-return-64.png" />
                </image>

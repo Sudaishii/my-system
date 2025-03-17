@@ -96,11 +96,11 @@ public class HR_DashboardController implements Initializable {
             date.setText(formattedFirstDay + " - " + formattedLastDay);
         }
         
-        Session ses = new Session();
+      Session ses = Session.getInstance();
         
-        String uname;
+        String uname = Session.getInstance().getUname();
         uname = ses.getUname();
-        
+        greet.setText("Welcome, " + uname +"!");
     }    
     
 }

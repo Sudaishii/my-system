@@ -19,7 +19,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -37,7 +39,7 @@ public class UserAddController implements Initializable {
     @FXML
     private TextField emF;
     @FXML
-    private TextField passF;
+    private PasswordField passF;
     @FXML
     private AnchorPane overlayPane;
     @FXML
@@ -45,13 +47,21 @@ public class UserAddController implements Initializable {
      
     dbConnect db = new dbConnect();
     config con = new config();
+    @FXML
+    private ImageView closeBtn;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            if (overlayPane != null) {
+                   overlayPane.setOnMouseClicked(e -> {
+                       if (e.getPickResult().getIntersectedNode() == overlayPane) {
+                           closeOverlay();
+                       }
+                   });
+               }
     }    
     
        
@@ -169,6 +179,8 @@ public class UserAddController implements Initializable {
         closeOverlay();
     }
     
+
+        
      private void closeOverlay() {
          
         System.out.println("overlayPane: " + overlayPane);

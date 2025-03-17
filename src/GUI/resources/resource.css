@@ -1,4 +1,19 @@
 
+#closeBtn{
+  
+    -fx-cursor: hand;
+    -fx-opacity: 1.0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 0);
+    -fx-transition: opacity 0.3s;
+}
+
+#closeBtn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 15, 0, 0, 0); /* Darker shadow on hover */
+    -fx-opacity: 0.5; 
+}
+
+
+
 *{
     
     
@@ -94,6 +109,16 @@
    -fx-font-family: 'Poppins', sans-serif; 
     -fx-font-weight: bold;
     -fx-font-size: 25px;
+    
+}
+
+.captionUn{
+    
+   -fx-font-family: 'Poppins', sans-serif; 
+   -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-text-alignment: center;
     
 }
 

@@ -32,7 +32,7 @@ public class HR_AdminController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml");
+           loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml");
          instance = this;
     }    
     

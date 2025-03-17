@@ -38,20 +38,19 @@ public class dbConnect {
         try {
             stmt = connect.createStatement();
             rst = stmt.executeQuery(sql);
-            return rst; // Be very careful returning ResultSet here!
-            // Consider processing the ResultSet and returning a List instead.
+            return rst; 
+           
         } catch (SQLException ex) {
-            // It's important to close the connection even if an error occurs
+            
             if (connect != null) {
                 connect.close();
             }
             if (stmt != null) {
                 stmt.close();
             }
-            throw ex; // Re-throw the exception to be handled by the caller
+            throw ex; 
         } finally {
-            // The calling method will need to handle closing the ResultSet and Connection
-            // if you return the ResultSet directly. This is generally not recommended.
+            
         }
     }
 }

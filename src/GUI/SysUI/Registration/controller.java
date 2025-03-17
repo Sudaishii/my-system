@@ -9,6 +9,7 @@ import GUI.config.config;
 import GUI.config.dbConnect;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +36,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -64,8 +69,6 @@ public class controller {
     private TextField lname;
     @FXML
     private Button btnSign;
-    @FXML
-    private Label lblpass1;
     private TextField contactF;
     @FXML
     private TextField emailF;
@@ -73,20 +76,29 @@ public class controller {
     private TextField usernameF;
     @FXML
     private PasswordField passwordF;
-   
+    @FXML
+    private ComboBox<String> ComboRole;
     
     dbConnect db = new dbConnect();
-    @FXML
-    private Label lblpass11;
-    @FXML
-    private Label lblpass111;
-    private Image imageOn;
-    private Image imageOff;
     
+   
+    @FXML
+    public void initialize() {
+        
+        ComboRole.getItems().addAll("Human Resource", "Employee", "Staff");
+
+        
+        ComboRole.setOnAction(event -> {
+            String selectedRole = ComboRole.getValue();
+            System.out.println("Selected Role: " + selectedRole);
+        });
+    }
     
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException{
+        
+
         
        
     Scene scene = ((Node) event.getSource()).getScene();

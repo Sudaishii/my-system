@@ -6,14 +6,18 @@ import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -61,21 +65,17 @@ public class controller {
     private ImageView image;
     @FXML
     private Rectangle reclog;
-    @FXML
-    private Label greetLabel;
   
-      Session ses = new Session();
+     
     
     dbConnect db = new dbConnect();
     @FXML
-    private Label errorUnLabel;
-    @FXML
-    private Label errorPassLabel;
+    private Pane rootPane;
     
    
    public void initialize(URL url, ResourceBundle rb) {
         
-      
+      Platform.runLater(() -> rootPane.requestFocus()); 
         
     }
 
@@ -115,76 +115,116 @@ public class controller {
     });
 }
     config con = new config();
+    Session ses = Session.getInstance();
     
-    @FXML
-    private void LogInButton(ActionEvent event) throws IOException, Exception {
-        
-        String username = UNField.getText().trim();
-        String password = PassField.getText().trim();
+    
+      
+    
+   @FXML
+private void LogInButton(ActionEvent event) throws Exception {
 
-        if (username.isEmpty() || password.isEmpty()) {
-            con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
-            return;
-        }
+    String username = UNField.getText().trim();
+    String password = PassField.getText().trim();
 
-        try {  // The try-catch is BACK!  This is essential.
-            String role = authenticateUser(username, password);
-            if (role != null) {
-            
-                
-
-                if (role.equalsIgnoreCase("HR_Admin")) {
-                    
-                  
-                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!", "Welcome Back! You are logged in as a " + role + ".  Redirecting to your dashboard.");
-                    con.switchScene(getClass(), event, "/GUI/SysUI/Admin/HR_Admin.fxml");
-                    
-                } 
-               
-                else if(role.equalsIgnoreCase("Employee")){
-                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful, Welcome Back.", "You are logged in as a " + role + ".  Redirecting to your dashboard.");
-                    con.showAlert(Alert.AlertType.INFORMATION, "Redirecting...", "You are logged in as a " + role + ".  Redirecting to your dashboard.");
-                    con.switchScene(getClass(), event, "/dashboard/employees/employee_dashboard.fxml");
-           
-                }
-           
-
-            } else {
-                con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace(); 
-            con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred during login. Please try again later.");
-        }
-            
+    if (username.isEmpty() || password.isEmpty()) {
+        con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
+        return;
     }
+
+    try {
+        Map<String, String> userInfo = authenticateUserWithStatus(username, password);
+
+        if (userInfo != null) {
+            String role = userInfo.get("role");
+            String status = userInfo.get("status");
+
+            if ("Active".equalsIgnoreCase(status)) {
+                Map<String, String> rolePaths = new HashMap<>();
+                rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
+                rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
+
+                if (rolePaths.containsKey(role)) {
+                    Session.getInstance().createSession(1, username);
+                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!", 
+                        "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
+                    con.switchScene(getClass(), event, rolePaths.get(role));
+                } else {
+                    con.showAlert(Alert.AlertType.WARNING, "Access Denied", 
+                        "Your role does not have permission to access this system.");
+                }
+
+            } else if ("Newly Registered".equalsIgnoreCase(status)) {
+                con.showAlert(Alert.AlertType.WARNING, "Account Inactive", 
+                    "Your account is still marked as 'Newly Registered'. Please wait for activation.");
+            } else {
+                con.showAlert(Alert.AlertType.WARNING, "Account Inactive", 
+                    "Your account is inactive. Please contact the administrator.");
+            }
+
+        } else {
+            con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred during login. Please try again later.");
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        con.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load the dashboard. Please try again later.");
+    }
+}
+
               
     
      
 
-   public String authenticateUser(String username, String password) throws SQLException {
-       String sql = "SELECT u.user_id, u.user_name, r.role_name FROM users u INNER JOIN roles r ON u.role_id = r.role_id WHERE u.user_name = ? AND u.user_pass = ?"; 
-        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
-            pst.setString(1, username);
-            pst.setString(2, password);
-            try (ResultSet rs = pst.executeQuery()) {
-                if (rs.next()) {
-                    int userId = rs.getInt("user_id");
-                    String Username = rs.getString("user_name");
-                    String role = rs.getString("role_name"); // Get user role first
-                
-                    
-                    ses.createSession(userId, Username);
+//   public String authenticateUser(String username, String password) throws SQLException {
+//       String sql = "SELECT u.user_id, u.user_name, r.role_name FROM users u INNER JOIN roles r ON u.role_id = r.role_id WHERE u.user_name = ? AND u.user_pass = ?"; 
+//        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
+//            pst.setString(1, username);
+//            pst.setString(2, password);
+//            try (ResultSet rs = pst.executeQuery()) {
+//                if (rs.next()) {
+//                    int userId = rs.getInt("user_id");
+//                    String Username = rs.getString("user_name");
+//                    String role = rs.getString("role_name"); 
+//                
+//                    
+//                    ses.createSession(userId, Username);
+//
+//                    return role; 
+//                }
+//            }
+//        }
+//        return null;
+//    }
+   
+        private Map<String, String> authenticateUserWithStatus(String username, String password) throws SQLException {
+            Map<String, String> userInfo = new HashMap<>();
+            dbConnect db = new dbConnect();
 
-                    return role; 
+            String query = "SELECT r.role_name, u.status " +
+                           "FROM users u " +
+                           "JOIN roles r ON u.role_id = r.role_id " +  
+                           "WHERE u.user_name = ? AND u.user_pass = ?";
+
+            try (Connection con = db.getConnection();
+                 PreparedStatement pst = con.prepareStatement(query)) {
+
+                pst.setString(1, username);
+                pst.setString(2, password);
+
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        userInfo.put("role", rs.getString("role_name"));  // Correct role name
+                        userInfo.put("status", rs.getString("status"));
+                    }
                 }
             }
-        }
-        return null;
-    }
-   
 
-  
+            return userInfo.isEmpty() ? null : userInfo;
+        }
+
+
 
 
 //    // Method to center the stage on the screen

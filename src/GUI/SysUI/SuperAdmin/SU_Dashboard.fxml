@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="179.0" prefWidth="1080.0" styleClass="custompane" stylesheets="@../Admin/dashboard.css" />
       <AnchorPane layoutX="93.0" layoutY="109.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@../Admin/dashboard.css">
@@ -71,5 +70,10 @@
             </Label>
          </children>
       </AnchorPane>
+      <Label fx:id="greet" layoutX="345.0" layoutY="25.0" prefHeight="15.0" prefWidth="246.0" styleClass="header-title" stylesheets="@../Admin/dashboard.css" text="0">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

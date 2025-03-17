@@ -45,62 +45,10 @@
        -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.3, 0, 2);
 }
 
-.text-field  {
-    
-    -fx-font-style: italic;
-    -fx-text-fill: #1f2220;
-    -fx-background-color: transparent;
-    -fx-font-size: 14px;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 0 0 1 0;
-    -fx-border-color: black;
-    -fx-prompt-text-fill: #111111; 
-    
-    
-}
+
 
 #tbtn{
     -fx-background-color: transparent;
-}
-
-.password-field{
-     -fx-font-style: italic;
-    -fx-text-fill: #1f2220;
-    -fx-background-color: transparent;
-    -fx-font-size: 14px;
-    -fx-border-width: 0 0 1 0;
-    -fx-padding: 0 0 1 0;
-    -fx-border-color: black;
-    -fx-prompt-text-fill: #111111; 
-    
-    
-}
-
-
-.text-field:focused {
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: #ffe5c2;
-    
-  
-}
-
-.password-field:focused {
-    -fx-border-width: 0 0 2 0;
-    -fx-border-color: #ffe5c2;
-    
-  
-}
-
-
-.text-field .prompt-text {
-    -fx-text-fill: #a0a0a0;
-    -fx-font-size: 12px;
-}
-
-#lblemail #lblun #lblpass #lblcpass{
-    fx-text-fill: #555;
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
 }
 
 #btnSign {

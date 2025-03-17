@@ -38,7 +38,7 @@
                                     <Image url="@../../images/icons8-refresh-26.png" />
                                  </image>
                               </ImageView>
-                              <ComboBox fx:id="filterView1" layoutX="772.0" layoutY="49.0" prefHeight="34.0" prefWidth="176.0" />
+                              <ComboBox fx:id="filterView1" layoutX="772.0" layoutY="49.0" prefHeight="34.0" prefWidth="176.0" stylesheets="@../../resources/resource.css" />
                               <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Users" />
                               <Button layoutX="638.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#activateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ACTIVATE" />
                               <Button fx:id="assignBtn" layoutX="505.0" layoutY="51.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ASSIGN" />

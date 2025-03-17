@@ -203,31 +203,30 @@ private void activateBtn(MouseEvent event) {
             Scene scene = addBtn.getScene();
             Pane rootPane = (Pane) scene.getRoot();
 
-            // Overlay container for dimming effect and centered form
-            AnchorPane overlayPane = new AnchorPane(addUserContent); // Use AnchorPane as the overlay
+            AnchorPane overlayPane = new AnchorPane(addUserContent); 
             overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
 
-            // Ensures overlay resizes dynamically with window changes
+      
             overlayPane.prefWidthProperty().bind(scene.widthProperty());
             overlayPane.prefHeightProperty().bind(scene.heightProperty());
 
-            // Pass references to the controller
-            controller.setOverlayPane(overlayPane); // Pass the overlayPane
+
+            controller.setOverlayPane(overlayPane); 
             controller.setRootPane(rootPane);
 
-            // Add overlay to the root pane
+   
             rootPane.getChildren().add(overlayPane);
 
-            // Fade-in effect for smoother appearance
-            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane); // Fade in the overlayPane
+     
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane); 
             fadeIn.setFromValue(0);
             fadeIn.setToValue(1);
             fadeIn.play();
 
-            // Optional: Remove this if you only want the "Return" button to close the overlay
+            
             overlayPane.setOnMouseClicked(e -> {
                 if (e.getTarget() == overlayPane) {
-                    FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane); // Fade out the overlayPane
+                    FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
                     fadeOut.setFromValue(1);
                     fadeOut.setToValue(0);
                     fadeOut.setOnFinished(ev -> rootPane.getChildren().remove(overlayPane));

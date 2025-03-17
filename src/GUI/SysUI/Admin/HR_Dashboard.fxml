@@ -39,7 +39,7 @@
                         <Image url="@../../images/icons8-calendar-50.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="greet" layoutX="738.0" layoutY="8.0" prefHeight="45.0" prefWidth="246.0" styleClass="salary-amount" stylesheets="@dashboard.css" text="0">
+                  <Label fx:id="greet" layoutX="335.0" layoutY="15.0" prefHeight="15.0" prefWidth="246.0" styleClass="header-title" stylesheets="@dashboard.css" text="0">
                      <font>
                         <Font size="42.0" />
                      </font>
