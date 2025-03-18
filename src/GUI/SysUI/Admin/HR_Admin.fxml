@@ -38,7 +38,12 @@
                         <Button mnemonicParsing="false" onMouseClicked="#time" prefHeight="65.0" prefWidth="207.0" styleClass="btnH" text="Time Management" />
                         <Button mnemonicParsing="false" onMouseClicked="#payslip" prefHeight="61.0" prefWidth="219.0" styleClass="btnH" text="Payslip Management" />
                      </children>
-                  </HBox>  
+                  </HBox>
+                  <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="999.0" layoutY="3.0" onMouseClicked="#profileBtn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8-user-100.png" />
+                     </image>
+                  </ImageView>  
                </children>
             </Pane>
          </top>

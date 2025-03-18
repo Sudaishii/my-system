@@ -429,3 +429,19 @@
     -fx-padding: 20;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 5);
 }
+
+.tf {
+    -fx-background-color: transparent;
+    -fx-border-color: #888; 
+    -fx-border-radius: 10px;
+    -fx-border-width: 1.5; 
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #555; 
+    -fx-font-family: 'Poppins', sans-serif; 
+}
+
+.tf:focused {
+    -fx-border-color: black; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2); 
+}

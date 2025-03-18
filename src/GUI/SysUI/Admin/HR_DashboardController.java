@@ -6,12 +6,19 @@
 package GUI.SysUI.Admin;
 
 import GUI.config.Session;
+import GUI.config.dbConnect;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 import javafx.collections.FXCollections;
@@ -96,11 +103,40 @@ public class HR_DashboardController implements Initializable {
             date.setText(formattedFirstDay + " - " + formattedLastDay);
         }
         
-      Session ses = Session.getInstance();
+       Session ses = Session.getInstance();
         
         String uname = Session.getInstance().getUname();
         uname = ses.getUname();
-        greet.setText("Welcome, " + uname +"!");
-    }    
+        greet.setText(uname);
+    }   
     
+    
+    
+    private Map<String, String> getUserDetails(String username) throws SQLException {
+    Map<String, String> userDetails = new HashMap<>();
+
+    // SQL query to get the user details
+    String query = "SELECT role, status, email FROM users WHERE username = ?";
+    
+    // Initialize connection, statement, and result set
+    try (Connection connect = new dbConnect().getConnection();
+         PreparedStatement pst = connect.prepareStatement(query)) {
+        
+        pst.setString(1, username); // Set the username in the prepared statement
+        
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                // Retrieve the user details from the result set
+                userDetails.put("role", rs.getString("role"));
+                userDetails.put("status", rs.getString("status"));
+                userDetails.put("email", rs.getString("email"));
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        throw ex; // Rethrow exception if something goes wrong
+    }
+    
+    return userDetails;
+}
 }

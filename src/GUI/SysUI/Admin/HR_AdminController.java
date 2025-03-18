@@ -69,6 +69,11 @@ public class HR_AdminController implements Initializable {
     @FXML
     private void payslip(MouseEvent event) {
     }
+
+    @FXML
+    private void profileBtn(MouseEvent event) {
+         loadPage("/GUI/SysUI/univ/Profile.fxml");
+    }
     
     
 }

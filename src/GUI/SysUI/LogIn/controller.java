@@ -136,7 +136,7 @@ private void LogInButton(ActionEvent event) throws Exception {
 
     String username = UNField.getText().trim();
     String password = PassField.getText().trim();
-    String hashedPassword = hashPassword(password);  // Hash the entered password
+    String hashedPassword = hashPassword(password);
 
     if (username.isEmpty() || password.isEmpty()) {
         con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
@@ -144,55 +144,49 @@ private void LogInButton(ActionEvent event) throws Exception {
     }
 
     try {
+        
         Map<String, String> userInfo = authenticateUserWithStatus(username);
 
-        if (userInfo != null) {
-            String role = userInfo.get("role");
-            String status = userInfo.get("status");
-            String storedHash = userInfo.get("hashed_password");
-
-            
-            if (role == null || role.isEmpty()) {
-                con.showAlert(Alert.AlertType.WARNING, "Invalid Role", "Your role is not properly assigned. Please contact the administrator.");
-                return;
-            }
-
-            // Handle account status check
-            if ("Newly Registered".equalsIgnoreCase(status)) {
-                con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
-                        "Your account is still marked as 'Newly Registered'. Please wait for activation.");
-                return;
-            } else if ("Inactive".equalsIgnoreCase(status)) {
-                con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
-                        "Your account is inactive. Please contact the administrator.");
-                return;
-            }
-
-            
-            if (!hashedPassword.equals(storedHash)) {
-                con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
-                return;
-            }
-
-            // If account is active, handle login
-            if ("Active".equalsIgnoreCase(status)) {
-                Map<String, String> rolePaths = new HashMap<>();
-                rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
-                rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
-
-                if (rolePaths.containsKey(role)) {
-                    Session.getInstance().createSession(1, username);
-                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
-                            "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
-                    con.switchScene(getClass(), event, rolePaths.get(role));
-                } else {
-                    con.showAlert(Alert.AlertType.WARNING, "Access Denied",
-                            "Your role does not have permission to access this system.");
-                }
-            }
-        } else {
-            con.showAlert(Alert.AlertType.WARNING, "Invalid Role", "Your role is not properly assigned. Please contact the administrator.");
+        // Check if the credentials (username and password) are valid first
+        if (userInfo == null || !hashedPassword.equals(userInfo.get("hashed_password"))) {
+            con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+            return;
         }
+
+        // After successful credentials check, retrieve role and status
+        String role = userInfo.get("role");
+        String status = userInfo.get("status");
+
+        // If role or status is missing or invalid, show a specific message
+        if (role == null || role.isEmpty()) {
+            con.showAlert(Alert.AlertType.WARNING, "Role Not Assigned", 
+                    "Your role is not properly assigned. Please contact customer service for role activation.");
+            return;
+        }
+
+        if ("Newly Registered".equalsIgnoreCase(status)) {
+            con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
+                    "Your account is still marked as 'Newly Registered'. Please contact customer service for activation.");
+            return;
+        }
+
+        // If the account is active and role is valid
+        if ("Active".equalsIgnoreCase(status)) {
+            Map<String, String> rolePaths = new HashMap<>();
+            rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
+            rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
+
+            if (rolePaths.containsKey(role)) {
+                Session.getInstance().createSession(1, username);
+                con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
+                        "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
+                con.switchScene(getClass(), event, rolePaths.get(role));
+            } else {
+                con.showAlert(Alert.AlertType.WARNING, "Access Denied",
+                        "Your role does not have permission to access this system.");
+            }
+        }
+
     } catch (SQLException ex) {
         ex.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred during login. Please try again later.");
@@ -204,6 +198,8 @@ private void LogInButton(ActionEvent event) throws Exception {
         e.printStackTrace();
     }
 }
+
+
 
 
 

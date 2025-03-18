@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2025 at 06:00 PM
+-- Generation Time: Mar 18, 2025 at 11:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -127,7 +127,7 @@ INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 (1, 'Super_Admin'),
 (2, 'HR_Admin'),
 (3, 'Employee'),
-(4, 'Management');
+(4, 'Staff');
 
 -- --------------------------------------------------------
 
@@ -150,10 +150,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_pass`, `status`, `role_id`, `emp_id`) VALUES
-(31, 'hadmin@gmail.com', 'admin', 'hadmin', 'Active', 2, NULL),
-(32, 'suadmin@gmail.com', 'super', 'super', 'Active', 1, NULL),
 (33, 'oki@gmail.com', 'okay', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Active', NULL, NULL),
-(34, 'hi@gmail.com', 'hello', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Newly Registered', NULL, NULL);
+(34, 'hi@gmail.com', 'hello', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Active', NULL, NULL),
+(35, 'admin@gmail.com', 'admin', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 2, NULL),
+(36, 'super@gmial.com', 'super', 'kcMGN9IzQ9KY51Et+IoIXhvGaYx0ZszWY7aS2m9KymU=', 'Active', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -237,7 +237,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
