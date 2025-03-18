@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2025 at 03:43 AM
+-- Generation Time: Mar 18, 2025 at 06:00 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`) VALUES
-(1000, 'Rasheed', 'Paradela', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapalesrasheed@gmail.com', '09456989966', '2025-03-01', 'Front Office', 'Front Office Manager');
+(1000, 'Rasheed', 'Paradela', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapalesrasheed@gmail.com', '09456989966', '2025-03-01', 'Front Office', 'Front Office Manager'),
+(1001, 'dasdsadas', 'daasda', 'sdasdas', 18, 'Male', 'dasdas', 'dsadas@gmail.com', '09456989966', '2025-02-26', 'Front Office', 'Front Office Manager');
 
 -- --------------------------------------------------------
 
@@ -138,7 +139,7 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `user_email` varchar(20) NOT NULL,
   `user_name` varchar(20) NOT NULL,
-  `user_pass` varchar(20) NOT NULL,
+  `user_pass` varchar(255) NOT NULL,
   `status` varchar(20) NOT NULL,
   `role_id` int(20) DEFAULT NULL,
   `emp_id` int(11) DEFAULT NULL
@@ -149,9 +150,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_pass`, `status`, `role_id`, `emp_id`) VALUES
-(2, 'admin@gmail.com', 'admin', 'qwe123!@#', 'Active', 2, NULL),
-(5, 'dasdas@gmail.com', 'dasdadsadas', 'asdasdasdasdasdasd', 'Active', NULL, NULL),
-(6, 'dasdd@gmail.com', 'Snezhy', 'dadasdadasdad1231', 'Active', NULL, NULL);
+(31, 'hadmin@gmail.com', 'admin', 'hadmin', 'Active', 2, NULL),
+(32, 'suadmin@gmail.com', 'super', 'super', 'Active', 1, NULL),
+(33, 'oki@gmail.com', 'okay', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Active', NULL, NULL),
+(34, 'hi@gmail.com', 'hello', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Newly Registered', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -211,7 +213,7 @@ ALTER TABLE `dailytimerecords`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
 -- AUTO_INCREMENT for table `m_reports`
@@ -235,7 +237,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
