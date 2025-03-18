@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Employees {
     
-    
+
     private int id;
     private String fname;
     private String lname;
@@ -23,7 +23,7 @@ public class Employees {
     private String dept;
     private String pos;
     
-    public Employees (int id, String fname, String lname, String email, Date hdate, String contact, String dept, String pos ) {
+    public Employees (int id, String fname, String lname, String email, Date hdate, String contact, String dept, String pos) {
         
         this.id = id;
         this.fname = fname;
@@ -33,6 +33,7 @@ public class Employees {
         this.contact = contact;
         this.dept = dept;
         this.pos = pos;
+        
        
     }
     
@@ -44,5 +45,8 @@ public class Employees {
     public String getContact() { return contact; }
     public String getDept() { return dept; }
     public String getPos() { return pos; }
+
+    
+    
     
 }

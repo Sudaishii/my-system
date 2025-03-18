@@ -1,21 +1,19 @@
 package GUI.SysUI.Admin;
 
-import GUI.SysUI.SuperAdmin.users;
+
 import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,7 +29,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -106,6 +103,7 @@ public class HR_EmployeeManagementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+         
         
         empList = FXCollections.observableArrayList();
         
@@ -162,6 +160,14 @@ public class HR_EmployeeManagementController implements Initializable {
                 poscombo1.setValue("Choose Position");
             }
         });
+        
+        
+         EmployeeView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                int selectedId = newSelection.getId();
+                System.out.println("Selected Employee ID: " + selectedId);
+            }
+        });
            
         loadDataFromDatabase();
 
@@ -169,30 +175,56 @@ public class HR_EmployeeManagementController implements Initializable {
 
     @FXML
     private void AddEmployee(MouseEvent event) {
-        
-        config conf = new config();
-        
-            String fname = Tfname.getText().trim();
-            String mname = Tmname.getText().trim();
-            String lname = Tlname.getText().trim();
-            String address = Tadd.getText().trim();
-            String email = Temail.getText().trim();
-            String age = Tage.getText().trim();
-            String sex = sexcombo1.getValue().trim();
-            String dept = deptcombo1.getValue().trim();
-            String pos = poscombo1.getValue().trim();
-            String contact = Tcontact.getText().trim();
-            String date = Tdate.getValue().toString();
-        
-        String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    config conf = new config();
 
-        conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date, dept, pos);
-        conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
-        
-        clearFields();
-        
+    String fname = Tfname.getText().trim();
+    String mname = Tmname.getText().trim();
+    String lname = Tlname.getText().trim();
+    String address = Tadd.getText().trim();
+    String email = Temail.getText().trim();
+    String age = Tage.getText().trim();
+    String sex = sexcombo1.getValue() != null ? sexcombo1.getValue().trim() : "";
+    String dept = deptcombo1.getValue() != null ? deptcombo1.getValue().trim() : "";
+    String pos = poscombo1.getValue() != null ? poscombo1.getValue().trim() : "";
+    String contact = Tcontact.getText().trim();
+    LocalDate date = Tdate.getValue();
+
+    // Validations
+    if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
+        age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
+        return;
     }
+
+    if (!age.matches("\\d+") || Integer.parseInt(age) < 18) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Age must be a valid number and at least 18.");
+        return;
+    }
+
+    if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Invalid email format.");
+        return;
+    }
+
+    if (!contact.matches("\\d{10,11}")) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Contact number must be 10-11 digits.");
+        return;
+    }
+
+    if (date.isAfter(LocalDate.now())) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Hiring date cannot be in the future.");
+        return;
+    }
+
+    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos);
+    conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
+    loadDataFromDatabase();
+    clearFields();
+}
+
     
      private void loadDataFromDatabase() {
          if (db == null) {
@@ -262,72 +294,60 @@ public class HR_EmployeeManagementController implements Initializable {
 
     @FXML
     private void refreshButton(MouseEvent event) {
+        loadDataFromDatabase();
     }
 
- 
+    
+    public class Employee {
+       private String employeeId;
+
+       public String getEmployeeId() {
+           return employeeId;
+       }
+   }
+    
+    config con = new config();
+   
+    
+   
 @FXML
 private void updateBtn(MouseEvent event) {
     Employees selectedEmployee = EmployeeView.getSelectionModel().getSelectedItem();
 
     if (selectedEmployee != null) {
+        int selectedEmployeeId = selectedEmployee.getId(); // Get the ID of the selected employee
+
         try {
-            // Extract selected employee ID
-            int selectedEmployeeId = selectedEmployee.getId();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/Admin/UpdateEmployee.fxml"));
+            Parent addUserContent = loader.load();
 
-            
-            Employees fullEmployeeData = getEmployeeById(selectedEmployeeId);
+            UpdateEmployeeController controller = loader.getController();
+          
 
-            if (fullEmployeeData != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("updateEmployee.fxml"));
-                Parent updateContent = loader.load();
+            Scene scene = update.getScene();
+            if (scene != null) {
+                Pane currentRootPane = (Pane) scene.getRoot();
 
-                UpdateEmployeeController controller = loader.getController();
-                
-                // Pass the full employee data to the controller
-                controller.setEmployeeData(fullEmployeeData);
+                // Directly add the content without animation or overlay pane
+                currentRootPane.getChildren().add(addUserContent);
 
-                Scene scene = update.getScene(); 
-                Pane rootPane = (Pane) scene.getRoot();
-
-                AnchorPane overlayPane = new AnchorPane(updateContent);
-                overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
-
-                overlayPane.prefWidthProperty().bind(scene.widthProperty());
-                overlayPane.prefHeightProperty().bind(scene.heightProperty());
-
-                controller.setOverlayPane(overlayPane);
-                controller.setRootPane(rootPane);
-
-                rootPane.getChildren().add(overlayPane);
-
-                // Fade-in effect
-                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane);
-                fadeIn.setFromValue(0);
-                fadeIn.setToValue(1);
-                fadeIn.play();
-
-                overlayPane.setOnMouseClicked(e -> {
-                    if (e.getTarget() == overlayPane) {
-                        FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
-                        fadeOut.setFromValue(1);
-                        fadeOut.setToValue(0);
-                        fadeOut.setOnFinished(ev -> rootPane.getChildren().remove(overlayPane));
-                        fadeOut.play();
-                    }
-                });
+                // Optionally, set any additional required properties or actions
             } else {
-                config conf = new config();
-                conf.showAlert(Alert.AlertType.WARNING, "Warning", "Employee details not found.");
+                con.showAlert("Error", "Scene Error", "Could not access the current scene.");
             }
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            con.showAlert("Error", "Loading Error", "Failed to load the Employee Update form. Please try again.");
+            e.printStackTrace();
         }
     } else {
-        config conf = new config();
-        conf.showAlert(Alert.AlertType.WARNING, "Warning", "Please select an employee to update.");
+        con.showAlert("Warning", "No Selection", "Please select an employee to update.");
     }
 }
+
+
+
+
 
 
         private Employees getEmployeeById(int employeeId) {

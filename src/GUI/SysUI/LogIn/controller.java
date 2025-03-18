@@ -6,10 +6,13 @@ import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -118,13 +121,22 @@ public class controller {
     Session ses = Session.getInstance();
     
     
-      
+      public static String hashPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hashBytes = md.digest(password.getBytes());
+        String encoded = Base64.getEncoder().encodeToString(hashBytes);
+        return encoded;
+    }  
     
-   @FXML
+      
+ 
+      
+@FXML
 private void LogInButton(ActionEvent event) throws Exception {
 
     String username = UNField.getText().trim();
     String password = PassField.getText().trim();
+    String hashedPassword = hashPassword(password);  // Hash the entered password
 
     if (username.isEmpty() || password.isEmpty()) {
         con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
@@ -132,12 +144,37 @@ private void LogInButton(ActionEvent event) throws Exception {
     }
 
     try {
-        Map<String, String> userInfo = authenticateUserWithStatus(username, password);
+        Map<String, String> userInfo = authenticateUserWithStatus(username);
 
         if (userInfo != null) {
             String role = userInfo.get("role");
             String status = userInfo.get("status");
+            String storedHash = userInfo.get("hashed_password");
 
+            
+            if (role == null || role.isEmpty()) {
+                con.showAlert(Alert.AlertType.WARNING, "Invalid Role", "Your role is not properly assigned. Please contact the administrator.");
+                return;
+            }
+
+            // Handle account status check
+            if ("Newly Registered".equalsIgnoreCase(status)) {
+                con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
+                        "Your account is still marked as 'Newly Registered'. Please wait for activation.");
+                return;
+            } else if ("Inactive".equalsIgnoreCase(status)) {
+                con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
+                        "Your account is inactive. Please contact the administrator.");
+                return;
+            }
+
+            
+            if (!hashedPassword.equals(storedHash)) {
+                con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+                return;
+            }
+
+            // If account is active, handle login
             if ("Active".equalsIgnoreCase(status)) {
                 Map<String, String> rolePaths = new HashMap<>();
                 rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
@@ -145,24 +182,16 @@ private void LogInButton(ActionEvent event) throws Exception {
 
                 if (rolePaths.containsKey(role)) {
                     Session.getInstance().createSession(1, username);
-                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!", 
-                        "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
+                    con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
+                            "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
                     con.switchScene(getClass(), event, rolePaths.get(role));
                 } else {
-                    con.showAlert(Alert.AlertType.WARNING, "Access Denied", 
-                        "Your role does not have permission to access this system.");
+                    con.showAlert(Alert.AlertType.WARNING, "Access Denied",
+                            "Your role does not have permission to access this system.");
                 }
-
-            } else if ("Newly Registered".equalsIgnoreCase(status)) {
-                con.showAlert(Alert.AlertType.WARNING, "Account Inactive", 
-                    "Your account is still marked as 'Newly Registered'. Please wait for activation.");
-            } else {
-                con.showAlert(Alert.AlertType.WARNING, "Account Inactive", 
-                    "Your account is inactive. Please contact the administrator.");
             }
-
         } else {
-            con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+            con.showAlert(Alert.AlertType.WARNING, "Invalid Role", "Your role is not properly assigned. Please contact the administrator.");
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
@@ -170,59 +199,62 @@ private void LogInButton(ActionEvent event) throws Exception {
     } catch (IOException ex) {
         ex.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load the dashboard. Please try again later.");
+    } catch (NoSuchAlgorithmException e) {
+        con.showAlert(Alert.AlertType.ERROR, "Hashing Error", "Could not hash the password.");
+        e.printStackTrace();
     }
 }
 
-              
-    
-     
 
-//   public String authenticateUser(String username, String password) throws SQLException {
-//       String sql = "SELECT u.user_id, u.user_name, r.role_name FROM users u INNER JOIN roles r ON u.role_id = r.role_id WHERE u.user_name = ? AND u.user_pass = ?"; 
-//        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
-//            pst.setString(1, username);
-//            pst.setString(2, password);
-//            try (ResultSet rs = pst.executeQuery()) {
-//                if (rs.next()) {
-//                    int userId = rs.getInt("user_id");
-//                    String Username = rs.getString("user_name");
-//                    String role = rs.getString("role_name"); 
-//                
-//                    
-//                    ses.createSession(userId, Username);
-//
-//                    return role; 
-//                }
-//            }
-//        }
-//        return null;
-//    }
-   
-        private Map<String, String> authenticateUserWithStatus(String username, String password) throws SQLException {
-            Map<String, String> userInfo = new HashMap<>();
-            dbConnect db = new dbConnect();
 
-            String query = "SELECT r.role_name, u.status " +
-                           "FROM users u " +
-                           "JOIN roles r ON u.role_id = r.role_id " +  
-                           "WHERE u.user_name = ? AND u.user_pass = ?";
+   public String authenticateUser(String username, String password) throws SQLException {
+       String sql = "SELECT u.user_id, u.user_name, r.role_name FROM users u INNER JOIN roles r ON u.role_id = r.role_id WHERE u.user_name = ? AND u.user_pass = ?"; 
+        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
+            pst.setString(1, username);
+            pst.setString(2, password);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    int userId = rs.getInt("user_id");
+                    String Username = rs.getString("user_name");
+                    String role = rs.getString("role_name"); 
+                
+                    
+                    ses.createSession(userId, Username);
 
-            try (Connection con = db.getConnection();
-                 PreparedStatement pst = con.prepareStatement(query)) {
-
-                pst.setString(1, username);
-                pst.setString(2, password);
-
-                try (ResultSet rs = pst.executeQuery()) {
-                    if (rs.next()) {
-                        userInfo.put("role", rs.getString("role_name"));  // Correct role name
-                        userInfo.put("status", rs.getString("status"));
-                    }
+                    return role; 
                 }
             }
-
-            return userInfo.isEmpty() ? null : userInfo;
         }
+        return null;
+    }
+
+
+private Map<String, String> authenticateUserWithStatus(String username) throws SQLException {
+    Map<String, String> userInfo = new HashMap<>();
+
+    String query = "SELECT r.role_name, u.status, u.user_pass " +
+                   "FROM users u " +
+                   "JOIN roles r ON u.role_id = r.role_id " +
+                   "WHERE u.user_name = ?";
+
+    try (Connection con = new dbConnect().getConnection();
+         PreparedStatement pst = con.prepareStatement(query)) {
+
+        pst.setString(1, username);
+
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                
+                userInfo.put("role", rs.getString("role_name") != null ? rs.getString("role_name") : "Unknown");
+                userInfo.put("status", rs.getString("status") != null ? rs.getString("status") : "Inactive");
+                userInfo.put("hashed_password", rs.getString("user_pass") != null ? rs.getString("user_pass") : "");
+            }
+        }
+    }
+
+    return userInfo.isEmpty() ? null : userInfo;
+}
+
 
 
 
@@ -239,4 +271,3 @@ private void LogInButton(ActionEvent event) throws Exception {
 }
     
     
-
