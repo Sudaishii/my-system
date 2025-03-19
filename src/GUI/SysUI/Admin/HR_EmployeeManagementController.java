@@ -1,6 +1,7 @@
 package GUI.SysUI.Admin;
 
 
+import GUI.SysUI.SuperAdmin.UserAddController;
 import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
@@ -32,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -172,7 +174,9 @@ public class HR_EmployeeManagementController implements Initializable {
         loadDataFromDatabase();
 
     }
-
+    
+    config conf = new config();
+    
     @FXML
     private void AddEmployee(MouseEvent event) {
 
@@ -286,7 +290,7 @@ public class HR_EmployeeManagementController implements Initializable {
             Tcontact.clear();
             Tdate.setValue(null);
 
-            // Reset combo boxes to default values
+          
             sexcombo1.setValue("Choose Sex");
             deptcombo1.setValue("Choose Department");
             poscombo1.setValue("Choose Position");
@@ -308,42 +312,90 @@ public class HR_EmployeeManagementController implements Initializable {
     
     config con = new config();
    
-    
+    public void loadPage (String targetFXML) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource(targetFXML));
+        
+    }
    
 @FXML
-private void updateBtn(MouseEvent event) {
-    Employees selectedEmployee = EmployeeView.getSelectionModel().getSelectedItem();
-
-    if (selectedEmployee != null) {
-        int selectedEmployeeId = selectedEmployee.getId(); // Get the ID of the selected employee
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/Admin/UpdateEmployee.fxml"));
-            Parent addUserContent = loader.load();
-
-            UpdateEmployeeController controller = loader.getController();
-          
-
-            Scene scene = update.getScene();
-            if (scene != null) {
-                Pane currentRootPane = (Pane) scene.getRoot();
-
-                // Directly add the content without animation or overlay pane
-                currentRootPane.getChildren().add(addUserContent);
-
-                // Optionally, set any additional required properties or actions
-            } else {
-                con.showAlert("Error", "Scene Error", "Could not access the current scene.");
-            }
-
-        } catch (IOException e) {
-            con.showAlert("Error", "Loading Error", "Failed to load the Employee Update form. Please try again.");
-            e.printStackTrace();
-        }
-    } else {
-        con.showAlert("Warning", "No Selection", "Please select an employee to update.");
-    }
+private void updateBtn(MouseEvent event) throws IOException {
+    
+    
+//    Employees selectedRow = EmployeeView.getSelectionModel().getSelectedItem();
+//    
+//    if (selectedRow == null) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error Selection!", "You must select an Employee!");
+//        return; 
+//    }
+    
+//    int empId = selectedRow.getId();
+    loadPage("/GUI/SysUI/Admin/EmployeeUpdate.fxml"); 
+   
+    
+//    
+//        Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/main.fxml"));
+//       Scene scene = new Scene(root);
+    
+    
+    
+//    try {
+//       
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/Admin/EmployeeUpdate.fxml"));
+//        Parent updateContent = loader.load();  // Load the FXML content
+//
+//       
+//        UpdateEmployeeController controller = loader.getController();
+//        controller.setEmployeeId(empId);
+//
+//        // Get the root pane of the current scene
+//        Scene scene = submit.getScene();
+//        Pane rootPane = (Pane) scene.getRoot(); // Root of the current scene
+//        
+//        // Disable interaction with the root pane while the overlay is active
+//        rootPane.setMouseTransparent(true);
+//
+//        // Add the update content directly to the root pane (no need for an extra AnchorPane)
+//        rootPane.getChildren().add(updateContent);
+//
+//      
+//        FadeTransition fadeIn = new FadeTransition(Duration.millis(300), updateContent);
+//        fadeIn.setFromValue(0);
+//        fadeIn.setToValue(1);
+//        fadeIn.play();
+//
+//        
+//        updateContent.setOnMouseClicked(e -> {
+//            if (e.getTarget() == updateContent) {
+//                closeOverlay(rootPane, updateContent); // Close and enable rootPane interaction
+//            }
+//        });
+//
+//    } catch (IOException e) {
+//        e.printStackTrace();
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the update screen.");
+//    }
 }
+
+        private void closeOverlay(Pane rootPane, Parent updateContent) {
+            if (updateContent != null && rootPane != null) {
+                FadeTransition fadeOut = new FadeTransition(Duration.millis(300), updateContent);
+                fadeOut.setFromValue(1);
+                fadeOut.setToValue(0);
+
+                fadeOut.setOnFinished(ev -> {
+                    rootPane.getChildren().remove(updateContent); 
+                    rootPane.setMouseTransparent(false); 
+                });
+
+                fadeOut.play();
+            }
+        }
+
+    
+
+
+    
+
 
 
 
@@ -353,10 +405,10 @@ private void updateBtn(MouseEvent event) {
         private Employees getEmployeeById(int employeeId) {
             for (Employees emp : empList) { // Assuming employeeList contains full details
                 if (emp.getId() == employeeId) {
-                    return emp; // Return the matched employee
+                    return emp; 
                 }
             }
-            return null; // Return null if no match is found
+            return null; 
         }
     
     

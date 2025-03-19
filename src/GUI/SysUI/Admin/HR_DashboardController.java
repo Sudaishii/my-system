@@ -29,11 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class HR_DashboardController implements Initializable {
 
     @FXML
@@ -115,18 +111,18 @@ public class HR_DashboardController implements Initializable {
     private Map<String, String> getUserDetails(String username) throws SQLException {
     Map<String, String> userDetails = new HashMap<>();
 
-    // SQL query to get the user details
+    
     String query = "SELECT role, status, email FROM users WHERE username = ?";
     
-    // Initialize connection, statement, and result set
+
     try (Connection connect = new dbConnect().getConnection();
          PreparedStatement pst = connect.prepareStatement(query)) {
         
-        pst.setString(1, username); // Set the username in the prepared statement
+        pst.setString(1, username); 
         
         try (ResultSet rs = pst.executeQuery()) {
             if (rs.next()) {
-                // Retrieve the user details from the result set
+                
                 userDetails.put("role", rs.getString("role"));
                 userDetails.put("status", rs.getString("status"));
                 userDetails.put("email", rs.getString("email"));
@@ -134,7 +130,7 @@ public class HR_DashboardController implements Initializable {
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
-        throw ex; // Rethrow exception if something goes wrong
+        throw ex; 
     }
     
     return userDetails;

@@ -27,12 +27,12 @@ public class dbConnect {
         } catch (SQLException ex) {
             System.out.println("Connection Error: " + ex);
         }
-        return result;
+        return result; 
     }
 
-    //Function to retrieve data
+    
     public ResultSet getData(String sql) throws SQLException {
-        Connection connect = getConnection(); // Get a new connection
+        Connection connect = getConnection(); 
         Statement stmt = null;
         ResultSet rst = null;
         try {

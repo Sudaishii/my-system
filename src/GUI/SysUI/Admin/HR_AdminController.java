@@ -5,6 +5,7 @@
  */
 package GUI.SysUI.Admin;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -46,7 +47,11 @@ public class HR_AdminController implements Initializable {
             }
         }
 
-    
+    public void loadPageMini (String targetFXML) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource(targetFXML));
+        rootPane.setCenter(root);
+        
+    }
    
    @FXML
    private void employee(MouseEvent event) {

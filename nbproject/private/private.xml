@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/LogIn/controller.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/univ/ProfileController.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/resources/resource.css</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/Admin/UpdateEmployeeController.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/Admin/HR_AdminController.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/Registration/controller.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/Admin/HR_DashboardController.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/config/dbConnect.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/GUI-TAPALES-IT2A/src/GUI/SysUI/LogIn/login.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/config/config.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/config/dbConnect.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/LogIn/login.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/Admin/HR_AdminController.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/Admin/HR_EmployeeManagementController.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/Admin/EmployeeUpdate.fxml</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/Admin/UpdateEmployeeController.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/SuperAdmin/UserAddController.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/Admin/HR_DashboardController.java</file>
+            <file>file:/C:/Users/SCC/Desktop/YWA/my-system/src/GUI/SysUI/SuperAdmin/Super_AdminController.java</file>
         </group>
     </open-files>
 </project-private>
