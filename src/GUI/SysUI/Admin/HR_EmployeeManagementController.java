@@ -6,6 +6,8 @@ import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -194,7 +196,7 @@ public class HR_EmployeeManagementController implements Initializable {
     String contact = Tcontact.getText().trim();
     LocalDate date = Tdate.getValue();
 
-    // Validations
+    
     if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
         age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
@@ -220,6 +222,11 @@ public class HR_EmployeeManagementController implements Initializable {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "Hiring date cannot be in the future.");
         return;
     }
+    
+    if (isDuplicateEmployee(email, contact)) {
+    conf.showAlert(Alert.AlertType.ERROR, "Error", "Employee with this email or contact number already exists.");
+    return;
+}
 
     String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -229,7 +236,25 @@ public class HR_EmployeeManagementController implements Initializable {
     clearFields();
 }
 
+    private boolean isDuplicateEmployee(String email, String contact) {
+    String query = "SELECT COUNT(*) FROM employee WHERE emp_email = ? OR emp_contact = ?";
     
+    try (Connection connect = new dbConnect().getConnection();
+         PreparedStatement pst = connect.prepareStatement(query)) {
+        
+        pst.setString(1, email);
+        pst.setString(2, contact);
+
+        try (ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return false;
+}
      private void loadDataFromDatabase() {
          if (db == null) {
         System.out.println("Database connection is NULL");
@@ -320,60 +345,57 @@ public class HR_EmployeeManagementController implements Initializable {
 @FXML
 private void updateBtn(MouseEvent event) throws IOException {
     
-    
-//    Employees selectedRow = EmployeeView.getSelectionModel().getSelectedItem();
-//    
-//    if (selectedRow == null) {
-//        conf.showAlert(Alert.AlertType.ERROR, "Error Selection!", "You must select an Employee!");
-//        return; 
-//    }
-    
-//    int empId = selectedRow.getId();
-    loadPage("/GUI/SysUI/Admin/EmployeeUpdate.fxml"); 
+            
+            Employees selectedRow = EmployeeView.getSelectionModel().getSelectedItem();
    
-    
-//    
-//        Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/main.fxml"));
-//       Scene scene = new Scene(root);
-    
-    
-    
-//    try {
-//       
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/Admin/EmployeeUpdate.fxml"));
-//        Parent updateContent = loader.load();  // Load the FXML content
-//
-//       
-//        UpdateEmployeeController controller = loader.getController();
-//        controller.setEmployeeId(empId);
-//
-//        // Get the root pane of the current scene
-//        Scene scene = submit.getScene();
-//        Pane rootPane = (Pane) scene.getRoot(); // Root of the current scene
-//        
-//        // Disable interaction with the root pane while the overlay is active
-//        rootPane.setMouseTransparent(true);
-//
-//        // Add the update content directly to the root pane (no need for an extra AnchorPane)
-//        rootPane.getChildren().add(updateContent);
-//
-//      
-//        FadeTransition fadeIn = new FadeTransition(Duration.millis(300), updateContent);
-//        fadeIn.setFromValue(0);
-//        fadeIn.setToValue(1);
-//        fadeIn.play();
-//
-//        
-//        updateContent.setOnMouseClicked(e -> {
-//            if (e.getTarget() == updateContent) {
-//                closeOverlay(rootPane, updateContent); // Close and enable rootPane interaction
-//            }
-//        });
-//
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to load the update screen.");
-//    }
+            if (selectedRow == null) {
+               conf.showAlert(Alert.AlertType.ERROR, "Error Selection!", "You must select an Employee!");
+               return; 
+            }
+
+            int empId = selectedRow.getId();
+  
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/Admin/EmployeeUpdate.fxml"));
+            Parent addUserContent = loader.load(); 
+
+            
+            UpdateEmployeeController controller = loader.getController();
+
+            
+            Scene scene = update.getScene();
+            Pane rootPane = (Pane) scene.getRoot();
+
+            AnchorPane overlayPane = new AnchorPane(addUserContent); 
+            overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+
+      
+            overlayPane.prefWidthProperty().bind(scene.widthProperty());
+            overlayPane.prefHeightProperty().bind(scene.heightProperty());
+
+            controller.setEmployeeId(empId);
+            System.out.println(empId);
+            controller.setOverlayPane(overlayPane); 
+            controller.setRootPane(rootPane);
+
+   
+            rootPane.getChildren().add(overlayPane);
+
+     
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane); 
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.play();
+
+            
+            overlayPane.setOnMouseClicked(e -> {
+                if (e.getTarget() == overlayPane) {
+                    FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
+                    fadeOut.setFromValue(1);
+                    fadeOut.setToValue(0);
+                    fadeOut.setOnFinished(ev -> rootPane.getChildren().remove(overlayPane));
+                    fadeOut.play();
+                }
+            });
 }
 
         private void closeOverlay(Pane rootPane, Parent updateContent) {

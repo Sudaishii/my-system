@@ -17,16 +17,16 @@
 
 <AnchorPane prefHeight="660.0" prefWidth="1080.0" stylesheets="@hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.HR_EmployeeManagementController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="660.0" prefWidth="1080.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab text="                Employees">
+            <Tab>
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="16.0" layoutY="38.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
+                        <Pane layoutX="22.0" layoutY="60.0" prefHeight="540.0" prefWidth="991.0" styleClass="PaneCon">
                            <children>
                               <Label layoutX="13.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="Employee Management" />
-                              <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="82.0" prefHeight="434.0" prefWidth="1023.0" stylesheets="@../../resources/resource.css">
+                              <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="82.0" prefHeight="434.0" prefWidth="962.0" stylesheets="@../../resources/resource.css">
                                 <columns>
                                   <TableColumn fx:id="idC" editable="false" prefWidth="65.0" text="ID" />
                                   <TableColumn fx:id="fnameC" editable="false" prefWidth="113.0" text="First Name" />
@@ -39,24 +39,31 @@
                                 </columns>
                                  
                               </TableView>
-                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="1002.0" layoutY="43.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="954.0" layoutY="44.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/icons8-refresh-26.png" />
                                  </image>
                               </ImageView>
-                              <ComboBox fx:id="filterView1" layoutX="820.0" layoutY="37.0" prefHeight="34.0" prefWidth="176.0" />
-                              <Button fx:id="update" layoutX="688.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#updateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@hr_css.css" text="UPDATE" />
+                              <ComboBox fx:id="filterView1" layoutX="770.0" layoutY="38.0" prefHeight="34.0" prefWidth="176.0" />
+                              <Button fx:id="update" layoutX="637.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#updateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@hr_css.css" text="UPDATE" />
                            </children>
                         </Pane>
                      </children>
                   </AnchorPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8-person-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
-            <Tab text="                Add Employee">
+            <Tab text="  Add Employee">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="577.0" prefWidth="1080.0">
                      <children>
-                        <Pane layoutX="16.0" layoutY="38.0" prefHeight="540.0" prefWidth="1049.0" styleClass="PaneCon">
+                        <Pane layoutX="8.0" layoutY="60.0" prefHeight="540.0" prefWidth="1025.0" styleClass="PaneCon">
                            <children>
                               <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Input Employee's Credentials" />
                               <VBox layoutX="12.0" layoutY="70.0" prefHeight="451.0" prefWidth="325.0">
@@ -167,9 +174,17 @@
                               </VBox>
                            </children>
                         </Pane>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Add Employee" />
                      </children>
                   </AnchorPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8-add-administrator-50%20(2).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
          </tabs>
       </TabPane>

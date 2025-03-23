@@ -5,27 +5,12 @@
  */
 package GUI.SysUI.LogIn;
 
-import java.awt.Color;
-import java.awt.Paint;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
@@ -45,8 +30,10 @@ public class login extends Application {
         
       
         
-       Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/main.fxml"));
-       Scene scene = new Scene(root);
+       Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
+//       Scene scene = new Scene(root, 899, 590);
+
+        Scene scene = new Scene (root);
       
        
        String css = this.getClass().getResource("application.css").toExternalForm();
@@ -61,7 +48,7 @@ public class login extends Application {
  
        stage.setResizable(false);
        stage.setScene(scene);
-      
+       stage.sizeToScene();
        stage.show();
     
     }

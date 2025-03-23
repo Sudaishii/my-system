@@ -15,10 +15,11 @@
 
 .tab{
     
-    -fx-pref-width:  260px;
-    -fx-pref-height: 40px;
-    -fx-background-color: my-color;
-    
+    -fx-pref-width: 35px; /* Adjust to your desired square size */
+    -fx-pref-height: 35px; /* Must be the same as pref-width */
+    -fx-background-color: my-color; /* Keep your background color */
+    -fx-padding: 0; /* Remove padding around the graphic */
+    -fx-alignment: center; /* Center the graphic */
     
 }
 
@@ -29,8 +30,8 @@
 
 .tab-header-background{
 
-     -fx-border-color: #8B5A2B; 
-       -fx-border-width: 2px 0 0 0; 
+/*     -fx-border-color: #8B5A2B; 
+       -fx-border-width: 2px 0 0 0; */
     -fx-background-color: my-color;
 }
 
@@ -46,10 +47,7 @@
 
 
 .tab-label{
-    -fx-font-family: 'Poppins', sans-serif; 
-    -fx-font-size: 12pt; 
-    -fx-font-weight: bold;
-    -fx-text-alignment: center;
+   
     
 }
 

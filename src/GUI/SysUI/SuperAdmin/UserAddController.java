@@ -55,6 +55,7 @@ public class UserAddController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
             if (overlayPane != null) {
                    overlayPane.setOnMouseClicked(e -> {
                        if (e.getPickResult().getIntersectedNode() == overlayPane) {
@@ -62,6 +63,9 @@ public class UserAddController implements Initializable {
                        }
                    });
                }
+            
+            
+            
     }    
     
        

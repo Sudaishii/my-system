@@ -25,21 +25,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
 
 
 public class HR_DashboardController implements Initializable {
-
+    
+    
     @FXML
     private Label payment;
-    @FXML
-    private ComboBox<String> deptcombo;
+//    @FXML
+//    private ComboBox<String> deptcombo;
     @FXML
     private Label date;
-    @FXML
-    private ComboBox<String> monthCombo;
+//    @FXML
+//    private ComboBox<String> monthCombo;
     @FXML
     private Label contributions;
     @FXML
@@ -52,6 +59,8 @@ public class HR_DashboardController implements Initializable {
     private Label grss;
     @FXML
     private Label greet;
+    @FXML
+    private StackedBarChart<String , Number> barChart;
 
     /**
      * Initializes the controller class.
@@ -59,22 +68,22 @@ public class HR_DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-        ObservableList<String> months = FXCollections.observableArrayList(
-            "    Overall", "    January", "    February", "    March", "    April", "    May", "    June",
-            "    July", "    August", "    September", "    October", "    November", "    December"
-        );
-       
-       ObservableList<String> departments = FXCollections.observableArrayList(
-               "    Overall", "    Human Resources", "    Front Office", "    House Keeping", "    Maintenance", "    IT"
-       );
-       
-        deptcombo.setItems(departments);
-        deptcombo.setPromptText("    Select Department");
-        
-        monthCombo.setItems(months);
-        monthCombo.setPromptText("    Select Month");
-        
+//        
+//        ObservableList<String> months = FXCollections.observableArrayList(
+//            "    Overall", "    January", "    February", "    March", "    April", "    May", "    June",
+//            "    July", "    August", "    September", "    October", "    November", "    December"
+//        );
+//       
+//       ObservableList<String> departments = FXCollections.observableArrayList(
+//               "    Overall", "    Human Resources", "    Front Office", "    House Keeping", "    Maintenance", "    IT"
+//       );
+//       
+//        deptcombo.setItems(departments);
+//        deptcombo.setPromptText("    Select Department");
+//        
+//        monthCombo.setItems(months);
+//        monthCombo.setPromptText("    Select Month");
+//        
         
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Manila")); 
@@ -92,7 +101,7 @@ public class HR_DashboardController implements Initializable {
         String formattedFirstDay = firstDay.format(formatter);
         String formattedLastDay = lastDay.format(formatter);
 
-     
+        loadChartData();
 
         
         if (date != null) {
@@ -103,10 +112,39 @@ public class HR_DashboardController implements Initializable {
         
         String uname = Session.getInstance().getUname();
         uname = ses.getUname();
-        greet.setText(uname);
+        greet.setText("Welcome, " + (uname)+"!");
     }   
     
-    
+    private void loadChartData() {
+    XYChart.Series<String, Number> employeeSeries = new XYChart.Series<>();
+    employeeSeries.setName("Employees"); 
+
+    String query = "SELECT emp_dept, COUNT(*) AS count FROM employee GROUP BY emp_dept";
+
+    try (Connection conn = new dbConnect().getConnection();
+         PreparedStatement pst = conn.prepareStatement(query);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            String department = rs.getString("emp_dept");
+            int count = rs.getInt("count");
+
+            XYChart.Data<String, Number> data = new XYChart.Data<>(department, count);
+            employeeSeries.getData().add(data);
+
+          
+            Tooltip tooltip = new Tooltip("Employees: " + count);
+            Tooltip.install(data.getNode(), tooltip);
+        }
+
+        barChart.getData().clear();
+        barChart.getData().add(employeeSeries);
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     
     private Map<String, String> getUserDetails(String username) throws SQLException {
     Map<String, String> userDetails = new HashMap<>();

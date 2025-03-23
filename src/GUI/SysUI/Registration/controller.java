@@ -92,7 +92,7 @@ public class controller {
                 return;
             }
 
-            String hashedPassword = hashPassword(password);
+            String hashedPassword = con.hashPassword(password);
 
             String sql = "INSERT INTO users (user_email, user_name, user_pass, status) VALUES (?, ?, ?, ?)";
             try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
@@ -110,12 +110,7 @@ public class controller {
         }
     }
 
-    public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = md.digest(password.getBytes());
-        String encoded = Base64.getEncoder().encodeToString(hashBytes);
-        return encoded;
-    }  
+    
 
 
     private boolean validateInputs(String email, String username, String password) {

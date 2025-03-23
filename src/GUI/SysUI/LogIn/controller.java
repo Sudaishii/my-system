@@ -6,13 +6,11 @@ import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
 import java.net.URL;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -22,10 +20,8 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -34,10 +30,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -53,27 +49,27 @@ public class controller {
     @FXML
     private Button btnreg;
     @FXML
-    private AnchorPane Apane1;
-    @FXML
-    private Label welcome;
-    @FXML
     private TextField UNField;
     @FXML
     private PasswordField PassField;
     @FXML
     private Label Title;
-    @FXML
-    private Button btnlog;
-    @FXML
-    private ImageView image;
-    @FXML
-    private Rectangle reclog;
   
      
     
     dbConnect db = new dbConnect();
     @FXML
     private Pane rootPane;
+    @FXML
+    private AnchorPane Apane1;
+    @FXML
+    private Rectangle reclog;
+    @FXML
+    private Label welcome;
+    @FXML
+    private Button btnlog;
+    @FXML
+    private ImageView image;
     
    
    public void initialize(URL url, ResourceBundle rb) {
@@ -121,22 +117,17 @@ public class controller {
     Session ses = Session.getInstance();
     
     
-      public static String hashPassword(String password) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = md.digest(password.getBytes());
-        String encoded = Base64.getEncoder().encodeToString(hashBytes);
-        return encoded;
-    }  
+      
     
       
  
       
-@FXML
-private void LogInButton(ActionEvent event) throws Exception {
+    @FXML
+    private void LogInButton(ActionEvent event) throws Exception {
 
     String username = UNField.getText().trim();
     String password = PassField.getText().trim();
-    String hashedPassword = hashPassword(password);
+    String hashedPassword = con.hashPassword(password);
 
     if (username.isEmpty() || password.isEmpty()) {
         con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
@@ -255,14 +246,6 @@ private Map<String, String> authenticateUserWithStatus(String username) throws S
 
 
 
-//    // Method to center the stage on the screen
-//    public void setCenterAlignment(Stage stage) {
-//        javafx.geometry.Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-//        double centerX = (screenBounds.getWidth() - stage.getWidth()) / 2;
-//        double centerY = (screenBounds.getHeight() - stage.getHeight()) / 2;
-//        stage.setX(centerX);
-//        stage.setY(centerY);
-//    }
    
 }
     

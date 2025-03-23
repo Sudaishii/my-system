@@ -193,6 +193,48 @@ private void activateBtn(MouseEvent event) {
     private void addUser(MouseEvent event) throws IOException {
         
            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/SysUI/SuperAdmin/UserAdd.fxml"));
+            Parent addUserContent = loader.load(); 
+
             
-}
+            UserAddController controller = loader.getController();
+
+            
+            Scene scene = addBtn.getScene();
+            Pane rootPane = (Pane) scene.getRoot();
+
+            AnchorPane overlayPane = new AnchorPane(addUserContent); 
+            overlayPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5);");
+
+      
+            overlayPane.prefWidthProperty().bind(scene.widthProperty());
+            overlayPane.prefHeightProperty().bind(scene.heightProperty());
+
+
+            controller.setOverlayPane(overlayPane); 
+            controller.setRootPane(rootPane);
+
+   
+            rootPane.getChildren().add(overlayPane);
+
+     
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), overlayPane); 
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.play();
+
+            
+            overlayPane.setOnMouseClicked(e -> {
+                if (e.getTarget() == overlayPane) {
+                    FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
+                    fadeOut.setFromValue(1);
+                    fadeOut.setToValue(0);
+                    fadeOut.setOnFinished(ev -> rootPane.getChildren().remove(overlayPane));
+                    fadeOut.play();
+                }
+            });
+    }
+            
+    
+    
 }

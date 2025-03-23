@@ -12,69 +12,65 @@
 
 <AnchorPane id="AnchorPane" fx:id="APaneReg" prefHeight="711.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Registration.controller">
    <children>
-      <Pane fx:id="RegPane" prefHeight="711.0" prefWidth="509.0" style="-fx-background-color: #d4bdac;" stylesheets="@registration.css">
+      <Pane fx:id="panereg" layoutX="17.0" layoutY="70.0" prefHeight="459.0" prefWidth="415.0" style="-fx-background-color: #B1C29E;">
          <children>
-            <Pane fx:id="panereg" layoutY="215.0" prefHeight="496.0" prefWidth="509.0" style="-fx-background-color: #B1C29E;">
+            <Label fx:id="label1" layoutX="14.0" layoutY="14.0" prefHeight="89.0" prefWidth="169.0" text="Create">
+               <font>
+                  <Font name="Dubai Bold" size="50.0" />
+               </font>
+            </Label>
+            <Label layoutX="65.0" layoutY="67.0" text="your Account">
+               <font>
+                  <Font name="Dubai Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="147.0" layoutY="115.0" text="Already a User?" textFill="WHITE">
+               <font>
+                  <Font name="Leelawadee UI" size="15.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+            </Label>
+            <Button fx:id="LogIn" layoutX="255.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleButtonAction" stylesheets="@registration.css" text="LogIn">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSign" layoutX="141.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#RegisterClick" prefHeight="34.0" prefWidth="228.0" stylesheets="@registration.css" text="Sign Up">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="276.0" layoutY="416.0" text="Terms of Service">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="416.0" text="Copyright © PayFuse">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font>
+            </Label>
+            <VBox layoutX="84.0" layoutY="158.0" prefHeight="198.0" prefWidth="342.0" style="-fx-background-color: transparent;">
                <children>
-                  <Label fx:id="label1" layoutX="14.0" layoutY="14.0" prefHeight="89.0" prefWidth="169.0" text="Create">
-                     <font>
-                        <Font name="Dubai Bold" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="65.0" layoutY="67.0" text="your Account">
-                     <font>
-                        <Font name="Dubai Bold" size="40.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="147.0" layoutY="115.0" text="Already a User?" textFill="WHITE">
-                     <font>
-                        <Font name="Leelawadee UI" size="15.0" />
-                     </font>
-                     <effect>
-                        <Glow />
-                     </effect>
-                  </Label>
-                  <Button fx:id="LogIn" layoutX="255.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleButtonAction" stylesheets="@registration.css" text="LogIn">
-                     <font>
-                        <Font name="Leelawadee UI Bold" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnSign" layoutX="141.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#RegisterClick" prefHeight="34.0" prefWidth="228.0" stylesheets="@registration.css" text="Sign Up">
-                     <font>
-                        <Font name="System Bold Italic" size="13.0" />
-                     </font>
-                  </Button>
-                  <Label layoutX="276.0" layoutY="416.0" text="Terms of Service">
-                     <font>
-                        <Font name="SansSerif Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="126.0" layoutY="416.0" text="Copyright © PayFuse">
-                     <font>
-                        <Font name="SansSerif Regular" size="12.0" />
-                     </font>
-                  </Label>
-                  <VBox layoutX="84.0" layoutY="158.0" prefHeight="198.0" prefWidth="342.0" style="-fx-background-color: transparent;">
+                  <Pane prefHeight="60.0" prefWidth="342.0">
                      <children>
-                        <Pane prefHeight="60.0" prefWidth="342.0">
-                           <children>
-                              <TextField fx:id="usernameF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Username" stylesheets="@../../resources/resource.css" />
-                           </children>
-                        </Pane>
-                        <Pane layoutX="10.0" layoutY="70.0" prefHeight="60.0" prefWidth="342.0">
-                           <children>
-                              <TextField fx:id="emailF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Email Address" stylesheets="@../../resources/resource.css" />
-                           </children>
-                        </Pane>
-                        <Pane layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="342.0">
-                           <children>
-                              <PasswordField fx:id="passwordF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Password" stylesheets="@../../resources/resource.css" />
-                           </children>
-                        </Pane>
+                        <TextField fx:id="usernameF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Username" stylesheets="@../../resources/resource.css" />
                      </children>
-                  </VBox>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="70.0" prefHeight="60.0" prefWidth="342.0">
+                     <children>
+                        <TextField fx:id="emailF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Email Address" stylesheets="@../../resources/resource.css" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="342.0">
+                     <children>
+                        <PasswordField fx:id="passwordF" alignment="CENTER" layoutX="29.0" layoutY="10.0" prefHeight="40.0" prefWidth="284.0" promptText="Password" stylesheets="@../../resources/resource.css" />
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
+            </VBox>
          </children>
       </Pane>
    </children>
