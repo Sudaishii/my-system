@@ -1,10 +1,13 @@
 package GUI.config;
 
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Base64;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -119,15 +122,10 @@ public class config {
         return encoded;
     }  
     
-    
-     public void addRecord(String sql, Object... values) {
-         
-         
-         
-          try (Connection conn = new dbConnect().getConnection();
+    public boolean addRecord(String sql, Object... values) {
+    try (Connection conn = new dbConnect().getConnection();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-  
         for (int i = 0; i < values.length; i++) {
             if (values[i] instanceof Integer) {
                 pstmt.setInt(i + 1, (Integer) values[i]);
@@ -139,6 +137,7 @@ public class config {
                 pstmt.setLong(i + 1, (Long) values[i]); 
             } else if (values[i] instanceof Boolean) {
                 pstmt.setBoolean(i + 1, (Boolean) values[i]); 
+            } else if (values[i] instanceof java.util.Date) {
                 pstmt.setDate(i + 1, new java.sql.Date(((java.util.Date) values[i]).getTime())); 
             } else if (values[i] instanceof java.sql.Date) {
                 pstmt.setDate(i + 1, (java.sql.Date) values[i]);
@@ -149,16 +148,81 @@ public class config {
             }
         }
 
-        pstmt.executeUpdate();
-        System.out.println("Record added successfully!");
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0;  // Return true if the insertion was successful
+
     } catch (SQLException e) {
         System.out.println("Error adding record: " + e.getMessage());
+        return false;  // Return false if there's an error
     }
-}   
-
-    public void showAlert(String warning, String selection_Error, String please_select_an_employee_before_updating) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
 }
+//     public void addRecord(String sql, Object... values) {
+//         
+//         
+//         
+//          try (Connection conn = new dbConnect().getConnection();
+//         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//
+//  
+//        for (int i = 0; i < values.length; i++) {
+//            if (values[i] instanceof Integer) {
+//                pstmt.setInt(i + 1, (Integer) values[i]);
+//            } else if (values[i] instanceof Double) {
+//                pstmt.setDouble(i + 1, (Double) values[i]); 
+//            } else if (values[i] instanceof Float) {
+//                pstmt.setFloat(i + 1, (Float) values[i]); 
+//            } else if (values[i] instanceof Long) {
+//                pstmt.setLong(i + 1, (Long) values[i]); 
+//            } else if (values[i] instanceof Boolean) {
+//                pstmt.setBoolean(i + 1, (Boolean) values[i]); 
+//                pstmt.setDate(i + 1, new java.sql.Date(((java.util.Date) values[i]).getTime())); 
+//            } else if (values[i] instanceof java.sql.Date) {
+//                pstmt.setDate(i + 1, (java.sql.Date) values[i]);
+//            } else if (values[i] instanceof java.sql.Timestamp) {
+//                pstmt.setTimestamp(i + 1, (java.sql.Timestamp) values[i]);
+//            } else {
+//                pstmt.setString(i + 1, values[i].toString()); 
+//            }
+//        }
+//
+//        pstmt.executeUpdate();
+//        System.out.println("Record added successfully!");
+//    } catch (SQLException e) {
+//        System.out.println("Error adding record: " + e.getMessage());
+//    }
+//}   
+     
+      dbConnect db = new dbConnect();
+     
+    public void showAlert(String warning, String selection_Error, String please_select_an_employee_before_updating) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+    
+    
+    public void logAction(String username, String action, String details) {
+    System.out.println("Attempting to log action...");
+    System.out.println("Username: " + username);
+    System.out.println("Action: " + action);
+    System.out.println("Details: " + details);
+
+    String sql = "INSERT INTO system_logs (username, action, details) VALUES (?, ?, ?)";
+    try (Connection connect = db.getConnection();
+         PreparedStatement pstmt = connect.prepareStatement(sql)) {
+        
+        pstmt.setString(1, username);
+        pstmt.setString(2, action);
+        pstmt.setString(3, details);
+
+        int rowsInserted = pstmt.executeUpdate();
+        if (rowsInserted > 0) {
+            System.out.println("Log entry successfully created.");
+        } else {
+            System.out.println("Failed to insert log entry.");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error while logging action: " + e.getMessage());
+    }
+}
+
+    } 

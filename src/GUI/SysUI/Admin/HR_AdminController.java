@@ -90,7 +90,7 @@ public class HR_AdminController implements Initializable {
     private void logout(ActionEvent event) {
         
          
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Logout Confirmation");
             alert.setHeaderText("Are you sure you want to logout?");
             alert.setContentText("Unsaved progress may be lost.");
@@ -106,7 +106,7 @@ public class HR_AdminController implements Initializable {
                     stage.setResizable(false);
                     stage.sizeToScene();
 
-                    // Center the stage
+                    
                     stage.centerOnScreen();
 
                     stage.show();

@@ -4,8 +4,12 @@ package GUI.SysUI.Admin;
 import GUI.SysUI.SuperAdmin.UserAddController;
 import GUI.config.config;
 import GUI.config.dbConnect;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +26,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -32,9 +38,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -72,6 +81,7 @@ public class HR_EmployeeManagementController implements Initializable {
     private DatePicker Tdate;
     @FXML
     private Button submit;
+    private String photoFilePath;
     private ObservableList<Employees> empList;
     @FXML
     private TableView<Employees> EmployeeView;
@@ -101,6 +111,8 @@ public class HR_EmployeeManagementController implements Initializable {
     private ComboBox<String> filterView1;
     @FXML
     private Button update;
+    @FXML
+    private ImageView employeePhoto;
    
 //    empTransfer trans = new empTransfer
 
@@ -179,9 +191,9 @@ public class HR_EmployeeManagementController implements Initializable {
     
     config conf = new config();
     
+    
     @FXML
-    private void AddEmployee(MouseEvent event) {
-
+private void AddEmployee(MouseEvent event) {
     config conf = new config();
 
     String fname = Tfname.getText().trim();
@@ -196,7 +208,6 @@ public class HR_EmployeeManagementController implements Initializable {
     String contact = Tcontact.getText().trim();
     LocalDate date = Tdate.getValue();
 
-    
     if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
         age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
@@ -222,19 +233,111 @@ public class HR_EmployeeManagementController implements Initializable {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "Hiring date cannot be in the future.");
         return;
     }
-    
+
     if (isDuplicateEmployee(email, contact)) {
-    conf.showAlert(Alert.AlertType.ERROR, "Error", "Employee with this email or contact number already exists.");
-    return;
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Employee with this email or contact number already exists.");
+        return;
+    }
+
+    if (photoFilePath == null || photoFilePath.isEmpty()) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Please select a profile photo.");
+        return;
+    }
+
+    // Database insertion
+    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, photoFilePath)) {
+        // Only save the photo if the query was successful
+        try {
+            String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
+            Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+
+            conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
+            loadDataFromDatabase();
+            clearFields();
+        } catch (IOException e) {
+            conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
+        }
+    } else {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to add employee.");
+    }
 }
 
-    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos);
-    conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
-    loadDataFromDatabase();
-    clearFields();
-}
+    
+    
+//    @FXML
+//    private void AddEmployee(MouseEvent event) {
+//    config conf = new config();
+//
+//    String fname = Tfname.getText().trim();
+//    String mname = Tmname.getText().trim();
+//    String lname = Tlname.getText().trim();
+//    String address = Tadd.getText().trim();
+//    String email = Temail.getText().trim();
+//    String age = Tage.getText().trim();
+//    String sex = sexcombo1.getValue() != null ? sexcombo1.getValue().trim() : "";
+//    String dept = deptcombo1.getValue() != null ? deptcombo1.getValue().trim() : "";
+//    String pos = poscombo1.getValue() != null ? poscombo1.getValue().trim() : "";
+//    String contact = Tcontact.getText().trim();
+//    LocalDate date = Tdate.getValue();
+//
+//    if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
+//        age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
+//        return;
+//    }
+//
+//    if (!age.matches("\\d+") || Integer.parseInt(age) < 18) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Age must be a valid number and at least 18.");
+//        return;
+//    }
+//
+//    if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Invalid email format.");
+//        return;
+//    }
+//
+//    if (!contact.matches("\\d{10,11}")) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Contact number must be 10-11 digits.");
+//        return;
+//    }
+//
+//    if (date.isAfter(LocalDate.now())) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Hiring date cannot be in the future.");
+//        return;
+//    }
+//
+//    if (isDuplicateEmployee(email, contact)) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Employee with this email or contact number already exists.");
+//        return;
+//    }
+//
+//  
+//    if (photoFilePath == null || photoFilePath.isEmpty()) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Please select a profile photo.");
+//        return;
+//    }
+//
+//   
+//    String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
+//    try {
+//        Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+//    } catch (IOException e) {
+//        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
+//        return;
+//    }
+//
+//   
+//    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath) "
+//               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//    conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, destinationPath);
+//    conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
+//    loadDataFromDatabase();
+//    clearFields();
+//}
 
     private boolean isDuplicateEmployee(String email, String contact) {
     String query = "SELECT COUNT(*) FROM employee WHERE emp_email = ? OR emp_contact = ?";
@@ -319,12 +422,109 @@ public class HR_EmployeeManagementController implements Initializable {
             sexcombo1.setValue("Choose Sex");
             deptcombo1.setValue("Choose Department");
             poscombo1.setValue("Choose Position");
+            employeePhoto.setImage(null);
 }
 
     @FXML
     private void refreshButton(MouseEvent event) {
         loadDataFromDatabase();
     }
+
+    
+    @FXML
+    private void choosePhoto(MouseEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Choose Employee Photo");
+
+    fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+    );
+
+    File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+    if (selectedFile != null) {
+        Image image = new Image(selectedFile.toURI().toString());
+
+        double imgWidth = image.getWidth();
+        double imgHeight = image.getHeight();
+        double viewportSize = Math.min(imgWidth, imgHeight); 
+
+        Rectangle2D viewport = new Rectangle2D(
+            (imgWidth - viewportSize) / 2, 
+            (imgHeight - viewportSize) / 2, 
+            viewportSize, 
+            viewportSize
+        );
+
+        employeePhoto.setImage(image);
+        employeePhoto.setViewport(viewport);  
+        employeePhoto.setFitWidth(178);       
+        employeePhoto.setFitHeight(166);      
+        employeePhoto.setPreserveRatio(false); 
+        employeePhoto.setSmooth(true);        
+        employeePhoto.setCache(true);
+
+        // Store path temporarily (not saved yet)
+        photoFilePath = selectedFile.getAbsolutePath();
+    }
+}
+
+    
+//   @FXML
+//    private void choosePhoto(MouseEvent event) {
+//    FileChooser fileChooser = new FileChooser();
+//    fileChooser.setTitle("Choose Employee Photo");
+//
+//  
+//    fileChooser.getExtensionFilters().addAll(
+//        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+//    );
+//
+//    File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+//
+//    if (selectedFile != null) {
+//        try {
+//            String destinationFolder = "src/GUI/images/Emp/";
+//            File destDir = new File(destinationFolder);
+//
+//            if (!destDir.exists()) {
+//                destDir.mkdirs();
+//            }
+//
+//            File destinationFile = new File(destDir, selectedFile.getName());
+//            Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//
+//            Image image = new Image(destinationFile.toURI().toString());
+//
+//          
+//            double imgWidth = image.getWidth();
+//            double imgHeight = image.getHeight();
+//            double viewportSize = Math.min(imgWidth, imgHeight); 
+//
+//            Rectangle2D viewport = new Rectangle2D(
+//                (imgWidth - viewportSize) / 2, 
+//                (imgHeight - viewportSize) / 2, 
+//                viewportSize, 
+//                viewportSize
+//            );
+//
+//            employeePhoto.setImage(image);
+//            employeePhoto.setViewport(viewport);  
+//            employeePhoto.setFitWidth(178);       
+//            employeePhoto.setFitHeight(166);      
+//            employeePhoto.setPreserveRatio(false); 
+//            employeePhoto.setSmooth(true);        
+//            employeePhoto.setCache(true);
+//
+//            // Save path for database storage
+//            photoFilePath = destinationFile.getAbsolutePath();
+//        } catch (IOException e) {
+//            new config().showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
+//        }
+//    }
+//}
+
+
 
     
     public class Employee {

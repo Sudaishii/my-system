@@ -3,14 +3,11 @@ package GUI.SysUI.Registration;
 import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -33,18 +30,15 @@ public class controller {
     @FXML
     private Button btnSign, LogIn;
     @FXML
-    private Pane panereg, RegPane;
-    @FXML
-    private TextField fname, lname, contactF, emailF, usernameF;
+    private TextField  emailF, usernameF;
     @FXML
     private PasswordField passwordF;
-    @FXML
-    private ComboBox<String> ComboRole;
 
     dbConnect db = new dbConnect();
     config con = new config();
-
     @FXML
+    private Label Title1;
+
     public void initialize() {
         // Initialization logic if needed
     }

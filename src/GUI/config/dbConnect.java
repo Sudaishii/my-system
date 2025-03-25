@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 public class dbConnect {
 
@@ -53,4 +54,26 @@ public class dbConnect {
             
         }
     }
+    
+    public void logAction(String username, String action, String details) {
+        System.out.println("das");
+    String sql = "INSERT INTO logs (username, action, details, timestamp) VALUES (?, ?, ?, ?)";
+    try (Connection connect = getConnection();
+         PreparedStatement pstmt = connect.prepareStatement(sql)) {
+        
+        pstmt.setString(1, username);
+        pstmt.setString(2, action);
+        pstmt.setString(3, details);
+        pstmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+
+        int rowsInserted = pstmt.executeUpdate();
+        if (rowsInserted > 0) {
+            System.out.println("Log entry successfully created.");
+        } else {
+            System.out.println("Failed to insert log entry.");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error while logging action: " + e.getMessage());
+    }
+}
 }

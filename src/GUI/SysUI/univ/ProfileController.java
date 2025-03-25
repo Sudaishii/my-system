@@ -46,9 +46,7 @@ import java.security.NoSuchAlgorithmException;
         @FXML
         private PasswordField oldPass;
 
-        /**
-         * Initializes the controller class.
-         */
+      
         @Override
         public void initialize(URL url, ResourceBundle rb) {
 
@@ -90,34 +88,47 @@ import java.security.NoSuchAlgorithmException;
         @FXML
         private void PassChange(MouseEvent event) throws NoSuchAlgorithmException {
 
-                    String oldPassword = oldPass.getText().trim();
-                     String newPassword = newPass.getText().trim();
-                     String confirmPassword = confPass.getText().trim();
+            String oldPassword = oldPass.getText().trim();
+            String newPassword = newPass.getText().trim();
+            String confirmPassword = confPass.getText().trim();
 
-                    
-                     if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-                         con.showAlert(Alert.AlertType.WARNING, "Warning", "All fields are required.");
-                         return;
-                     }
+            if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                con.showAlert(Alert.AlertType.WARNING, "Warning", "All fields are required.");
+                return;
+            }
 
-                     if (!newPassword.equals(confirmPassword)) {
-                         con.showAlert(Alert.AlertType.WARNING, "Warning", "New passwords do not match.");
-                         return;
-                     }
+            if (!newPassword.equals(confirmPassword)) {
+                con.showAlert(Alert.AlertType.WARNING, "Warning", "New passwords do not match.");
+                return;
+            }
 
-                     if (newPassword.length() < 8) {
-                         con.showAlert(Alert.AlertType.WARNING, "Weak Password", "New password must be at least 8 characters long.");
-                         return;
-                     }
+            if (newPassword.length() < 8) {
+                con.showAlert(Alert.AlertType.WARNING, "Weak Password", "New password must be at least 8 characters long.");
+                return;
+            }
 
-                     Session ses = Session.getInstance();
-                     String username = ses.getUname();
+            
+            if (oldPassword.equals(newPassword)) {
+                con.showAlert(Alert.AlertType.WARNING, "Warning", "New password cannot be the same as the old password.");
+                return;
+            }
 
-                     if (validateOldPassword(username, oldPassword)) {
-                         updatePassword(username, newPassword);
-                     }
+            Session ses = Session.getInstance();
+            String username = ses.getUname();
 
-
+            if (validateOldPassword(username, oldPassword)) {
+                updatePassword(username, newPassword);
+               
+                con.showAlert(Alert.AlertType.INFORMATION, "Success", "Password updated successfully.");
+               
+                oldPass.clear();
+                newPass.clear();
+                confPass.clear();
+            } else {
+               
+               
+               
+            }
         }
 
           private boolean validateOldPassword(String username, String oldPassword) throws NoSuchAlgorithmException {

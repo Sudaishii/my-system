@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="660.0" prefWidth="1080.0" stylesheets="@hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.HR_EmployeeManagementController">
    <children>
@@ -150,11 +151,14 @@
                                  <children>
                                     <Pane layoutX="10.0" layoutY="98.0" prefHeight="260.0" prefWidth="325.0">
                                        <children>
-                                          <Button layoutX="101.0" layoutY="222.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="124.0" styleClass="btnfile" text="Choose a file" />
-                                          <Label layoutX="152.0" layoutY="14.0" styleClass="tfieldLabel" text="Profile" />
-                                          <VBox layoutX="78.0" layoutY="38.0" prefHeight="169.0" prefWidth="160.0" styleClass="img">
+                                          <Button layoutX="101.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#choosePhoto" prefHeight="21.0" prefWidth="124.0" styleClass="btnfile" text="Choose a file" />
+                                          <Label layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="51.0" text="Profile">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font></Label>
+                                          <VBox layoutX="78.0" layoutY="38.0" prefHeight="125.0" prefWidth="150.0" styleClass="img">
                                              <children>
-                                                <ImageView fitHeight="169.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="employeePhoto" fitHeight="166.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </VBox>
                                        </children>

@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1080.0" stylesheets="@../../resources/resource.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SU_UserManagementController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1080.0" stylesheets="@../Admin/hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SU_UserManagementController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="660.0" prefWidth="1080.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab text="            User Management">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="36.0" layoutY="39.0" prefHeight="537.0" prefWidth="1009.0" styleClass="PaneCon">
+                        <Pane layoutX="16.0" layoutY="62.0" prefHeight="537.0" prefWidth="1009.0" styleClass="PaneCon">
                            <children>
                               <TableView fx:id="UserView1" layoutX="14.0" layoutY="90.0" prefHeight="434.0" prefWidth="974.0" stylesheets="@../../resources/resource.css">
                                  <columns>
@@ -39,7 +39,7 @@
                                  </image>
                               </ImageView>
                               <ComboBox fx:id="filterView1" layoutX="772.0" layoutY="49.0" prefHeight="34.0" prefWidth="176.0" stylesheets="@../../resources/resource.css" />
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Users" />
+                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="User Management" />
                               <Button layoutX="638.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#activateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ACTIVATE" />
                               <Button fx:id="assignBtn" layoutX="505.0" layoutY="51.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ASSIGN" />
                               <Button fx:id="addBtn" layoutX="374.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ADD USER" />
@@ -47,6 +47,13 @@
                         </Pane>
                      </children></AnchorPane>
                </content>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/icons8-users-30.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Tab>
         </tabs>
       </TabPane>

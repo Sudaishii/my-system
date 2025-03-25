@@ -12,10 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Rasheed
- */
+
 public class login extends Application {
     
         public static void main(String[] args) {

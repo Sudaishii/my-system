@@ -62,9 +62,7 @@ public class HR_DashboardController implements Initializable {
     @FXML
     private StackedBarChart<String , Number> barChart;
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
