@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2025 at 04:13 PM
+-- Generation Time: Mar 25, 2025 at 11:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,20 +57,22 @@ CREATE TABLE `employee` (
   `emp_contact` varchar(50) NOT NULL,
   `emp_hdate` date NOT NULL,
   `emp_dept` varchar(50) NOT NULL,
-  `emp_position` varchar(50) NOT NULL
+  `emp_position` varchar(50) NOT NULL,
+  `filePath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`) VALUES
-(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapalesrasheed123@gmail.com', '09456989966', '2025-03-01', 'House Keeping', 'Room Attendant'),
-(1002, 'Rodeliza', '', 'La Rosa', 20, 'Female', 'Ward IV, Minglanilla, Cebu', 'rodeliza@gmail.com', '09432517890', '2025-03-02', 'Human Resources', 'Finance Manager'),
-(1003, 'John', '', 'Doe', 20, 'Male', 'Naga City, Cebu', 'doejohn@gmail.com', '09458697201', '2025-03-03', 'Front Office', 'Receptionist'),
-(1004, 'Ellen', '', 'Shark', 20, 'Female', 'Zenless Zone City', 'tapalesrasheed123@gmail.com', '09347689167', '2025-03-15', 'IT', 'IT Manager'),
-(1005, 'Raiden', '', 'Shogun', 20, 'Female', 'Inazuma City', 'raiden@gmail.com', '09872819281', '2025-03-10', 'Maintenance', 'Chief Engineer'),
-(1006, 'Erl Bryan', '', 'Cabizares', 20, 'Male', 'Langtad, Naga City, Cebu', 'bryan@gmail.com', '09235128898', '2025-03-15', 'IT', 'System Administrator');
+INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`, `filePath`) VALUES
+(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapalesrasheed123@gmail.com', '09456989966', '2025-03-01', 'House Keeping', 'Room Attendant', NULL),
+(1002, 'Rodeliza', '', 'La Rosa', 20, 'Female', 'Ward IV, Minglanilla, Cebu', 'rodeliza@gmail.com', '09432517890', '2025-03-02', 'Human Resources', 'Finance Manager', NULL),
+(1003, 'John', '', 'Doe', 20, 'Male', 'Naga City, Cebu', 'doejohn@gmail.com', '09458697201', '2025-03-03', 'Front Office', 'Receptionist', NULL),
+(1004, 'Ellen', '', 'Shark', 20, 'Female', 'Zenless Zone City', 'tapalesrasheed123@gmail.com', '09347689167', '2025-03-15', 'IT', 'IT Manager', NULL),
+(1005, 'Raiden', '', 'Shogun', 20, 'Female', 'Inazuma City', 'raiden@gmail.com', '09872819281', '2025-03-10', 'Maintenance', 'Chief Engineer', NULL),
+(1006, 'Erl Bryan', '', 'Cabizares', 20, 'Male', 'Langtad, Naga City, Cebu', 'bryan@gmail.com', '09235128898', '2025-03-15', 'IT', 'System Administrator', NULL),
+(1007, 'wa na', '', 'ko', 20, 'Male', 'Naga City', 'wana@gmail.com', '09748295981', '2025-03-01', 'Front Office', 'Front Office Manager', 'src/GUI/images/Emp/09c0eddb-1373-422b-b709-ef871a17eb5d.jpg');
 
 -- --------------------------------------------------------
 
@@ -136,6 +138,27 @@ INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `system_logs`
+--
+
+CREATE TABLE `system_logs` (
+  `log_id` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `action` varchar(255) DEFAULT NULL,
+  `details` text DEFAULT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `system_logs`
+--
+
+INSERT INTO `system_logs` (`log_id`, `username`, `action`, `details`, `timestamp`) VALUES
+(1, 'test_user', 'test_action', 'test_details', '2025-03-25 23:36:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -158,7 +181,9 @@ INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_pass`, `status`
 (34, 'hi@gmail.com', 'hello', 'ZZMh7by6cFWzNU4WXdzKTPcOxc6OvAGd5hAt2pLBfZw=', 'Active', NULL, NULL),
 (38, 'admin@gmail.com', 'admin', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 2, NULL),
 (39, 'super@gmail.com', 'super', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 1, NULL),
-(40, 'dmakldm@gmail.com', 'diaskdao', 'oqeqwdmoksma', 'Active', NULL, NULL);
+(40, 'dmakldm@gmail.com', 'diaskdao', 'oqeqwdmoksma', 'Active', NULL, NULL),
+(41, 'admini@gmail.com', 'adminni', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 1, NULL),
+(42, 'ireo@gmail.com', 'ireo', 'AK4k/lL3MAiVZvNWQs+JQws5OXjvvqBihY5+Bc5fsgw=', 'Newly Registered', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -197,6 +222,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`role_id`);
 
 --
+-- Indexes for table `system_logs`
+--
+ALTER TABLE `system_logs`
+  ADD PRIMARY KEY (`log_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -218,7 +249,7 @@ ALTER TABLE `dailytimerecords`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 
 --
 -- AUTO_INCREMENT for table `m_reports`
@@ -239,10 +270,16 @@ ALTER TABLE `roles`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `system_logs`
+--
+ALTER TABLE `system_logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables
