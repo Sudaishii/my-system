@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/SysUI/LogIn/controller.java</file>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/config/config.java</file>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/SysUI/LogIn/login.java</file>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/SysUI/LogIn/login.fxml</file>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/SysUI/Registration/controller.java</file>
-            <file>file:/D:/temp/PRELIM/my-system/src/GUI/config/dbConnect.java</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/SuperAdmin/System.fxml</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/config/config.java</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/LogIn/login.fxml</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/LogIn/controller.java</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/LogIn/login.java</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/SuperAdmin/SystemController.java</file>
+            <file>file:/C:/Users/PC4/Desktop/AkoaNi/my-system/src/GUI/SysUI/LogIn/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -109,43 +109,60 @@ public class LoginController implements Initializable {
 
     @FXML
     private void LogIntButton(MouseEvent event) throws Exception {
-            String username = UNField1.getText().trim();
-            String password = PassField1.getText().trim();
-            String hashedPassword = con.hashPassword(password);
-
+        
+        
+     config conf = new config();   
+        
+    String username = UNField1.getText().trim();
+    String password = PassField1.getText().trim();
+    String hashedPassword = con.hashPassword(password);
+    
+    System.out.println("Username Value: " + username);
+    
     if (username.isEmpty() || password.isEmpty()) {
-        con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty.");
+        conf.logAction(username, "Login Attempt", "Failed - Empty fields"); 
+        System.out.println("dasdasas");
+        con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty."); 
+        
+        
+        
         return;
     }
 
     try {
-        
         Map<String, String> userInfo = authenticateUserWithStatus(username);
 
-     
-        if (userInfo == null || !hashedPassword.equals(userInfo.get("hashed_password"))) {
+        if (userInfo == null || userInfo.isEmpty()) {
             con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+            con.logAction(username, "Login Failed", "Invalid username or password.");
+            
             return;
         }
 
-       
         String role = userInfo.get("role");
         String status = userInfo.get("status");
+        String storedHashedPassword = userInfo.get("hashed_password");
 
-      
         if (role == null || role.isEmpty()) {
-            con.showAlert(Alert.AlertType.WARNING, "Role Not Assigned", 
+            con.showAlert(Alert.AlertType.WARNING, "Role Not Assigned",
                     "Your role is not properly assigned. Please contact customer service for role activation.");
+            con.logAction(username, "Login Failed", "Role not assigned.");
             return;
         }
 
         if ("Newly Registered".equalsIgnoreCase(status)) {
             con.showAlert(Alert.AlertType.WARNING, "Account Inactive",
                     "Your account is still marked as 'Newly Registered'. Please contact customer service for activation.");
+            con.logAction(username, "Login Failed", "Account marked as 'Newly Registered'.");
             return;
         }
 
-        // If the account is active and role is valid
+        if (storedHashedPassword == null || !hashedPassword.equals(storedHashedPassword)) {
+            con.showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+            con.logAction(username, "Login Failed", "Password mismatch.");
+            return;
+        }
+
         if ("Active".equalsIgnoreCase(status)) {
             Map<String, String> rolePaths = new HashMap<>();
             rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
@@ -155,22 +172,27 @@ public class LoginController implements Initializable {
                 Session.getInstance().createSession(1, username);
                 con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
                         "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
+                con.logAction(username, "Login Successful", "Logged in as " + role);
                 con.switchScene(getClass(), event, rolePaths.get(role));
             } else {
                 con.showAlert(Alert.AlertType.WARNING, "Access Denied",
                         "Your role does not have permission to access this system.");
+                con.logAction(username, "Login Failed", "Access denied due to role restriction.");
             }
         }
 
     } catch (SQLException ex) {
         ex.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred during login. Please try again later.");
+        con.logAction(username, "Database Error", ex.getMessage());
     } catch (IOException ex) {
         ex.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Navigation Error", "Failed to load the dashboard. Please try again later.");
+        con.logAction(username, "Navigation Error", ex.getMessage());
     } catch (NoSuchAlgorithmException e) {
         con.showAlert(Alert.AlertType.ERROR, "Hashing Error", "Could not hash the password.");
         e.printStackTrace();
+        con.logAction(username, "Hashing Error", e.getMessage());
     }
   }
     
