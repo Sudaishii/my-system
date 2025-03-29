@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -8,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,32 +16,24 @@
    <children>
       <BorderPane fx:id="rootPane" prefHeight="720.0" prefWidth="1080.0">
          <top>
-            <Pane prefHeight="60.0" prefWidth="1080.0" styleClass="header" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
+            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="header" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="57.0" layoutY="12.0" text="Pay">
+                  <Label layoutX="909.0" layoutY="9.0" text="Pay">
                      <font>
                         <Font name="Palatino Linotype" size="28.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="12.0" text="Fuse">
+                  <Label layoutX="956.0" layoutY="9.0" text="Fuse">
                      <font>
                         <Font name="Palatino Linotype Bold" size="28.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="6.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="1016.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/money.png" />
                      </image>
                   </ImageView>
-                  <HBox layoutX="169.0" layoutY="-2.0" prefHeight="64.0" prefWidth="785.0">
-                     <children>
-                        <Button mnemonicParsing="false" onMouseClicked="#dahboard" prefHeight="73.0" prefWidth="165.0" styleClass="btnH" text="Dashboard" />
-                        <Button mnemonicParsing="false" onMouseClicked="#employee" prefHeight="75.0" prefWidth="233.0" styleClass="btnH" text="Employee Management" />
-                        <Button mnemonicParsing="false" onMouseClicked="#time" prefHeight="65.0" prefWidth="207.0" styleClass="btnH" text="Time Management" />
-                        <Button mnemonicParsing="false" onMouseClicked="#payslip" prefHeight="61.0" prefWidth="219.0" styleClass="btnH" text="Payslip Management" />
-                     </children>
-                  </HBox>
-                  <MenuButton layoutX="954.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="78.0" stylesheets="@dashboard.css">
+                  <MenuButton layoutX="446.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="78.0" stylesheets="@dashboard.css">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#profile" text="Settings">
                            <graphic>
@@ -67,16 +59,15 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </MenuButton>  
+                  </MenuButton>
+                  <JFXHamburger fx:id="burger" layoutX="14.0" layoutY="17.0" />  
                </children>
             </Pane>
          </top>
          <center>
            
          </center>
-         <center>
-            <fx:include source="HR_Dashboard.fxml" />
-         </center>
       </BorderPane>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="54.0" prefHeight="666.0" prefWidth="224.0" />
    </children>
 </AnchorPane>

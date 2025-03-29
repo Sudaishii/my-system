@@ -115,6 +115,11 @@ public class Super_AdminController implements Initializable {
             }
         
     }
+
+    @FXML
+    private void manageLogs(MouseEvent event) {
+         loadPageUser("/GUI/SysUI/SuperAdmin/System.fxml");
+    }
     
     
 }

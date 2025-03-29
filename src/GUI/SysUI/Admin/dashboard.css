@@ -7,9 +7,9 @@
 
 
 .header-title {
-   -fx-font-size: 20px;
+/*   -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2C1D0F; /* Dark brown for better contrast */
+    -fx-text-fill: #2C1D0F;  Dark brown for better contrast */
 }
 
 

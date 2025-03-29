@@ -17,6 +17,9 @@
     import javafx.fxml.Initializable;
     import javafx.scene.control.TextArea;
     import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
     /**
      * FXML Controller class
@@ -31,34 +34,59 @@
 
         @Override
         public void initialize(URL url, ResourceBundle rb) {
-            // TODO
+            loadLogs();
         }    
+    
+
         private void loadLogs() {
-            StringBuilder logBuilder = new StringBuilder();
-            String sql = "SELECT log_id, username, action, details, timestamp FROM system_logs ORDER BY timestamp DESC";
+        LogsArea.clear(); 
 
-            dbConnect dbConnect = new dbConnect();
+    String sql = "SELECT log_id, username, action, details, timestamp FROM system_logs ORDER BY timestamp DESC";
+    dbConnect dbConnect = new dbConnect();
 
-            try (Connection conn = dbConnect.getConnection();
-                 Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery(sql)) {
+    try (Connection conn = dbConnect.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm:ss");
 
-                while (rs.next()) {
-                    String logEntry = String.format("[%s] [ID: %d] [User: %s] [%s] %s%n",
-                            rs.getTimestamp("timestamp").toLocalDateTime().format(formatter),
-                            rs.getInt("log_id"),
-                            rs.getString("username"),
-                            rs.getString("action"),
-                            rs.getString("details")
-                    );
-                    logBuilder.append(logEntry);
-                }
+        StringBuilder logBuilder = new StringBuilder();
 
-                LogsArea.setText(logBuilder.toString());
-            } catch (SQLException e) {
-                LogsArea.setText("Error loading logs: " + e.getMessage());
+        while (rs.next()) {
+            String action = rs.getString("action").toLowerCase();
+            String colorTag;
+
+            // Text-based color indicators
+            if (action.contains("success")) {
+                colorTag = "[✔> SUCCESS]"; 
+            } else if (action.contains("error") || action.contains("failed")) {
+                colorTag = "[❌ ERROR]";   
+            } else if (action.contains("info")) {
+                colorTag = "[ℹ️ INFO]";    
+            } else {
+                colorTag = "[⚫ GENERAL]"; 
             }
+
+          
+            String logEntry = String.format(
+                "[ID: %-4d] [%-15s] [User: %-10s] %-12s %s",
+                rs.getInt("log_id"),
+                rs.getTimestamp("timestamp").toLocalDateTime().format(formatter),
+                rs.getString("username"),
+                colorTag,
+                rs.getString("details")
+            );
+
+            logBuilder.append(logEntry).append("\n");
+        }
+
+        LogsArea.setText(logBuilder.toString());
+
+    } catch (SQLException e) {
+        LogsArea.setText("Error loading logs: " + e.getMessage());
+    }
 }
+
+
+
     }

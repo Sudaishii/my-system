@@ -38,7 +38,7 @@
                         <Button mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="78.0" prefWidth="176.0" styleClass="btnH" text="Dashboard" />
                         <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manageusers" prefHeight="75.0" prefWidth="204.0" styleClass="btnH" text="Manage Users" />
                         <Button layoutX="201.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manageroles" prefHeight="96.0" prefWidth="218.0" styleClass="btnH" text="Manage Roles" />
-                        <Button layoutX="392.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="185.0" styleClass="btnH" text="Manage System" />
+                        <Button layoutX="392.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#manageLogs" prefHeight="76.0" prefWidth="185.0" styleClass="btnH" text="System Logs" />
                      </children>
                   </HBox>
                   <MenuButton layoutX="957.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="78.0" stylesheets="@../Admin/dashboard.css">

@@ -26,7 +26,7 @@ public class login extends Application {
     public void start(Stage stage) throws Exception {
         
       
-        
+         
        Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
 //       Scene scene = new Scene(root, 899, 590);
 

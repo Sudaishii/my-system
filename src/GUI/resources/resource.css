@@ -1,4 +1,72 @@
 
+#LogsArea {
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ccc; 
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 18px;
+}
+
+
+#LogsArea .scroll-bar:vertical .track,
+#LogsArea .scroll-bar:horizontal .track {
+    -fx-background-color: #e0e0e0;
+    -fx-border-color: transparent;
+    -fx-background-radius: 5px;
+}
+
+/* Style for the scrollbar thumb */
+#LogsArea .scroll-bar:vertical .thumb,
+#LogsArea .scroll-bar:horizontal .thumb {
+    -fx-background-color: #a0a0a0;
+    -fx-background-radius: 5px;
+}
+
+#LogsArea .scroll-bar:vertical .thumb:hover,
+#LogsArea .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #808080;
+}
+
+/* Style for the scrollbar buttons (arrows) */
+#LogsArea .scroll-bar .increment-button,
+#LogsArea .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 2px;
+}
+
+#LogsArea .scroll-bar .increment-arrow,
+#LogsArea .scroll-bar .decrement-arrow {
+    -fx-fill: #606060;
+    -fx-shape: "M 0 -2 L 4 2 L -4 2 Z"; 
+}
+
+
+.log-success {
+    -fx-fill: #28a745;
+    -fx-font-weight: bold;
+}
+
+.log-error {
+    -fx-fill: #dc3545; /* Bootstrap danger red */
+    -fx-font-weight: bold;
+}
+
+.log-info {
+    -fx-fill: #007bff; /* Bootstrap primary blue */
+}
+
+.log-general {
+    -fx-fill: #6c757d; /* Bootstrap secondary gray */
+}
+
+.log-warning {
+    -fx-fill: #ffc107; /* Bootstrap warning yellow */
+}
+
+
 #closeBtn{
   
     -fx-cursor: hand;

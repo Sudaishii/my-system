@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="224.0" style="-fx-background-color: skyblue;" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="224.0" />
+      <Button accessibleText="Dashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Dashboard">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-home-50.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button accessibleText="Manage Employees" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Manage Employees">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-users-30.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="243.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Time Records">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/time_unselected.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="326.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="PaySlip">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-profile-64.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="6.0" prefWidth="224.0" styleClass="PaneCon" stylesheets="@../../resources/resource.css" />
+      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="224.0" styleClass="btnH" text="Settings">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-gear-30.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="489.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="224.0" styleClass="btnH" text="LogOut">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/icons8-logout-32.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </children>
+</VBox>
