@@ -249,7 +249,7 @@ private void AddEmployee(MouseEvent event) {
                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, photoFilePath)) {
-        // Only save the photo if the query was successful
+        
         try {
             String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
             Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);

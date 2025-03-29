@@ -15,17 +15,21 @@
 
 .tab{
     
-    -fx-pref-width: 60px; /* Adjust to your desired square size */
-    -fx-pref-height: 150px; /* Must be the same as pref-width */
-    -fx-background-color: my-color; /* Keep your background color */
-    -fx-padding: 0; /* Remove padding around the graphic */
-    -fx-alignment: center; /* Center the graphic */
+    -fx-pref-width: 250px;
+    -fx-pref-height: 50px; 
+    -fx-background-color: my-color; 
+    -fx-padding: 0; 
+    -fx-alignment: center; 
+    -fx-border-color: #8B5A2B; /* Darker brown */
+       -fx-border-width: 1px 0 0 0; 
+    
     
 }
 
 .tab-pane{
      -fx-background-color:  #fce7c8;
-    
+     -fx-border-color: #1E1E2C; /* Darker brown */
+       -fx-border-width: 2px 0 0 0; 
 }
 
 .tab-header-background{

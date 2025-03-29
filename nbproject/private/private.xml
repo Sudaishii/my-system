@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/LogIn/controller.java</file>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/SuperAdmin/Super_AdminController.java</file>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/LogIn/login.java</file>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/Admin/slider.fxml</file>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/LogIn/LoginController.java</file>
-            <file>file:/D:/O/Oha/my-system/src/GUI/SysUI/Admin/HR_AdminController.java</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/SuperAdmin/slidetab.fxml</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/Admin/dashboard.css</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/LogIn/login.java</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/SuperAdmin/Super_AdminController.java</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/Admin/HR_DashboardController.java</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/Admin/HR_AdminController.java</file>
+            <file>file:/C:/Users/kerjan/Desktop/HAHA/my-system/src/GUI/SysUI/Admin/hr_css.css</file>
         </group>
     </open-files>
 </project-private>

@@ -11,9 +11,9 @@
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" stylesheets="@../Admin/hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SystemController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab>
+          <Tab text="  Event Logs">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -27,7 +27,7 @@
                   </AnchorPane>
             </content>
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="28.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/icons8-system-24.png" />
                      </image>

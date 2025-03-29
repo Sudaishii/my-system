@@ -129,27 +129,18 @@ public void initialize(URL url, ResourceBundle rb) {
         
     }
    
-   @FXML
    private void employee(MouseEvent event) {
         
         loadPage("/GUI/SysUI/Admin/HR_EmployeeManagement.fxml");
         
     }
 
-    @FXML
     private void dahboard(MouseEvent event) {
         
         loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml");
         
     }
 
-    @FXML
-    private void time(MouseEvent event) {
-    }
-
-    @FXML
-    private void payslip(MouseEvent event) {
-    }
 
     
 

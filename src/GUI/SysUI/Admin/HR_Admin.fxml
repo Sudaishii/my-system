@@ -16,24 +16,19 @@
    <children>
       <BorderPane fx:id="rootPane" prefHeight="720.0" prefWidth="1080.0">
          <top>
-            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="header" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
+            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="customheaderheader" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="909.0" layoutY="9.0" text="Pay">
+                  <Label layoutX="51.0" layoutY="9.0" text="Pay">
                      <font>
                         <Font name="Palatino Linotype" size="28.0" />
                      </font>
                   </Label>
-                  <Label layoutX="956.0" layoutY="9.0" text="Fuse">
+                  <Label layoutX="98.0" layoutY="9.0" text="Fuse">
                      <font>
                         <Font name="Palatino Linotype Bold" size="28.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="1016.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/money.png" />
-                     </image>
-                  </ImageView>
-                  <MenuButton layoutX="446.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="78.0" stylesheets="@dashboard.css">
+                  <MenuButton layoutX="1012.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="64.0" stylesheets="@dashboard.css">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#profile" text="Settings">
                            <graphic>

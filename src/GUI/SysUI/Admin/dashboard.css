@@ -1,9 +1,9 @@
-
+/*
 
 .root{
     -fx-background-color: #f4f4f4;
     -fx-font-family: 'Poppins', sans-serif;
-}
+}*/
 
 
 .header-title {
@@ -12,15 +12,29 @@
     -fx-text-fill: #2C1D0F;  Dark brown for better contrast */
 }
 
-
-
-#header{
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); /* Shadow effect 4 00 4*/ 
-    -fx-background-color: #2C4A29; 
+/*.pane{
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
+    -fx-background-color: #F29F67; 
+    -fx-padding: 10 20 10 20; 
+    -fx-alignment: center-left; 
+    -fx-background-radius: 0;
+}*/
+.customheaderheader{
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
+    -fx-background-color: #F29F76; 
     -fx-padding: 10 20 10 20; 
     -fx-alignment: center-left; 
     -fx-background-radius: 0;
 }
+
+
+/*#header{
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
+    -fx-background-color: #F29F67; 
+    -fx-padding: 10 20 10 20; 
+    -fx-alignment: center-left; 
+    -fx-background-radius: 0;
+}*/
 
 .card{
     -fx-background-color: white;
@@ -131,8 +145,8 @@
 /* Arrows inside scrollbar buttons */
 .scroll-bar:horizontal .increment-arrow,
 .scroll-bar:horizontal .decrement-arrow {
-    -fx-shape: "M 0 0 L 4 4 L 8 0 Z"; /* Custom arrow shape */
-    -fx-background-color: #6D5D4B; /* Dark brown for contrast */
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+    -fx-background-color: #6D5D4B; 
 }
 
 
@@ -142,7 +156,8 @@
 }
 
 .custompane{
-    -fx-background-color: #D4B88E;
+    /* -fx-background-color: #D4B88E; */
+    -fx-background-color: #1E1E2C;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
      -fx-border-color: #8B5A2B; /* Darker brown */
        -fx-border-width: 2px 0 0 0; 
@@ -281,7 +296,7 @@
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
     -fx-padding: 0 5px; 
 }
 
@@ -289,7 +304,7 @@
     -fx-font-family: 'Poppins', sans-serif;
     -fx-font-size: 30px;
     -fx-font-weight: 700;
-    -fx-text-fill: #1F1F1F; /* Deep black for emphasis */
+    -fx-text-fill: white; /* Deep black for emphasis */
 }
 /* Navigation Bar Container */
 .nav-bar {
@@ -342,8 +357,8 @@
 }
 
 .btnH:hover{
-     -fx-background-color: #6f4e37; 
-         -fx-text-fill: white;
+     -fx-background-color: #F29F67; 
+         -fx-text-fill: black;
         -fx-cursor: hand; 
 }
 
@@ -404,7 +419,7 @@
 .chart-bar {
     -fx-bar-width: 40px;
     -fx-bar-gap: 12px;
-    -fx-bar-fill: #6f4e37;
+    -fx-bar-fill: #34B1AA;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2); 
     -fx-border-color: #333333; 
     -fx-border-width: 1px;
