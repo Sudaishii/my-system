@@ -16,15 +16,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="660.0" prefWidth="1080.0" stylesheets="@hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.HR_EmployeeManagementController">
+<AnchorPane prefHeight="666.0" prefWidth="1080.0" stylesheets="@hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.HR_EmployeeManagementController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="666.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab text="MANAGE EMPLOYEES">
+            <Tab>
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="626.0" prefWidth="1080.0">
                      <children>
-                        <Pane layoutX="45.0" layoutY="33.0" prefHeight="540.0" prefWidth="991.0" styleClass="PaneCon">
+                        <Pane layoutX="45.0" layoutY="36.0" prefHeight="540.0" prefWidth="991.0" styleClass="PaneCon">
                            <children>
                               <Label layoutX="13.0" layoutY="14.0" prefHeight="51.0" prefWidth="290.0" styleClass="caption" text="Employee Management" />
                               <TableView fx:id="EmployeeView" layoutX="13.0" layoutY="82.0" prefHeight="434.0" prefWidth="962.0" stylesheets="@../../resources/resource.css">
@@ -53,18 +53,28 @@
                   </AnchorPane>
                </content>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons8-person-24.png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane prefHeight="22.0" prefWidth="337.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="74.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="102.0" layoutY="1.0" prefHeight="44.0" prefWidth="199.0" text="Manage Employees">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="68.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-manage-50.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </graphic>
             </Tab>
-            <Tab text="ADD EMPLOYEES">
+            <Tab>
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="577.0" prefWidth="1080.0">
                      <children>
-                        <Pane layoutX="8.0" layoutY="60.0" prefHeight="540.0" prefWidth="1025.0" styleClass="PaneCon">
+                        <Pane layoutX="28.0" layoutY="36.0" prefHeight="540.0" prefWidth="1025.0" styleClass="PaneCon">
                            <children>
                               <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Input Employee's Credentials" />
                               <VBox layoutX="12.0" layoutY="70.0" prefHeight="451.0" prefWidth="325.0">
@@ -152,18 +162,19 @@
                                     <Pane layoutX="10.0" layoutY="98.0" prefHeight="260.0" prefWidth="325.0">
                                        <children>
                                           <Button layoutX="101.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#choosePhoto" prefHeight="21.0" prefWidth="124.0" styleClass="btnfile" text="Choose a file" />
-                                          <Label layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="51.0" text="Profile">
-                                             <font>
-                                                <Font name="System Bold" size="16.0" />
-                                             </font></Label>
-                                          <VBox layoutX="78.0" layoutY="38.0" prefHeight="125.0" prefWidth="150.0" styleClass="img">
+                                          <VBox layoutX="65.0" layoutY="30.0" prefHeight="125.0" prefWidth="150.0" styleClass="img" stylesheets="@../../resources/resource.css">
                                              <children>
-                                                <ImageView fx:id="employeePhoto" fitHeight="166.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="employeePhoto" fitHeight="179.0" fitWidth="193.0" pickOnBounds="true" preserveRatio="true" />
                                              </children>
                                           </VBox>
+                                          <Label layoutX="137.0" layoutY="2.0" prefHeight="25.0" prefWidth="51.0" text="Profile">
+                                             <font>
+                                                <Font name="System Bold" size="16.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </Pane>
-                                    <Pane layoutX="10.0" layoutY="98.0" prefHeight="88.0" prefWidth="325.0">
+                                    <Pane layoutX="10.0" layoutY="98.0" prefHeight="81.0" prefWidth="325.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="6.0" styleClass="tfieldLabel" text="Hired Date" />
                                           <DatePicker fx:id="Tdate" layoutX="14.0" layoutY="22.0" prefHeight="41.0" prefWidth="297.0" stylesheets="@hr_css.css" />
@@ -178,16 +189,25 @@
                               </VBox>
                            </children>
                         </Pane>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="Add Employee" />
                      </children>
                   </AnchorPane>
                </content>
                <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons8-add-administrator-50%20(2).png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane prefHeight="22.0" prefWidth="337.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="74.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="118.0" layoutY="1.0" prefHeight="44.0" prefWidth="199.0" text="Add Employee">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="84.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-add-administrator-50.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </graphic>
             </Tab>
          </tabs>

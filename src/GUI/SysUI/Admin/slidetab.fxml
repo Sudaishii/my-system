@@ -7,30 +7,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="224.0" style="-fx-background-color: white;" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="224.0" style="-fx-background-color: white;" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.SlidetabController">
    <children>
-      <Pane prefHeight="67.0" prefWidth="224.0" styleClass="header">
+      <Pane prefHeight="164.0" prefWidth="224.0">
          <children>
-            <Label layoutX="84.0" layoutY="14.0" text="Pay">
-               <font>
-                  <Font name="Palatino Linotype" size="28.0" />
-               </font>
-            </Label>
-            <Label layoutX="130.0" layoutY="16.0" text="Fuse">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="28.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="34.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="156.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/money.png" />
+                  <Image url="@../../images/header.jpg" />
                </image>
             </ImageView>
          </children></Pane>
-      <Pane layoutX="10.0" layoutY="10.0" prefHeight="49.0" prefWidth="224.0" styleClass="active" />
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="224.0" styleClass="active" />
       <Button accessibleText="Dashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="83.0" prefWidth="224.0" styleClass="btnH" text="Dashboard">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +27,8 @@
                   <Image url="@../../images/icons8-home-50.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+      </Button>
       <Button accessibleText="Manage Employees" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Manage Employees">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -47,7 +37,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="243.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Time Records">
+      <Button accessibleText="Time" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="243.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="Time Records">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -64,7 +54,7 @@
             </ImageView>
          </graphic></Button>
       <Line endX="123.29289245605469" endY="0.2928932309150696" startX="-100.0" strokeWidth="2.0" />
-      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="224.0" styleClass="btnH" text="Settings">
+      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="224.0" styleClass="btnH" text="Settings">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -80,12 +70,26 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Pane layoutX="10.0" layoutY="77.0" prefHeight="90.0" prefWidth="224.0" styleClass="active">
+      <Pane layoutX="10.0" layoutY="77.0" prefHeight="31.0" prefWidth="224.0" styleClass="active" />
+      <Pane layoutX="10.0" layoutY="614.0" prefHeight="66.0" prefWidth="224.0" style="-fx-background-color: #F6F1DE;" styleClass="active">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e1e2c" height="67.0" layoutX="-1.0" layoutY="23.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="226.0" />
-            <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <VBox alignment="CENTER" layoutX="62.0" layoutY="9.0" prefHeight="41.0" prefWidth="142.0">
+               <children>
+                  <Label fx:id="greet" alignment="CENTER" prefHeight="19.0" prefWidth="101.0" text="Good Morning," textFill="#2f2d2d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="name" alignment="CENTER" prefHeight="21.0" prefWidth="73.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8-user-100.png" />
+                  <Image url="@../../images/icons8-male-user-100.png" />
                </image>
             </ImageView>
          </children>

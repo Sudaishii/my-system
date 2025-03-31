@@ -26,8 +26,8 @@
                         <Font size="42.0" />
                      </font>
                   </Label>
-                  <Label fx:id="date" layoutX="715.0" layoutY="55.0" prefHeight="26.0" prefWidth="273.0" styleClass="date-range" text="DATE" />
-                  <Label fx:id="greet" layoutX="314.0" layoutY="30.0" prefHeight="45.0" prefWidth="297.0" styleClass="salary-amount" stylesheets="@dashboard.css" text="0">
+                  <Label fx:id="date" layoutX="727.0" layoutY="53.0" prefHeight="26.0" prefWidth="273.0" styleClass="date-range" text="DATE" />
+                  <Label fx:id="greet" layoutX="366.0" layoutY="44.0" prefHeight="45.0" prefWidth="297.0" styleClass="salary-amount" stylesheets="@dashboard.css" text="0">
                      <font>
                         <Font size="42.0" />
                      </font>
@@ -38,7 +38,7 @@
                <children>
                   <ImageView fitHeight="37.0" fitWidth="41.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icons8-contribution-64.png" />
+                        <Image url="@../../images/icons8-donate-80.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="7.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Contributions" />
@@ -53,7 +53,7 @@
                <children>
                   <ImageView fitHeight="37.0" fitWidth="41.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icons8-salary-50.png" />
+                        <Image url="@../../images/icons8-calculation-64.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="6.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Net Pay" />
@@ -68,7 +68,7 @@
                <children>
                   <ImageView fx:id="tEmp" fitHeight="37.0" fitWidth="41.0" layoutX="17.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="clip">
                      <image>
-                        <Image url="@../../images/icons8-employees.gif" />
+                        <Image url="@../../images/icons8-employees-50.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="6.0" layoutY="56.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Employees" />
@@ -83,7 +83,7 @@
                <children>
                   <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/icons8-payment-48.png" />
+                        <Image url="@../../images/icons8-money-50.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="9.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Gross Salary" />

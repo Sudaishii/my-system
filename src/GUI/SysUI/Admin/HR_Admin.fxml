@@ -18,12 +18,12 @@
          <top>
             <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="customheaderheader" stylesheets="@dashboard.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="51.0" layoutY="9.0" text="Pay">
+                  <Label layoutX="44.0" layoutY="9.0" text="Pay">
                      <font>
                         <Font name="Palatino Linotype" size="28.0" />
                      </font>
                   </Label>
-                  <Label layoutX="98.0" layoutY="9.0" text="Fuse">
+                  <Label layoutX="90.0" layoutY="10.0" text="Fuse">
                      <font>
                         <Font name="Palatino Linotype Bold" size="28.0" />
                      </font>

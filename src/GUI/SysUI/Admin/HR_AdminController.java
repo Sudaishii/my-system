@@ -62,7 +62,7 @@ public void initialize(URL url, ResourceBundle rb) {
                             loadPage("/GUI/SysUI/Admin/HR_EmployeeManagement.fxml");
                             break;
                         case "Time":
-                            loadPage("/GUI/SysUI/Admin/HR_TimeManagement.fxml");
+                            loadPage("/GUI/SysUI/Admin/DailyTimeRecords.fxml");
                             break;
                         case "Payslip":
                             loadPage("/GUI/SysUI/Admin/HR_Payslip.fxml");

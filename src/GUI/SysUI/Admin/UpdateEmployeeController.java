@@ -2,6 +2,7 @@ package GUI.SysUI.Admin;
 
 import GUI.config.config;
 import GUI.config.dbConnect;
+import java.io.File;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +18,11 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UpdateEmployeeController implements Initializable {
 
@@ -37,10 +42,16 @@ public class UpdateEmployeeController implements Initializable {
     private String currentContact;
     private String currentDept;
     private String currentPos;
+     private File selectedImageFile; 
+    private String currentPhotoPath; 
 
     private int employeeId;
     config con = new config();
     dbConnect db = new dbConnect();
+    @FXML
+    private ImageView employeePhoto;
+    @FXML
+    private ImageView cloudIcon;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -116,7 +127,7 @@ public class UpdateEmployeeController implements Initializable {
         if (employeeId > 0) {
             try (Connection connection = db.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT emp_fname, emp_lname, emp_add, emp_email, emp_contact, emp_dept, emp_position " +
+                     "SELECT emp_fname, emp_lname, emp_add, emp_email, emp_contact, emp_dept, emp_position, filePath " +
                      "FROM employee WHERE emp_id = ?")) {
                 
                 preparedStatement.setInt(1, employeeId);
@@ -133,12 +144,49 @@ public class UpdateEmployeeController implements Initializable {
                     currentContact = resultSet.getString("emp_contact");
                     currentDept = resultSet.getString("emp_dept");
                     currentPos = resultSet.getString("emp_position");
+                    currentPhotoPath = resultSet.getString("filePath");
                     
                     addF.setText(currentAdd);
                     emailF.setText(currentEmail);
                     contactF.setText(currentContact);
                     deptF.setValue(currentDept);
                     posF.setValue(currentPos);
+                    
+             if (currentPhotoPath != null && !currentPhotoPath.isEmpty()) {
+                File imageFile = new File(currentPhotoPath);
+                if (imageFile.exists()) {
+                    try {
+                        Image image = new Image(imageFile.toURI().toString());
+                       double imgWidth = image.getWidth();
+                        double imgHeight = image.getHeight();
+                        double viewportSize = Math.min(imgWidth, imgHeight);
+
+                        Rectangle2D viewport = new Rectangle2D(
+                            (imgWidth - viewportSize) / 2,
+                            (imgHeight - viewportSize) / 2,
+                            viewportSize,
+                            viewportSize
+                        );
+
+                        employeePhoto.setImage(image);
+                        employeePhoto.setViewport(viewport);
+                        employeePhoto.setFitWidth(207);
+                        employeePhoto.setFitHeight(185);
+                        employeePhoto.setPreserveRatio(false);
+                        employeePhoto.setSmooth(true);
+                        employeePhoto.setCache(true);
+
+                    } catch (Exception e) {
+                        System.err.println("Error loading image from path: " + currentPhotoPath);
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("Image file not found at path: " + currentPhotoPath);
+                    employeePhoto.setImage(null);
+                }
+            } else {
+                employeePhoto.setImage(null);
+            }
 
                 } else {
                     con.showAlert(Alert.AlertType.ERROR, "Error", "Employee with ID " + employeeId + " not found.");
@@ -151,7 +199,32 @@ public class UpdateEmployeeController implements Initializable {
             }
         }
     }
+    
+//    private void setEmployeePhoto(Image image) {
+//    employeePhoto.setImage(image);
+//    employeePhoto.setFitWidth(207);
+//    employeePhoto.setFitHeight(185);
+//    employeePhoto.setSmooth(true);
+//    employeePhoto.setCache(true);
+//
+//    
+//    double imgWidth = image.getWidth();
+//    double imgHeight = image.getHeight();
+//    
+//    double scaleX = 207 / imgWidth;
+//    double scaleY = 185 / imgHeight;
+//    double scale = Math.max(scaleX, scaleY); 
+//
+//    double newWidth = imgWidth * scale;
+//    double newHeight = imgHeight * scale;
+//    
+//    double xOffset = (newWidth - 207) / 2;
+//    double yOffset = (newHeight - 185) / 2;
+//
+//    employeePhoto.setViewport(new Rectangle2D(xOffset, yOffset, 207, 185));
+//}
 
+    
     @FXML
     private void closeBtn(MouseEvent event) {
         closeOverlay();
@@ -218,4 +291,5 @@ public class UpdateEmployeeController implements Initializable {
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "Error updating employee data.");
     }
 }
+
 }

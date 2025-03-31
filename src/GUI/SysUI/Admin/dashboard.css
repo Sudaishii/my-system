@@ -21,7 +21,7 @@
 }*/
 .customheaderheader{
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
-    -fx-background-color: #F29F76; 
+    -fx-background-color: #F6F1DE; 
     -fx-padding: 10 20 10 20; 
     -fx-alignment: center-left; 
     -fx-background-radius: 0;
@@ -159,8 +159,8 @@
     /* -fx-background-color: #D4B88E; */
     -fx-background-color: #1E1E2C;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 4, 0 , 0 , 4 ); 
-     -fx-border-color: #8B5A2B; /* Darker brown */
-       -fx-border-width: 2px 0 0 0; 
+/*     -fx-border-color: white;  Darker brown#8B5A2B 
+     -fx-border-width: 2px 0 0 0; */
 }
 
 .cardlabel{
@@ -357,7 +357,7 @@
 }
 
 .btnH:hover{
-     -fx-background-color: #F29F67; 
+     -fx-background-color: #e0d5b8; 
          -fx-text-fill: black;
         -fx-cursor: hand; 
 }
@@ -419,7 +419,7 @@
 .chart-bar {
     -fx-bar-width: 40px;
     -fx-bar-gap: 12px;
-    -fx-bar-fill: #34B1AA;
+    -fx-bar-fill: #8AB2A6;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 2, 2); 
     -fx-border-color: #333333; 
     -fx-border-width: 1px;

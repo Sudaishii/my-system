@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="overlayPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.ImportCSVController">
+    <children>
+        <Pane fx:id="rootPane" layoutX="238.0" layoutY="145.0" prefHeight="421.0" prefWidth="604.0" styleClass="import-csv-dialog" stylesheets="@../../resources/resource.css">
+         <children>
+            <VBox prefHeight="521.0" prefWidth="604.0">
+               <children>
+                  <Pane prefHeight="62.0" prefWidth="604.0" styleClass="title-bar">
+                     <children>
+                        <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="563.0" layoutY="11.0" onMouseClicked="#closeBtn" pickOnBounds="true" preserveRatio="true" styleClass="closeBtn">
+                           <image>
+                              <Image url="@../../images/icons8-close-32.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="14.0" layoutY="13.0" styleClass="title" text="Import CSV" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" prefHeight="6.0" prefWidth="604.0" />
+                  <Pane layoutX="10.0" layoutY="72.0" prefHeight="236.0" prefWidth="604.0">
+                     <children>
+                        <VBox alignment="CENTER" layoutX="60.0" layoutY="20.0" onDragDetected="#browseFileButtonAction" onMouseClicked="#chooseCSV" prefHeight="196.0" prefWidth="484.0" styleClass="drop-area">
+                           <children>
+                              <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons8-file-upload-24.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" text="Select a CSV file to import" />
+                              <Label alignment="CENTER" style="-fx-text-fill: gray;" text="CSV files only" />
+                              <Pane prefHeight="8.0" prefWidth="359.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="65.0" prefWidth="604.0">
+                     <children>
+                        <ProgressBar fx:id="bar" layoutX="30.0" layoutY="43.0" prefHeight="8.0" prefWidth="544.0" progress="0.0" />
+                        <Label fx:id="progressPercentage" layoutX="30.0" layoutY="21.0" prefHeight="17.0" prefWidth="37.0" styleClass="progress-percentage-label" text="\%%" />
+                        <Label fx:id="TimeImporting" layoutX="61.0" layoutY="21.0" prefHeight="17.0" prefWidth="115.0" text="Time Importing" />
+                        <Label fx:id="fileName" layoutX="455.0" layoutY="21.0" prefHeight="17.0" prefWidth="115.0" text="File Name" />
+                        <ImageView fx:id="cancelBtn" fitHeight="17.0" fitWidth="15.0" layoutX="574.0" layoutY="22.0" onMouseClicked="#cancel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-close-16.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="63.0" prefWidth="604.0" styleClass="footer-bar">
+                     <children>
+                        <Button fx:id="browseFileButton11" layoutX="486.0" layoutY="16.0" onAction="#importCSVAction" prefHeight="23.0" prefWidth="104.0" styleClass="addphoto" stylesheets="@../../resources/resource.css" text="Import CSV" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="SummaryCont" layoutX="10.0" layoutY="376.0" prefHeight="104.0" prefWidth="604.0">
+                     <styleClass>
+                        <String fx:value="title-bar" />
+                        <String fx:value="footer-bar" />
+                     </styleClass>
+                     <children>
+                        <Label fx:id="summary" layoutX="12.0" layoutY="11.0" styleClass="summary" text="Summary:" />
+                        <VBox layoutX="34.0" layoutY="30.0" prefHeight="65.0" prefWidth="345.0">
+                           <children>
+                              <Label fx:id="totalRecords" prefHeight="20.0" prefWidth="345.0" styleClass="detaiils" text="Label" />
+                              <Label fx:id="SuccessImports" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="344.0" styleClass="detaiils" text="Label" />
+                              <Label fx:id="DuplicateRecords" layoutX="10.0" layoutY="32.0" prefHeight="20.0" prefWidth="345.0" styleClass="detaiils" text="Label" />
+                              <Label fx:id="skipped" layoutX="10.0" layoutY="54.0" prefHeight="20.0" prefWidth="345.0" styleClass="detaiils" text="Label" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+        </Pane>
+    </children>
+</AnchorPane>

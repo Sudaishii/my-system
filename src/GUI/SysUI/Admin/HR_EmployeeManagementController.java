@@ -186,6 +186,10 @@ public class HR_EmployeeManagementController implements Initializable {
         });
            
         loadDataFromDatabase();
+        
+        employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
+        
+        
 
     }
     
@@ -193,7 +197,8 @@ public class HR_EmployeeManagementController implements Initializable {
     
     
     @FXML
-private void AddEmployee(MouseEvent event) {
+    private void AddEmployee(MouseEvent event) {
+   
     config conf = new config();
 
     String fname = Tfname.getText().trim();
@@ -248,23 +253,43 @@ private void AddEmployee(MouseEvent event) {
     String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath) "
                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, photoFilePath)) {
-        
-        try {
-            String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
-            Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+                try {
+                
+                 String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
 
-            conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
-            loadDataFromDatabase();
-            clearFields();
-        } catch (IOException e) {
-            conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
-        }
-    } else {
-        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to add employee.");
-    }
+             
+                 Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+
+            
+                 if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, destinationPath)) {
+                     conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
+                     loadDataFromDatabase();
+                     clearFields();
+                 }
+             } catch (IOException e) {
+                 conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
+             }
+    }  
+private void setEmployeePhoto(Image image) {
+     double imgWidth = image.getWidth();
+    double imgHeight = image.getHeight();
+    double viewportSize = Math.min(imgWidth, imgHeight);
+
+    Rectangle2D viewport = new Rectangle2D(
+        (imgWidth - viewportSize) / 2,
+        (imgHeight - viewportSize) / 2,
+        viewportSize,
+        viewportSize
+    );
+
+    employeePhoto.setImage(image);
+    employeePhoto.setViewport(viewport);
+    employeePhoto.setFitWidth(178);
+    employeePhoto.setFitHeight(166);
+    employeePhoto.setPreserveRatio(false);
+    employeePhoto.setSmooth(true);
+    employeePhoto.setCache(true);
 }
-
     
     
 //    @FXML
@@ -418,7 +443,7 @@ private void AddEmployee(MouseEvent event) {
             Tcontact.clear();
             Tdate.setValue(null);
 
-          
+             employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
             sexcombo1.setValue("Choose Sex");
             deptcombo1.setValue("Choose Department");
             poscombo1.setValue("Choose Position");
@@ -432,10 +457,10 @@ private void AddEmployee(MouseEvent event) {
 
     
     @FXML
-    private void choosePhoto(MouseEvent event) {
+private void choosePhoto(MouseEvent event) {
+    config con = new config();
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Choose Employee Photo");
-
     fileChooser.getExtensionFilters().addAll(
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
     );
@@ -443,31 +468,15 @@ private void AddEmployee(MouseEvent event) {
     File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
 
     if (selectedFile != null) {
-        Image image = new Image(selectedFile.toURI().toString());
-
-        double imgWidth = image.getWidth();
-        double imgHeight = image.getHeight();
-        double viewportSize = Math.min(imgWidth, imgHeight); 
-
-        Rectangle2D viewport = new Rectangle2D(
-            (imgWidth - viewportSize) / 2, 
-            (imgHeight - viewportSize) / 2, 
-            viewportSize, 
-            viewportSize
-        );
-
-        employeePhoto.setImage(image);
-        employeePhoto.setViewport(viewport);  
-        employeePhoto.setFitWidth(178);       
-        employeePhoto.setFitHeight(166);      
-        employeePhoto.setPreserveRatio(false); 
-        employeePhoto.setSmooth(true);        
-        employeePhoto.setCache(true);
-
-        // Store path temporarily (not saved yet)
+        // Store the file path (but don't copy it yet)
         photoFilePath = selectedFile.getAbsolutePath();
+
+        // Load and display the selected image using the existing method
+        Image image = new Image(new File(photoFilePath).toURI().toString());
+        setEmployeePhoto(image);  // ✅ Uses your method
     }
 }
+
 
     
 //   @FXML
