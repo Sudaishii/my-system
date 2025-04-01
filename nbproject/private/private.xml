@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/config/config.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/DTRModel.java</file>
             <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/LogIn/login.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/dashboard.css</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/HR_EmployeeManagementController.java</file>
             <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/UpdateEmployeeController.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/resources/resource.css</file>
             <file>file:/D:/temp/PRELIM/SLIDERS/my-system/nbproject/build-impl.xml</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/DailyTimeRecordsController.java</file>
             <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/ImportCSVController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/ImportCSV.fxml</file>
         </group>
     </open-files>
 </project-private>
