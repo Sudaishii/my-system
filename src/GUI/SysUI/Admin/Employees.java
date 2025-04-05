@@ -6,6 +6,7 @@
 package GUI.SysUI.Admin;
 
 import java.util.Date;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Employees {
     private String contact;
     private String dept;
     private String pos;
+    private CheckBox Box;
     
     public Employees (int id, String fname, String lname, String email, Date hdate, String contact, String dept, String pos) {
         
@@ -33,6 +35,7 @@ public class Employees {
         this.contact = contact;
         this.dept = dept;
         this.pos = pos;
+        this.Box = new CheckBox();
         
        
     }
@@ -45,7 +48,16 @@ public class Employees {
     public String getContact() { return contact; }
     public String getDept() { return dept; }
     public String getPos() { return pos; }
-
+    public String getFullName() {
+    return fname + " " + lname;
+    }
+    public CheckBox getBox(){
+        return Box;
+    }
+    
+    public void setSelect (CheckBox Box){
+        this.Box = Box;
+    }
     
     
     

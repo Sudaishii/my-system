@@ -45,11 +45,11 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="326.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="PaySlip">
+      <Button accessibleText="Payslip" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="326.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="227.0" styleClass="btnH" text="PaySlip">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8-profile-64.png" />
+                  <Image url="@../../images/icons8-payroll-40.png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -75,7 +75,7 @@
          <children>
             <VBox alignment="CENTER" layoutX="62.0" layoutY="9.0" prefHeight="41.0" prefWidth="142.0">
                <children>
-                  <Label fx:id="greet" alignment="CENTER" prefHeight="19.0" prefWidth="101.0" text="Good Morning," textFill="#2f2d2d">
+                  <Label fx:id="greet" alignment="CENTER" prefHeight="20.0" prefWidth="144.0" text="Good Morning," textFill="#2f2d2d">
                      <font>
                         <Font size="14.0" />
                      </font>

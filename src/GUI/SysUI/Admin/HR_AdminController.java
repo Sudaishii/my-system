@@ -45,7 +45,7 @@ public class HR_AdminController implements Initializable {
     private JFXHamburger burger;
     @FXML
     private JFXDrawer drawer;
-    
+   
     @Override
 public void initialize(URL url, ResourceBundle rb) {
     try {
@@ -65,7 +65,7 @@ public void initialize(URL url, ResourceBundle rb) {
                             loadPage("/GUI/SysUI/Admin/DailyTimeRecords.fxml");
                             break;
                         case "Payslip":
-                            loadPage("/GUI/SysUI/Admin/HR_Payslip.fxml");
+                            loadPage("/GUI/SysUI/Admin/PaySlipManagement.fxml");
                             break;
                         case "Profile":
                             loadPage("/GUI/SysUI/univ/Profile.fxml");

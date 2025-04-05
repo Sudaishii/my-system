@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.DailyTimeRecordsController">
@@ -70,7 +69,6 @@
                <graphic>
                   <AnchorPane prefHeight="22.0" prefWidth="337.0">
                      <children>
-                        <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="74.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="93.0" layoutY="1.0" prefHeight="44.0" prefWidth="211.0" text="Manage Time Records">
                            <font>
                               <Font name="System Bold" size="20.0" />
@@ -85,32 +83,6 @@
                   </AnchorPane>
                </graphic>
           </Tab>
-            <Tab>
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Pane layoutX="26.0" layoutY="21.0" prefHeight="564.0" prefWidth="1029.0" styleClass="PaneCon">
-                           <children>
-                              <VBox alignment="CENTER" layoutX="283.0" layoutY="130.0" prefHeight="252.0" prefWidth="403.0" style="-fx-border-color: lightgray; -fx-border-style: dashed; -fx-border-width: 2; -fx-padding: 20;">
-                                 <children>
-                                    <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../images/icons8-add-image-24.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" text="Choose a file" />
-                                    <Label alignment="CENTER" style="-fx-text-fill: gray;" text="JPEG, PNG up to 50MB" />
-                                    <Button onAction="#handleBrowseFile" prefHeight="23.0" prefWidth="104.0" styleClass="addphoto" stylesheets="@../../resources/resource.css" text="Browse File" />
-                                    <Pane prefHeight="8.0" prefWidth="359.0" />
-                                    <Button layoutX="89.0" layoutY="105.0" onAction="#handleBrowseFile" prefHeight="23.0" prefWidth="104.0" styleClass="removephoto" stylesheets="@../../resources/resource.css" text="Remove File" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
         </tabs>
       </TabPane>
    </children>
