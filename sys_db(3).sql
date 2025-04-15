@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2025 at 11:45 PM
+-- Generation Time: Apr 16, 2025 at 12:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -322,18 +322,19 @@ CREATE TABLE `employee` (
   `emp_hdate` date NOT NULL,
   `emp_dept` varchar(50) NOT NULL,
   `emp_position` varchar(50) NOT NULL,
-  `filePath` varchar(255) DEFAULT NULL
+  `filePath` varchar(255) DEFAULT NULL,
+  `rate_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`, `filePath`) VALUES
-(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapales@gmail.com', '09456989966', '2024-11-01', 'Human Resources', 'Finance Manager', 'src/GUI/images/Emp/09c0eddb-1373-422b-b709-ef871a17eb5d.jpg'),
-(1002, 'Rodeliza', 'La Rosa', 'Tapales', 20, 'Female', 'Ward 4, Minglanilla, Cebu', 'rode@gmail.com', '09456231563', '2025-02-08', 'Front Office', 'Front Office Manager', 'src/GUI/images/Emp/b537b962-fb69-4a53-8dff-8a71c0e79cd6.jpg'),
-(1003, 'Christhel', '', 'Tapao', 20, 'Female', 'Naga City, Cebu', 'marie@gmail.com', '09236578986', '2025-01-04', 'IT', 'IT Manager', 'src/GUI/images/Emp/fff30141-df3d-4748-a82d-f3e4312d3f68.jpg'),
-(1004, 'Allyna', '', 'Manatad', 20, 'Female', 'Naga City, Cebu', 'allyna@gmail.com', '09231567425', '2025-01-15', 'Maintenance', 'Chief Engineer', 'src/GUI/images/Emp/485490886_1600104924037517_3051937344010869938_n-removebg-preview.png');
+INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`, `filePath`, `rate_id`) VALUES
+(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapales@gmail.com', '09456989966', '2024-11-01', 'Human Resources', 'Finance Manager', 'src/GUI/images/Emp/09c0eddb-1373-422b-b709-ef871a17eb5d.jpg', 0),
+(1002, 'Rodeliza', 'La Rosa', 'Tapales', 20, 'Female', 'Ward 4, Minglanilla, Cebu', 'rode@gmail.com', '09456231563', '2025-02-08', 'Front Office', 'Front Office Manager', 'src/GUI/images/Emp/b537b962-fb69-4a53-8dff-8a71c0e79cd6.jpg', 0),
+(1003, 'Christhel', '', 'Tapao', 20, 'Female', 'Naga City, Cebu', 'marie@gmail.com', '09236578986', '2025-01-04', 'IT', 'IT Manager', 'src/GUI/images/Emp/fff30141-df3d-4748-a82d-f3e4312d3f68.jpg', 0),
+(1004, 'Allyna', '', 'Manatad', 20, 'Female', 'Naga City, Cebu', 'allyna@gmail.com', '09231567425', '2025-01-15', 'Maintenance', 'Chief Engineer', 'src/GUI/images/Emp/485490886_1600104924037517_3051937344010869938_n-removebg-preview.png', 0);
 
 -- --------------------------------------------------------
 
@@ -351,6 +352,44 @@ CREATE TABLE `m_reports` (
   `total_contri_employer` decimal(15,2) NOT NULL,
   `date_generated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rates`
+--
+
+CREATE TABLE `rates` (
+  `rates_id` int(11) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `hourly_rate` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rates`
+--
+
+INSERT INTO `rates` (`rates_id`, `position`, `hourly_rate`) VALUES
+(1, 'General Manager', 120.00),
+(2, 'HR Manager', 150.00),
+(3, 'Finance Manager', 110.00),
+(4, 'Finance Clerk', 80.00),
+(5, 'Front Office Manager', 100.00),
+(6, 'Receptionist', 95.00),
+(7, 'Porter', 50.00),
+(8, 'Reservation Clerk', 45.00),
+(9, 'Executive Housekeeper', 130.00),
+(10, 'Housekeeping Supervisor', 80.00),
+(11, 'Room Attendant', 50.00),
+(12, 'Public Area Cleaner', 40.00),
+(13, 'Chief Engineer', 180.00),
+(14, 'Maintenance Supervisor', 160.00),
+(15, 'Maintenance Technician', 170.00),
+(16, 'Groundskeeper', 50.00),
+(17, 'IT Manager', 200.00),
+(18, 'IT Support Specialist', 120.00),
+(19, 'Network Administrator', 110.00),
+(20, 'System Administrator', 130.00);
 
 -- --------------------------------------------------------
 
@@ -559,7 +598,29 @@ INSERT INTO `system_logs` (`log_id`, `username`, `action`, `details`, `timestamp
 (142, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-03-31 20:27:30'),
 (143, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-03-31 21:03:46'),
 (144, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-03-31 21:27:49'),
-(145, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-03-31 21:31:42');
+(145, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-03-31 21:31:42'),
+(146, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 06:20:29'),
+(147, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 10:48:44'),
+(148, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 10:49:30'),
+(149, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 11:12:28'),
+(150, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 11:13:18'),
+(151, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 11:14:50'),
+(152, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 11:15:46'),
+(153, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 11:30:06'),
+(154, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 12:48:40'),
+(155, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 12:58:22'),
+(156, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 15:56:30'),
+(157, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 16:35:55'),
+(158, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 16:45:14'),
+(159, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 16:52:22'),
+(160, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 16:56:49'),
+(161, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 17:51:38'),
+(162, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 17:53:43'),
+(163, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 18:50:13'),
+(164, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 19:56:29'),
+(165, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 21:38:35'),
+(166, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 23:29:51'),
+(167, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-15 20:59:23');
 
 -- --------------------------------------------------------
 
@@ -614,6 +675,12 @@ ALTER TABLE `m_reports`
   ADD PRIMARY KEY (`m_report_id`);
 
 --
+-- Indexes for table `rates`
+--
+ALTER TABLE `rates`
+  ADD PRIMARY KEY (`rates_id`);
+
+--
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
@@ -663,6 +730,12 @@ ALTER TABLE `m_reports`
   MODIFY `m_report_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `rates`
+--
+ALTER TABLE `rates`
+  MODIFY `rates_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
@@ -678,7 +751,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `system_logs`
 --
 ALTER TABLE `system_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT for table `users`
