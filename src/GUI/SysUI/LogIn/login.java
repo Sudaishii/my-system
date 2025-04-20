@@ -28,7 +28,7 @@ public class login extends Application {
       
          
        Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
-//       Scene scene = new Scene(root, 899, 590);
+
 
         Scene scene = new Scene (root);
       
@@ -39,10 +39,7 @@ public class login extends Application {
        stage.getIcons().add(new Image("/GUI/images/money.png"));
        stage.setTitle("PayFuse");
        
-       
 
-       
- 
        stage.setResizable(false);
        stage.setScene(scene);
        stage.sizeToScene();

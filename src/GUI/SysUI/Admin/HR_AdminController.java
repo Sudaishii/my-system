@@ -10,10 +10,12 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +24,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -49,6 +53,7 @@ public class HR_AdminController implements Initializable {
     @Override
 public void initialize(URL url, ResourceBundle rb) {
     try {
+        
         VBox box = FXMLLoader.load(getClass().getResource("slidetab.fxml"));
         
         for (Node node : box.getChildren()) {
@@ -67,11 +72,11 @@ public void initialize(URL url, ResourceBundle rb) {
                         case "Payslip":
                             loadPage("/GUI/SysUI/Admin/PaySlipManagement.fxml");
                             break;
-                        case "Profile":
+                        case "Settings":
                             loadPage("/GUI/SysUI/univ/Profile.fxml");
                             break;
                         case "Logout":
-                            logout(new ActionEvent());
+                           logout(new ActionEvent());
                             break;
                         default:
                             System.out.println("Unknown action: " + node.getAccessibleText());
@@ -79,7 +84,7 @@ public void initialize(URL url, ResourceBundle rb) {
                 });
             }
         }
-
+        
         drawer.setSidePane(box);
 
         HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(burger);
@@ -91,21 +96,21 @@ public void initialize(URL url, ResourceBundle rb) {
             if (drawer.isOpened()) {
             drawer.close();
 
-            // Delay hiding to allow animation to finish
+            
             drawer.setOnDrawerClosed(event -> {
                 drawer.setVisible(false);
                 drawer.setManaged(false);
             });
 
         } else {
-            // Ensure the drawer is visible before opening
+            
             drawer.setVisible(true);
             drawer.setManaged(true);
             drawer.open();
         }
         });
 
-        loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml"); // Default page load
+        loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml"); 
         instance = this;
     } catch (IOException ex) {
         Logger.getLogger(HR_AdminController.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,45 +146,65 @@ public void initialize(URL url, ResourceBundle rb) {
         
     }
 
-
-    
-
     @FXML
     private void profile(ActionEvent event) {
          loadPage("/GUI/SysUI/univ/Profile.fxml");
     }
 
-    @FXML
-    private void logout(ActionEvent event) {
-        
-         
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout Confirmation");
-            alert.setHeaderText("Are you sure you want to logout?");
-            alert.setContentText("Unsaved progress may be lost.");
+  @FXML
+private void logout(ActionEvent event) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Logout Confirmation");
+    alert.setHeaderText("Are you sure you want to logout?");
+    alert.setContentText("Unsaved progress may be lost.");
 
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                try {
-                    Parent loginRoot = FXMLLoader.load(getClass().getResource("/GUI/SysUI/Login/login.fxml"));
-                    Scene loginScene = new Scene(loginRoot);
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        try {
+            Stage stage = (Stage) rootPane.getScene().getWindow(); 
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
+            Scene scene = new Scene(root, 899, 547);
 
-                    Stage stage = (Stage) rootPane.getScene().getWindow();
-                    stage.setScene(loginScene);
-                    stage.setTitle("Login - PayFuse");
-                    stage.setResizable(false);
-                    stage.sizeToScene();
-
-                    
-                    stage.centerOnScreen();
-
-                    stage.show();
-                } catch (IOException e) {
-                    System.err.println("Error loading login page.");
-                    e.printStackTrace();
-                }
-            }
-        
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading login page: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
+}
+
+
+    public void showLogoutConfirmationAlert(Node node) {
+    Stage currentStage = (Stage) node.getScene().getWindow();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText("Logout Confirmation");
+    alert.setContentText("Are you sure you want to logout?");
+    alert.initOwner(currentStage);
+
+    DialogPane dialogPane = alert.getDialogPane();
+ 
+    
+    String loginFXML = "/GUI/SysUI/LogIn/login.fxml"; 
+
+    alert.showAndWait().ifPresent(response -> {
+        if (response == ButtonType.OK) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource(loginFXML));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    });
+}
+
+        
+    
     
     
     

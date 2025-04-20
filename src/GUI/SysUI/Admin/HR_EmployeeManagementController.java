@@ -196,9 +196,8 @@ public class HR_EmployeeManagementController implements Initializable {
     config conf = new config();
     
     
-    @FXML
-    private void AddEmployee(MouseEvent event) {
-   
+   @FXML
+   private void AddEmployee(MouseEvent event) {
     config conf = new config();
 
     String fname = Tfname.getText().trim();
@@ -213,6 +212,7 @@ public class HR_EmployeeManagementController implements Initializable {
     String contact = Tcontact.getText().trim();
     LocalDate date = Tdate.getValue();
 
+    // Input validation
     if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
         age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
@@ -249,27 +249,59 @@ public class HR_EmployeeManagementController implements Initializable {
         return;
     }
 
+    
+    int rateId;
+    try (Connection conn = new dbConnect().getConnection()) {
+        rateId = getRateIdByPosition(conn, pos);
+    } catch (SQLException e) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Database connection error: " + e.getMessage());
+        return;
+    }
+
+    if (rateId == -1) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Invalid position selected.");
+        return;
+    }
+
     // Database insertion
-    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath) "
-               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath, rates_id) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                try {
-                
-                 String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
+    try {
+        String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
+        Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
 
-             
-                 Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+        if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, destinationPath, rateId)) {
+            conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
+            loadDataFromDatabase();
+            clearFields();
+        }
+    } catch (IOException e) {
+        conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
+    }
+}  
+    
+    
+   private int getRateIdByPosition(Connection conn, String position) {
+    int rateId = -1; 
+    String query = "SELECT rates_id FROM rates WHERE position = ?"; 
 
-            
-                 if (conf.addRecord(sql, fname, mname, lname, age, sex, address, email, contact, date.toString(), dept, pos, destinationPath)) {
-                     conf.showAlert(Alert.AlertType.INFORMATION, "Successful", "Employee added successfully!");
-                     loadDataFromDatabase();
-                     clearFields();
-                 }
-             } catch (IOException e) {
-                 conf.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save photo.");
-             }
-    }  
+    try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+        pstmt.setString(1, position); 
+        ResultSet rs = pstmt.executeQuery(); 
+
+        if (rs.next()) {
+            rateId = rs.getInt("rates_id"); 
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle exceptions appropriately
+    }
+
+    return rateId; // Return the found rates_id or -1 if not found
+}
+    
+    
+    
 private void setEmployeePhoto(Image image) {
      double imgWidth = image.getWidth();
     double imgHeight = image.getHeight();
@@ -624,7 +656,7 @@ private void updateBtn(MouseEvent event) throws IOException {
 
     
 
-
+     
     
 
 

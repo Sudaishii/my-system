@@ -54,7 +54,7 @@
             </ImageView>
          </graphic></Button>
       <Line endX="123.29289245605469" endY="0.2928932309150696" startX="-100.0" strokeWidth="2.0" />
-      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="224.0" styleClass="btnH" text="Settings">
+      <Button accessibleText="Settings" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="224.0" styleClass="btnH" text="Settings">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -62,7 +62,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="489.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="224.0" styleClass="btnH" text="LogOut">
+      <Button accessibleText="Logout" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="58.0" prefWidth="224.0" styleClass="btnH" text="LogOut">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>

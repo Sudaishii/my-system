@@ -65,8 +65,6 @@ public class LoginController implements Initializable {
     private TextField UNField1;
     @FXML
     private PasswordField PassField1;
-    @FXML
-    private AnchorPane AnchorPane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> rootPane.requestFocus()); 

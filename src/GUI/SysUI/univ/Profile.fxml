@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.univ.ProfileController">
+<AnchorPane id="AnchorPane" prefHeight="666.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.univ.ProfileController">
    <children>
-      <Pane prefHeight="660.0" prefWidth="1080.0" styleClass="tab-header-background" stylesheets="@../../resources/resource.css">
+      <Pane prefHeight="666.0" prefWidth="1080.0" styleClass="tab-header-background" stylesheets="@../../resources/resource.css">
          <children>
-            <Pane layoutX="367.0" layoutY="52.0" prefHeight="556.0" prefWidth="346.0" styleClass="PaneCon" stylesheets="@../../resources/resource.css">
+            <Pane layoutX="367.0" layoutY="55.0" prefHeight="556.0" prefWidth="346.0" styleClass="PaneCon" stylesheets="@../../resources/resource.css">
                <children>
                   <Label fx:id="emailLabel" alignment="CENTER" layoutX="95.0" layoutY="138.0" prefHeight="36.0" prefWidth="157.0" text="name@gmail.com" textAlignment="CENTER">
                      <font>

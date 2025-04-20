@@ -47,15 +47,13 @@
                               </ImageView>
                            </graphic></MenuItem>
                     </items>
-                     <graphic>
-                        <ImageView fitHeight="55.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/icons8-user-100.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
                   </MenuButton>
-                  <JFXHamburger fx:id="burger" layoutX="14.0" layoutY="17.0" />  
+                  <JFXHamburger fx:id="burger" layoutX="14.0" layoutY="17.0" />
+                  <ImageView fitHeight="47.0" fitWidth="60.0" layoutX="1014.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/money.png" />
+                     </image>
+                  </ImageView>  
                </children>
             </Pane>
          </top>
