@@ -63,7 +63,8 @@ public class SlidetabController implements Initializable {
             greeting = "Good Evening";
         }
 
-        String combinedText = greeting + " " + uname;
+        String combinedText = greeting ;
+//        + " " + uname
          
         greet.setText(combinedText);
         

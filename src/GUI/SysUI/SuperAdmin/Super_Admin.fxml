@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,14 +14,14 @@
    <children>
       <BorderPane fx:id="rootPane" prefHeight="710.0" prefWidth="1080.0">
          <top>
-            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="header" BorderPane.alignment="CENTER">
+            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="customheaderheader" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="909.0" layoutY="9.0" text="Pay">
+                  <Label layoutX="47.0" layoutY="8.0" text="Pay">
                      <font>
                         <Font name="Palatino Linotype" size="28.0" />
                      </font>
                   </Label>
-                  <Label layoutX="956.0" layoutY="9.0" text="Fuse">
+                  <Label layoutX="94.0" layoutY="8.0" text="Fuse">
                      <font>
                         <Font name="Palatino Linotype Bold" size="28.0" />
                      </font>
@@ -33,35 +31,6 @@
                         <Image url="@../../images/money.png" />
                      </image>
                   </ImageView>
-                  <MenuButton layoutX="552.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="78.0" stylesheets="@../Admin/dashboard.css">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#profile" text="Settings">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../images/icons8-gear-30.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Log Out">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../images/icons8-logout-32.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </MenuItem>
-                     </items>
-                     <graphic>
-                        <ImageView fitHeight="55.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/icons8-user-100.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuButton>
                   <JFXHamburger fx:id="burger" layoutX="14.0" layoutY="17.0" />
                </children>
             </Pane>

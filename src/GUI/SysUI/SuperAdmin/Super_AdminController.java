@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,8 +67,8 @@ public class Super_AdminController implements Initializable {
                         case "EventLogs":
                             loadPageUser("/GUI/SysUI/SuperAdmin/System.fxml");
                             break;
-                        case "Payslip":
-                            loadPageUser("/GUI/SysUI/Admin/HR_Payslip.fxml");
+                        case "Scalability":
+                            loadPageUser("/GUI/SysUI/SuperAdmin/Scalability.fxml");
                             break;
                         case "Profile":
                             loadPageUser("/GUI/SysUI/univ/Profile.fxml");
@@ -146,30 +147,25 @@ public class Super_AdminController implements Initializable {
     @FXML
     private void logout(ActionEvent event) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout Confirmation");
-            alert.setHeaderText("Are you sure you want to logout?");
-            alert.setContentText("Unsaved progress may be lost.");
+    alert.setTitle("Logout Confirmation");
+    alert.setHeaderText("Are you sure you want to logout?");
+    alert.setContentText("Unsaved progress may be lost.");
 
-            if (alert.showAndWait().get() == ButtonType.OK) {
-                try {
-                    Parent loginRoot = FXMLLoader.load(getClass().getResource("/GUI/SysUI/Login/login.fxml"));
-                    Scene loginScene = new Scene(loginRoot);
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        try {
+            Stage stage = (Stage) rootPane.getScene().getWindow(); 
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
+            Scene scene = new Scene(root, 899, 547);
 
-                    Stage stage = (Stage) rootPane.getScene().getWindow();
-                    stage.setScene(loginScene);
-                    stage.setTitle("Login - PayFuse");
-                    stage.setResizable(false);
-                    stage.sizeToScene();
-
-                    
-                    stage.centerOnScreen();
-
-                    stage.show();
-                } catch (IOException e) {
-                    System.err.println("Error loading login page.");
-                    e.printStackTrace();
-                }
-            }
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading login page: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
         
     }
 

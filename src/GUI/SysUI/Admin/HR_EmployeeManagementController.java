@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +31,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -83,13 +85,15 @@ public class HR_EmployeeManagementController implements Initializable {
     private Button submit;
     private String photoFilePath;
     private ObservableList<Employees> empList;
+    ObservableList<Employees> searchby = FXCollections.observableArrayList();
     @FXML
     private TableView<Employees> EmployeeView;
     
     
     private dbConnect db = new dbConnect();
     
-    
+    @FXML
+    private StackedBarChart<String , Number> barChart;
     
     @FXML
     private TableColumn<Employees, String> idC;
@@ -108,11 +112,11 @@ public class HR_EmployeeManagementController implements Initializable {
     @FXML
     private TableColumn<Employees, String> postC;
     @FXML
-    private ComboBox<String> filterView1;
-    @FXML
     private Button update;
     @FXML
     private ImageView employeePhoto;
+    @FXML
+    private TextField FilterField;
    
 //    empTransfer trans = new empTransfer
 
@@ -212,7 +216,7 @@ public class HR_EmployeeManagementController implements Initializable {
     String contact = Tcontact.getText().trim();
     LocalDate date = Tdate.getValue();
 
-    // Input validation
+    
     if (fname.isEmpty() || lname.isEmpty() || address.isEmpty() || email.isEmpty() ||
         age.isEmpty() || sex.isEmpty() || dept.isEmpty() || pos.isEmpty() || contact.isEmpty() || date == null) {
         conf.showAlert(Alert.AlertType.ERROR, "Error", "All fields are required.");
@@ -450,6 +454,33 @@ private void setEmployeePhoto(Image image) {
             
 
             EmployeeView.setItems(empList);
+            
+            FilteredList<Employees> filteredData = new FilteredList<>(empList, b -> true);
+
+          
+            FilterField.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(employee -> {
+                
+                    if (newValue == null || newValue.trim().isEmpty()) {
+                        return true;
+                    }
+
+                  
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                   
+                    if (String.valueOf(employee.getId()).contains(lowerCaseFilter) ||  
+                    employee.getFullName().toLowerCase().contains(lowerCaseFilter) || 
+                    employee.getDept().toLowerCase().contains(lowerCaseFilter) || 
+                    employee.getPos().toLowerCase().contains(lowerCaseFilter) || 
+                    (employee.getHdate() != null && employee.getHdate().toString().toLowerCase().contains(lowerCaseFilter))) {
+                    return true;
+                }
+                    return false; 
+                });
+            });
+            
+            EmployeeView.setItems(filteredData);
             
 
         } catch (SQLException e) {

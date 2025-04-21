@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,17 +14,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.DailyTimeRecordsController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" stylesheets="@SearchBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Admin.DailyTimeRecordsController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" stylesheets="@hr_css.css" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab>
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="26.0" layoutY="21.0" prefHeight="564.0" prefWidth="1029.0" styleClass="PaneCon">
+                        <Pane layoutX="26.0" layoutY="87.0" prefHeight="498.0" prefWidth="1029.0" styleClass="PaneCon">
                            <children>
-                              <TableView fx:id="DTRView" fixedCellSize="-4.0" layoutX="14.0" layoutY="91.0" prefHeight="456.0" prefWidth="1000.0" stylesheets="@hr_css.css">
+                              <TableView fx:id="DTRView" fixedCellSize="-4.0" layoutX="14.0" layoutY="80.0" prefHeight="405.0" prefWidth="1000.0">
                                 <columns>
                                   <TableColumn fx:id="recordID" prefWidth="88.0" text="RECORD ID" />
                                   <TableColumn fx:id="employeeID" minWidth="0.0" prefWidth="104.0" text="EMPLOYEE ID" />
@@ -37,22 +37,17 @@
                                     <TableColumn fx:id="absent" prefWidth="72.0" text="ABSENT" />
                                 </columns>
                               </TableView>
-                              <Label fx:id="CurrentDandT" layoutX="14.0" layoutY="21.0" styleClass="timeforDTR" stylesheets="@../../resources/resource.css" text="Label" />
-                              <HBox layoutX="644.0" layoutY="40.0" prefHeight="60.0" prefWidth="397.0">
+                              <Label fx:id="CurrentDandT" layoutX="14.0" layoutY="14.0" prefHeight="19.0" prefWidth="365.0" styleClass="timeforDTR" stylesheets="@../../resources/resource.css" text="Label" />
+                              <HBox layoutX="825.0" layoutY="40.0" prefHeight="60.0" prefWidth="226.0">
                                  <children>
                                     <Pane prefHeight="60.0" prefWidth="161.0">
                                        <children>
-                                          <Button fx:id="CSV" layoutX="27.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#importCSV" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@hr_css.css" text="IMPORT" />
-                                       </children>
-                                    </Pane>
-                                    <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="178.0">
-                                       <children>
-                                          <ComboBox fx:id="filterView1" layoutY="13.0" prefHeight="34.0" prefWidth="176.0" />
+                                          <Button fx:id="CSV" layoutX="31.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#importCSV" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@hr_css.css" text="IMPORT" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="171.0" layoutY="10.0" prefHeight="60.0" prefWidth="59.0">
                                        <children>
-                                          <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="3.0" layoutY="19.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="3.0" layoutY="3.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../../images/icons8-refresh-26.png" />
                                              </image>
@@ -61,6 +56,18 @@
                                     </Pane>
                                  </children>
                               </HBox>
+                              <TextField fx:id="FilterField" layoutX="81.0" layoutY="44.0" prefHeight="25.0" prefWidth="764.0" promptText="Keywords" />
+                              <Label layoutX="14.0" layoutY="47.0" prefHeight="19.0" prefWidth="72.0" text="Search By:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="2.0" prefHeight="68.0" prefWidth="1080.0" style="-fx-background-color: #1E1E2C;">
+                           <children>
+                              <Label layoutX="346.0" layoutY="8.0" prefHeight="36.0" prefWidth="389.0" styleClass="captionH" stylesheets="@SearchBar.css" text=" Daily Time Record Management" textFill="WHITE" />
+                              <Label layoutX="419.0" layoutY="42.0" prefHeight="17.0" prefWidth="242.0" text="Management of Daily Employee Attendance" textFill="#b5b3b3" />
                            </children>
                         </Pane>
                      </children>
@@ -69,12 +76,12 @@
                <graphic>
                   <AnchorPane prefHeight="22.0" prefWidth="337.0">
                      <children>
-                        <Label layoutX="93.0" layoutY="1.0" prefHeight="44.0" prefWidth="211.0" text="Manage Time Records">
+                        <Label layoutX="58.0" layoutY="1.0" prefHeight="44.0" prefWidth="283.0" text="Timekeeping Administration">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="59.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="24.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/time_unselected.png" />
                            </image>

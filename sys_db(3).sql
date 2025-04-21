@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2025 at 12:23 AM
+-- Generation Time: Apr 21, 2025 at 06:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,263 +45,70 @@ CREATE TABLE `dailytimerecords` (
 
 INSERT INTO `dailytimerecords` (`record_id`, `employee_id`, `entry_date`, `time_in`, `time_out`, `month`, `hours_worked`, `overtime_hrs`, `absent`) VALUES
 (1, 1001, '2024-08-01', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(2, 1002, '2024-08-01', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(3, 1003, '2024-08-01', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(4, 1004, '2024-08-01', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (6, 1001, '2024-08-02', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(7, 1002, '2024-08-02', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(8, 1003, '2024-08-02', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(9, 1004, '2024-08-02', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
 (11, 1001, '2024-08-05', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(12, 1002, '2024-08-05', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(13, 1003, '2024-08-05', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(14, 1004, '2024-08-05', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
 (16, 1001, '2024-08-06', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(17, 1002, '2024-08-06', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(18, 1003, '2024-08-06', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(19, 1004, '2024-08-06', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (21, 1001, '2024-08-07', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(22, 1002, '2024-08-07', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(23, 1003, '2024-08-07', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(24, 1004, '2024-08-07', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (26, 1001, '2024-08-08', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(27, 1002, '2024-08-08', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(28, 1003, '2024-08-08', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(29, 1004, '2024-08-08', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (31, 1001, '2024-08-09', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(32, 1002, '2024-08-09', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(33, 1003, '2024-08-09', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(34, 1004, '2024-08-09', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
 (36, 1001, '2024-08-12', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(37, 1002, '2024-08-12', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(38, 1003, '2024-08-12', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(39, 1004, '2024-08-12', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (41, 1001, '2024-08-13', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(42, 1002, '2024-08-13', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(43, 1003, '2024-08-13', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(44, 1004, '2024-08-13', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (46, 1001, '2024-08-14', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(47, 1002, '2024-08-14', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(48, 1003, '2024-08-14', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(49, 1004, '2024-08-14', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
 (51, 1001, '2024-08-15', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(52, 1002, '2024-08-15', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(53, 1003, '2024-08-15', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(54, 1004, '2024-08-15', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (56, 1001, '2024-08-16', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(57, 1002, '2024-08-16', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(58, 1003, '2024-08-16', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(59, 1004, '2024-08-16', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (61, 1001, '2024-08-19', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(62, 1002, '2024-08-19', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(63, 1003, '2024-08-19', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(64, 1004, '2024-08-19', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (66, 1001, '2024-08-20', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(67, 1002, '2024-08-20', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(68, 1003, '2024-08-20', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(69, 1004, '2024-08-20', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
 (71, 1001, '2024-08-21', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(72, 1002, '2024-08-21', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(73, 1003, '2024-08-21', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(74, 1004, '2024-08-21', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (76, 1001, '2024-08-22', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(77, 1002, '2024-08-22', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(78, 1003, '2024-08-22', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(79, 1004, '2024-08-22', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (81, 1001, '2024-08-23', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(82, 1002, '2024-08-23', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(83, 1003, '2024-08-23', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(84, 1004, '2024-08-23', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
 (86, 1001, '2024-08-26', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(87, 1002, '2024-08-26', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(88, 1003, '2024-08-26', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(89, 1004, '2024-08-26', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (91, 1001, '2024-08-27', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(92, 1002, '2024-08-27', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(93, 1003, '2024-08-27', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(94, 1004, '2024-08-27', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
 (96, 1001, '2024-08-28', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(97, 1002, '2024-08-28', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(98, 1003, '2024-08-28', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(99, 1004, '2024-08-28', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (101, 1001, '2024-08-29', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(102, 1002, '2024-08-29', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
-(103, 1003, '2024-08-29', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(104, 1004, '2024-08-29', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
 (106, 1001, '2024-08-30', '08:00:00', '17:00:00', 'AUGUST', 8, 0, 'No'),
-(107, 1002, '2024-08-30', '08:15:00', '17:15:00', 'AUGUST', 8, 0, 'No'),
-(108, 1003, '2024-08-30', '08:05:00', '17:05:00', 'AUGUST', 8, 0, 'No'),
-(109, 1004, '2024-08-30', '08:10:00', '17:10:00', 'AUGUST', 8, 0, 'No'),
 (111, 1001, '2024-09-02', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(112, 1002, '2024-09-02', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(113, 1003, '2024-09-02', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(114, 1004, '2024-09-02', '08:05:00', '17:35:00', 'SEPTEMBER', 8, 0, 'No'),
 (116, 1001, '2024-09-03', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(117, 1002, '2024-09-03', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
-(118, 1003, '2024-09-03', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(119, 1004, '2024-09-03', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
 (121, 1001, '2024-09-04', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(122, 1002, '2024-09-04', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(123, 1003, '2024-09-04', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(124, 1004, '2024-09-04', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (126, 1001, '2024-09-05', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(127, 1002, '2024-09-05', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(128, 1003, '2024-09-05', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(129, 1004, '2024-09-05', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (131, 1001, '2024-09-06', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(132, 1002, '2024-09-06', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(133, 1003, '2024-09-06', '08:05:00', '17:35:00', 'SEPTEMBER', 8, 0, 'No'),
-(134, 1004, '2024-09-06', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (136, 1001, '2024-09-09', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(137, 1002, '2024-09-09', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(138, 1003, '2024-09-09', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(139, 1004, '2024-09-09', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
 (141, 1001, '2024-09-10', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(142, 1002, '2024-09-10', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(143, 1003, '2024-09-10', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(144, 1004, '2024-09-10', '08:05:00', '17:35:00', 'SEPTEMBER', 8, 0, 'No'),
 (146, 1001, '2024-09-11', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(147, 1002, '2024-09-11', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(148, 1003, '2024-09-11', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(149, 1004, '2024-09-11', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (151, 1001, '2024-09-12', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(152, 1002, '2024-09-12', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(153, 1003, '2024-09-12', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(154, 1004, '2024-09-12', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
 (156, 1001, '2024-09-13', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(157, 1002, '2024-09-13', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(158, 1003, '2024-09-13', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(159, 1004, '2024-09-13', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (161, 1001, '2024-09-16', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(162, 1002, '2024-09-16', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(163, 1003, '2024-09-16', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(164, 1004, '2024-09-16', '08:00:00', '17:15:00', 'SEPTEMBER', 8, 0, 'No'),
 (166, 1001, '2024-09-17', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(167, 1002, '2024-09-17', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(168, 1003, '2024-09-17', '08:20:00', '17:50:00', 'SEPTEMBER', 8, 0, 'No'),
-(169, 1004, '2024-09-17', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
 (171, 1001, '2024-09-18', '08:15:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(172, 1002, '2024-09-18', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(173, 1003, '2024-09-18', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(174, 1004, '2024-09-18', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
 (176, 1001, '2024-09-19', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(177, 1002, '2024-09-19', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(178, 1003, '2024-09-19', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(179, 1004, '2024-09-19', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (181, 1001, '2024-09-20', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(182, 1002, '2024-09-20', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(183, 1003, '2024-09-20', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(184, 1004, '2024-09-20', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (186, 1001, '2024-09-23', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(187, 1002, '2024-09-23', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(188, 1003, '2024-09-23', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(189, 1004, '2024-09-23', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (191, 1001, '2024-09-24', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(192, 1002, '2024-09-24', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(193, 1003, '2024-09-24', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(194, 1004, '2024-09-24', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (196, 1001, '2024-09-25', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(197, 1002, '2024-09-25', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(198, 1003, '2024-09-25', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(199, 1004, '2024-09-25', '08:05:00', '17:35:00', 'SEPTEMBER', 8, 0, 'No'),
 (201, 1001, '2024-09-26', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(202, 1002, '2024-09-26', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(203, 1003, '2024-09-26', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(204, 1004, '2024-09-26', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (206, 1001, '2024-09-27', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(207, 1002, '2024-09-27', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(208, 1003, '2024-09-27', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(209, 1004, '2024-09-27', '08:10:00', '17:40:00', 'SEPTEMBER', 8, 0, 'No'),
 (211, 1001, '2024-09-30', '08:10:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(212, 1002, '2024-09-30', '08:15:00', '17:45:00', 'SEPTEMBER', 8, 0, 'No'),
-(213, 1003, '2024-09-30', '08:05:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
-(214, 1004, '2024-09-30', '08:00:00', '17:30:00', 'SEPTEMBER', 8, 0, 'No'),
 (216, 1001, '2024-10-01', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(217, 1002, '2024-10-01', '08:05:00', '18:00:00', 'OCTOBER', 8, 1, 'No'),
-(218, 1003, '2024-10-01', '08:20:00', '20:00:00', 'OCTOBER', 8, 3, 'No'),
-(219, 1004, '2024-10-01', '08:00:00', '16:45:00', 'OCTOBER', 7, 0, 'No'),
 (221, 1001, '2024-10-02', '09:00:00', '19:00:00', 'OCTOBER', 8, 2, 'No'),
-(222, 1002, '2024-10-02', '08:25:00', '22:00:00', 'OCTOBER', 8, 5, 'No'),
-(223, 1003, '2024-10-02', '08:05:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(224, 1004, '2024-10-02', '08:10:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
 (225, 1001, '2024-10-03', '08:00:00', '17:00:00', 'OCTOBER', 8, 0, 'No'),
-(226, 1003, '2024-10-03', '08:30:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(227, 1004, '2024-10-03', '08:45:00', '20:15:00', 'OCTOBER', 8, 3, 'No'),
 (229, 1001, '2024-10-04', '08:25:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(230, 1002, '2024-10-04', '08:00:00', '16:45:00', 'OCTOBER', 7, 0, 'No'),
-(231, 1003, '2024-10-04', '09:00:00', '20:30:00', 'OCTOBER', 8, 3, 'No'),
-(233, 1002, '2024-10-07', '08:15:00', '18:45:00', 'OCTOBER', 8, 1, 'No'),
-(234, 1003, '2024-10-07', '08:30:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(235, 1004, '2024-10-07', '09:00:00', '21:00:00', 'OCTOBER', 8, 4, 'No'),
 (237, 1001, '2024-10-08', '08:00:00', '16:30:00', 'OCTOBER', 7, 0, 'No'),
-(238, 1002, '2024-10-08', '08:35:00', '20:15:00', 'OCTOBER', 8, 2, 'No'),
-(239, 1004, '2024-10-08', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
 (241, 1001, '2024-10-09', '08:10:00', '19:00:00', 'OCTOBER', 8, 2, 'No'),
-(242, 1002, '2024-10-09', '08:00:00', '17:00:00', 'OCTOBER', 8, 0, 'No'),
-(243, 1003, '2024-10-09', '09:00:00', '18:30:00', 'OCTOBER', 8, 1, 'No'),
-(244, 1004, '2024-10-09', '08:20:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
 (245, 1001, '2024-10-10', '08:15:00', '20:00:00', 'OCTOBER', 8, 3, 'No'),
-(246, 1002, '2024-10-10', '08:25:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(247, 1003, '2024-10-10', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
 (249, 1001, '2024-10-11', '08:30:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(250, 1002, '2024-10-11', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(251, 1003, '2024-10-11', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(252, 1004, '2024-10-11', '08:00:00', '16:30:00', 'OCTOBER', 7, 0, 'No'),
 (254, 1001, '2024-10-14', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(255, 1002, '2024-10-14', '08:20:00', '17:50:00', 'OCTOBER', 8, 0, 'No'),
-(256, 1003, '2024-10-14', '08:00:00', '17:00:00', 'OCTOBER', 8, 0, 'No'),
-(257, 1004, '2024-10-14', '08:15:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
 (259, 1001, '2024-10-15', '08:25:00', '17:15:00', 'OCTOBER', 8, 0, 'No'),
-(260, 1002, '2024-10-15', '08:15:00', '18:00:00', 'OCTOBER', 8, 1, 'No'),
-(261, 1003, '2024-10-15', '08:30:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(262, 1004, '2024-10-15', '09:00:00', '19:00:00', 'OCTOBER', 8, 2, 'No'),
 (263, 1001, '2024-10-16', '08:10:00', '19:00:00', 'OCTOBER', 8, 2, 'No'),
-(264, 1002, '2024-10-16', '08:05:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(265, 1003, '2024-10-16', '08:15:00', '18:30:00', 'OCTOBER', 8, 1, 'No'),
-(266, 1004, '2024-10-16', '08:20:00', '17:50:00', 'OCTOBER', 8, 0, 'No'),
 (268, 1001, '2024-10-17', '08:05:00', '16:50:00', 'OCTOBER', 7, 0, 'No'),
-(269, 1002, '2024-10-17', '08:15:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(270, 1003, '2024-10-17', '08:00:00', '17:15:00', 'OCTOBER', 8, 0, 'No'),
-(271, 1004, '2024-10-17', '08:30:00', '19:00:00', 'OCTOBER', 8, 3, 'No'),
 (273, 1001, '2024-10-18', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(274, 1002, '2024-10-18', '08:25:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(275, 1003, '2024-10-18', '08:15:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
 (277, 1001, '2024-10-21', '08:05:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(278, 1002, '2024-10-21', '08:00:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(279, 1003, '2024-10-21', '08:20:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(280, 1004, '2024-10-21', '08:15:00', '19:00:00', 'OCTOBER', 8, 1, 'No'),
 (282, 1001, '2024-10-22', '08:15:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(283, 1002, '2024-10-22', '08:00:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(284, 1003, '2024-10-22', '08:30:00', '18:30:00', 'OCTOBER', 8, 0, 'No'),
-(285, 1004, '2024-10-22', '08:05:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
 (286, 1001, '2024-10-23', '08:00:00', '17:15:00', 'OCTOBER', 8, 0, 'No'),
-(287, 1002, '2024-10-23', '08:05:00', '19:00:00', 'OCTOBER', 8, 3, 'No'),
-(288, 1003, '2024-10-23', '08:10:00', '17:40:00', 'OCTOBER', 8, 0, 'No'),
-(289, 1004, '2024-10-23', '08:25:00', '17:50:00', 'OCTOBER', 8, 0, 'No'),
 (291, 1001, '2024-10-24', '08:20:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(292, 1002, '2024-10-24', '08:15:00', '18:00:00', 'OCTOBER', 8, 1, 'No'),
-(293, 1003, '2024-10-24', '08:10:00', '17:50:00', 'OCTOBER', 8, 0, 'No'),
-(294, 1004, '2024-10-24', '08:30:00', '19:00:00', 'OCTOBER', 8, 3, 'No'),
 (296, 1001, '2024-10-25', '08:30:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(297, 1002, '2024-10-25', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(298, 1003, '2024-10-25', '08:15:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(299, 1004, '2024-10-25', '08:00:00', '17:15:00', 'OCTOBER', 8, 0, 'No'),
 (301, 1001, '2024-10-28', '08:15:00', '18:00:00', 'OCTOBER', 8, 1, 'No'),
-(302, 1002, '2024-10-28', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(303, 1003, '2024-10-28', '08:30:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(304, 1004, '2024-10-28', '08:20:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
 (305, 1001, '2024-10-29', '08:00:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(306, 1002, '2024-10-29', '08:15:00', '18:30:00', 'OCTOBER', 8, 1, 'No'),
-(307, 1003, '2024-10-29', '08:25:00', '17:50:00', 'OCTOBER', 8, 0, 'No'),
-(308, 1004, '2024-10-29', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
 (310, 1001, '2024-10-30', '08:15:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(311, 1002, '2024-10-30', '08:30:00', '19:00:00', 'OCTOBER', 8, 3, 'No'),
-(312, 1003, '2024-10-30', '08:20:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(313, 1004, '2024-10-30', '08:15:00', '18:00:00', 'OCTOBER', 8, 0, 'No'),
-(315, 1001, '2024-10-31', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No'),
-(316, 1002, '2024-10-31', '08:05:00', '17:45:00', 'OCTOBER', 8, 0, 'No'),
-(317, 1003, '2024-10-31', '08:20:00', '18:00:00', 'OCTOBER', 8, 1, 'No'),
-(318, 1004, '2024-10-31', '08:30:00', '17:30:00', 'OCTOBER', 8, 0, 'No');
+(315, 1001, '2024-10-31', '08:10:00', '17:30:00', 'OCTOBER', 8, 0, 'No');
 
 -- --------------------------------------------------------
 
@@ -323,18 +130,15 @@ CREATE TABLE `employee` (
   `emp_dept` varchar(50) NOT NULL,
   `emp_position` varchar(50) NOT NULL,
   `filePath` varchar(255) DEFAULT NULL,
-  `rate_id` int(11) DEFAULT NULL
+  `rates_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`, `filePath`, `rate_id`) VALUES
-(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubdan, San Fernando, Cebu', 'tapales@gmail.com', '09456989966', '2024-11-01', 'Human Resources', 'Finance Manager', 'src/GUI/images/Emp/09c0eddb-1373-422b-b709-ef871a17eb5d.jpg', 0),
-(1002, 'Rodeliza', 'La Rosa', 'Tapales', 20, 'Female', 'Ward 4, Minglanilla, Cebu', 'rode@gmail.com', '09456231563', '2025-02-08', 'Front Office', 'Front Office Manager', 'src/GUI/images/Emp/b537b962-fb69-4a53-8dff-8a71c0e79cd6.jpg', 0),
-(1003, 'Christhel', '', 'Tapao', 20, 'Female', 'Naga City, Cebu', 'marie@gmail.com', '09236578986', '2025-01-04', 'IT', 'IT Manager', 'src/GUI/images/Emp/fff30141-df3d-4748-a82d-f3e4312d3f68.jpg', 0),
-(1004, 'Allyna', '', 'Manatad', 20, 'Female', 'Naga City, Cebu', 'allyna@gmail.com', '09231567425', '2025-01-15', 'Maintenance', 'Chief Engineer', 'src/GUI/images/Emp/485490886_1600104924037517_3051937344010869938_n-removebg-preview.png', 0);
+INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_middle`, `emp_lname`, `emp_age`, `emp_sex`, `emp_add`, `emp_email`, `emp_contact`, `emp_hdate`, `emp_dept`, `emp_position`, `filePath`, `rates_id`) VALUES
+(1001, 'Rasheed', '', 'Tapales', 20, 'Male', 'Tinubda, San Fernando, Cebu', 'tapales@gmail.com', '09456989966', '2024-04-11', 'IT', 'IT Manager', 'src/GUI/images/Emp/09c0eddb-1373-422b-b709-ef871a17eb5d.jpg', 17);
 
 -- --------------------------------------------------------
 
@@ -404,6 +208,7 @@ CREATE TABLE `reports` (
   `year` int(11) NOT NULL,
   `total_hours` decimal(10,0) NOT NULL,
   `total_overtime` decimal(10,0) NOT NULL,
+  `gross_salary` decimal(10,2) NOT NULL,
   `sss` decimal(10,0) NOT NULL,
   `phil_health` decimal(10,0) NOT NULL,
   `pag_ibig` decimal(10,0) NOT NULL,
@@ -411,8 +216,16 @@ CREATE TABLE `reports` (
   `overtime_pay` decimal(10,0) NOT NULL,
   `net_pay` decimal(10,0) NOT NULL,
   `status` varchar(20) NOT NULL,
-  `date_generated` int(11) NOT NULL
+  `date_generated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`report_id`, `emp_id`, `month`, `year`, `total_hours`, `total_overtime`, `gross_salary`, `sss`, `phil_health`, `pag_ibig`, `t_deductions`, `overtime_pay`, `net_pay`, `status`, `date_generated`) VALUES
+(2, 1001, 'September', 2024, 168, 0, 33600.00, 1512, 840, 200, 2552, 0, 31048, 'Approved', '2025-04-18 01:58:17'),
+(3, 1001, 'October', 2024, 174, 10, 34800.00, 1566, 870, 200, 2636, 3000, 35164, 'Approved', '2025-04-18 02:04:00');
 
 -- --------------------------------------------------------
 
@@ -620,7 +433,137 @@ INSERT INTO `system_logs` (`log_id`, `username`, `action`, `details`, `timestamp
 (164, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 19:56:29'),
 (165, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 21:38:35'),
 (166, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-03 23:29:51'),
-(167, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-15 20:59:23');
+(167, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-15 20:59:23'),
+(168, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 11:54:14'),
+(169, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 12:04:57'),
+(170, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 12:07:34'),
+(171, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 12:17:13'),
+(172, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 15:07:41'),
+(173, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 19:18:22'),
+(174, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 19:23:40'),
+(175, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 19:29:49'),
+(176, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 19:59:05'),
+(177, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-17 20:51:42'),
+(178, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:27:22'),
+(179, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:30:05'),
+(180, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:31:47'),
+(181, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:36:03'),
+(182, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:47:42'),
+(183, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 09:58:00'),
+(184, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 10:03:51'),
+(185, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 20:53:40'),
+(186, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 21:00:18'),
+(187, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 21:01:55'),
+(188, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 23:13:10'),
+(189, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-18 23:14:29'),
+(190, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 07:47:29'),
+(191, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 08:16:43'),
+(192, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 08:17:58'),
+(193, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 08:20:53'),
+(194, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 09:12:00'),
+(195, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 11:25:33'),
+(196, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 11:36:47'),
+(197, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 11:39:00'),
+(198, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 12:36:49'),
+(199, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 15:32:43'),
+(200, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 15:34:20'),
+(201, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:05:01'),
+(202, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:05:51'),
+(203, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:06:51'),
+(204, 'admin', 'Login Failed', 'Password mismatch.', '2025-04-19 16:09:56'),
+(205, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:09:59'),
+(206, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:57:33'),
+(207, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 16:59:18'),
+(208, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 17:24:49'),
+(209, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 17:36:04'),
+(210, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 17:37:18'),
+(211, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 17:39:03'),
+(212, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-19 22:37:42'),
+(213, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:06:55'),
+(214, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:08:48'),
+(215, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:13:51'),
+(216, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:16:35'),
+(217, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:18:39'),
+(218, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:20:34'),
+(219, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:22:19'),
+(220, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:25:17'),
+(221, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:26:14'),
+(222, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:36:51'),
+(223, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:41:56'),
+(224, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:57:42'),
+(225, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 00:59:07'),
+(226, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 01:00:34'),
+(227, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 01:01:37'),
+(228, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 01:04:39'),
+(229, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 01:13:45'),
+(230, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:41:46'),
+(231, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:44:30'),
+(232, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:46:22'),
+(233, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:47:15'),
+(234, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:48:35'),
+(235, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:49:08'),
+(236, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:50:30'),
+(237, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:50:42'),
+(238, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:53:58'),
+(239, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:54:43'),
+(240, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:55:02'),
+(241, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:57:48'),
+(242, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:58:42'),
+(243, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 20:59:32'),
+(244, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 21:11:12'),
+(245, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 21:15:54'),
+(246, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 21:29:28'),
+(247, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 21:30:27'),
+(248, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-20 21:49:16'),
+(249, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 20:23:40'),
+(250, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 20:46:22'),
+(251, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 20:48:24'),
+(252, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:01:28'),
+(253, '', 'Login Attempt', 'Failed - Empty fields', '2025-04-21 21:03:19'),
+(254, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:03:41'),
+(255, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:04:56'),
+(256, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:09:09'),
+(257, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:23:17'),
+(258, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:25:04'),
+(259, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:35:45'),
+(260, 'admin', 'Login Failed', 'Password mismatch.', '2025-04-21 21:37:23'),
+(261, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:37:27'),
+(262, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 21:52:21'),
+(263, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:15:48'),
+(264, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:19:31'),
+(265, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:22:11'),
+(266, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:24:04'),
+(267, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:29:15'),
+(268, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:44:02'),
+(269, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:45:30'),
+(270, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:47:14'),
+(271, 'admin', 'Login Failed', 'Password mismatch.', '2025-04-21 22:49:29'),
+(272, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:49:33'),
+(273, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:54:04'),
+(274, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:55:21'),
+(275, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 22:59:03'),
+(276, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 23:00:25'),
+(277, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 23:06:10'),
+(278, 'super', 'Login Failed', 'Password mismatch.', '2025-04-21 23:06:47'),
+(279, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:06:51'),
+(280, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:11:33'),
+(281, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 23:12:43'),
+(282, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:12:53'),
+(283, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:30:33'),
+(284, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-21 23:34:04'),
+(285, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:34:12'),
+(286, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-21 23:40:03'),
+(287, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-22 00:05:29'),
+(288, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:05:42'),
+(289, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:18:48'),
+(290, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:33:21'),
+(291, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:41:16'),
+(292, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:42:03'),
+(293, 'super', 'Login Successful', 'Logged in as Super_Admin', '2025-04-22 00:43:33'),
+(294, 'admin', 'Login Failed', 'Password mismatch.', '2025-04-22 00:44:21'),
+(295, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-22 00:44:24'),
+(296, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-22 00:47:39'),
+(297, 'admin', 'Login Successful', 'Logged in as HR_Admin', '2025-04-22 00:49:43');
 
 -- --------------------------------------------------------
 
@@ -649,7 +592,12 @@ INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_pass`, `status`
 (39, 'super@gmail.com', 'super', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 1, NULL),
 (40, 'dmakldm@gmail.com', 'diaskdao', 'oqeqwdmoksma', 'Active', NULL, NULL),
 (41, 'admini@gmail.com', 'adminni', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'Active', 1, NULL),
-(42, 'ireo@gmail.com', 'ireo', 'AK4k/lL3MAiVZvNWQs+JQws5OXjvvqBihY5+Bc5fsgw=', 'Newly Registered', NULL, NULL);
+(42, 'ireo@gmail.com', 'ireo', 'AK4k/lL3MAiVZvNWQs+JQws5OXjvvqBihY5+Bc5fsgw=', 'Active', NULL, NULL),
+(43, 'vince@gmail.com', 'Vince', 'LINbqJZtkCEg+0UEA3+tNO/6S5Rh6YjkxNoHOtUNroI=', 'Active', 3, NULL),
+(44, 'kyle@gmail.com', 'kyle123', 'LINbqJZtkCEg+0UEA3+tNO/6S5Rh6YjkxNoHOtUNroI=', 'Newly Registered', 3, NULL),
+(45, 'asdhad@gmail.com', 'Hehu', 'LINbqJZtkCEg+0UEA3+tNO/6S5Rh6YjkxNoHOtUNroI=', 'Newly Registered', 3, NULL),
+(46, 'eawdawda@gmail.com', 'dasdas', 'V/MDAD8w3FmCj0f418M6Qvw+3C/JRIEomI5sEtUR0dk=', 'Newly Registered', 3, NULL),
+(47, 'oasd@gmail.com', 'aOha', 'qwe123!@#', 'Active', 2, NULL);
 
 --
 -- Indexes for dumped tables
@@ -666,7 +614,8 @@ ALTER TABLE `dailytimerecords`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`emp_id`);
+  ADD PRIMARY KEY (`emp_id`),
+  ADD KEY `rates_id` (`rates_id`);
 
 --
 -- Indexes for table `m_reports`
@@ -715,13 +664,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dailytimerecords`
 --
 ALTER TABLE `dailytimerecords`
-  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=574;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1005;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1002;
 
 --
 -- AUTO_INCREMENT for table `m_reports`
@@ -739,7 +688,7 @@ ALTER TABLE `rates`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -751,13 +700,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `system_logs`
 --
 ALTER TABLE `system_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=298;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
@@ -768,6 +717,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `dailytimerecords`
   ADD CONSTRAINT `dailytimerecords_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`emp_id`);
+
+--
+-- Constraints for table `employee`
+--
+ALTER TABLE `employee`
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`rates_id`) REFERENCES `rates` (`rates_id`);
 
 --
 -- Constraints for table `reports`

@@ -9,18 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class controller {
@@ -59,54 +63,79 @@ public class controller {
     }
     
      
-    
     @FXML
-    private void RegisterClick(javafx.scene.input.MouseEvent event) throws NoSuchAlgorithmException {
-        String username = usernameF.getText().trim();
-        String email = emailF.getText().trim();
-        String password = passwordF.getText().trim();
+    private void RegisterClick(javafx.scene.input.MouseEvent event) throws NoSuchAlgorithmException, IOException {
+    String username = usernameF.getText().trim();
+    String email = emailF.getText().trim();
+    String password = passwordF.getText().trim();
 
-        if (!validateInputs(email, username, password)) {
+    if (!validateInputs(email, username, password)) {
+        return;
+    }
+
+    List<String> errors = new ArrayList<>();
+
+    try {
+        if (isDuplicate("user_email", email)) {
+            errors.add("This email is already registered.");
+        }
+
+        if (isDuplicate("user_name", username)) {
+            errors.add("This username is already taken.");
+        }
+
+        if (!errors.isEmpty()) {
+            con.showAlert(Alert.AlertType.ERROR, "Registration Error", String.join("\n", errors));
             return;
         }
 
-        List<String> errors = new ArrayList<>();
+        String hashedPassword = con.hashPassword(password);
 
-        try {
-            if (isDuplicate("user_email", email)) {
-                errors.add("This email is already registered.");
-            }
+        String sql = "INSERT INTO users (user_email, user_name, user_pass, status, role_id) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
+            pst.setString(1, email);
+            pst.setString(2, username);
+            pst.setString(3, hashedPassword);
+            pst.setString(4, "Newly Registered");
+            pst.setInt(5, 3); // 3 = Employee role_id
 
-            if (isDuplicate("user_name", username)) {
-                errors.add("This username is already taken.");
-            }
+            int rowsAffected = pst.executeUpdate();
 
-            if (!errors.isEmpty()) {
-                con.showAlert(Alert.AlertType.ERROR, "Registration Error", String.join("\n", errors));
-                return;
-            }
-
-            String hashedPassword = con.hashPassword(password);
-
-            String sql = "INSERT INTO users (user_email, user_name, user_pass, status) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
-                pst.setString(1, email);
-                pst.setString(2, username);
-                pst.setString(3, hashedPassword);
-                pst.setString(4, "Newly Registered");
-                pst.executeUpdate();
-
+            if (rowsAffected > 0) {
                 con.showAlert(Alert.AlertType.INFORMATION, "Registration Successful", "You have successfully registered!");
                 clearFields();
+                logout(new ActionEvent());
+            } else {
+                con.showAlert(Alert.AlertType.ERROR, "Registration Failed", "No rows were inserted. Please try again.");
             }
-        } catch (SQLException ex) {
-            con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred: " + ex.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            con.showAlert(Alert.AlertType.ERROR, "Registration Failed", "An error occurred while registering.");
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while checking for duplicates.");
     }
+}
+    
+     @FXML
+    private void logout(ActionEvent event) {
+   
+        try {
+            Stage stage = (Stage) APaneReg.getScene().getWindow(); 
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
+            Scene scene = new Scene(root, 899, 547);
 
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading login page: " + e.getMessage());
+            e.printStackTrace();
+        }
     
 
-
+    }
     private boolean validateInputs(String email, String username, String password) {
         if (email.isEmpty() || username.isEmpty() || password.isEmpty()) {
             con.showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields are required.");

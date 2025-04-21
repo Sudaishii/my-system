@@ -209,23 +209,22 @@ public void initialize(URL url, ResourceBundle rb) {
             
            FilteredList<Employees> filteredData = new FilteredList<>(empList, b -> true);
 
-            // Bind the filter field to the search functionality
             FilterField.textProperty().addListener((observable, oldValue, newValue) -> {
                 filteredData.setPredicate(employee -> {
-                    // If filter text is empty, display all employees
+                   
                     if (newValue == null || newValue.trim().isEmpty()) {
                         return true;
                     }
 
-                    // Convert to lowercase for case-insensitive search
+                   
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                    // Check if any field contains the search string
-                    if (String.valueOf(employee.getId()).contains(lowerCaseFilter) ||  // Search by ID
-                        employee.getFullName().toLowerCase().contains(lowerCaseFilter) || // Search by Name
-                        employee.getDept().toLowerCase().contains(lowerCaseFilter) || // Search by Department
-                        employee.getPos().toLowerCase().contains(lowerCaseFilter)) { // Search by Position
-                        return true; // Match found
+                
+                    if (String.valueOf(employee.getId()).contains(lowerCaseFilter) ||  
+                        employee.getFullName().toLowerCase().contains(lowerCaseFilter) || 
+                        employee.getDept().toLowerCase().contains(lowerCaseFilter) || 
+                        employee.getPos().toLowerCase().contains(lowerCaseFilter)) { 
+                        return true; 
                     }
                     return false; // No match
                 });

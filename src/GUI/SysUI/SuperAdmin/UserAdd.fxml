@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -13,10 +14,9 @@
 
 <AnchorPane fx:id="overlayPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../../resources/resource.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.UserAddController">
    <children>
-      <Pane fx:id="rootPane" layoutX="351.0" layoutY="192.0" prefHeight="337.0" prefWidth="378.0" styleClass="form-container">
+      <Pane fx:id="rootPane" layoutX="351.0" layoutY="160.0" prefHeight="400.0" prefWidth="378.0" styleClass="form-container">
          <children>
-            <Label layoutX="131.0" layoutY="11.0" prefHeight="34.0" prefWidth="117.0" styleClass="caption" stylesheets="@../../resources/resource.css" text="Add User" />
-            <VBox layoutX="25.0" layoutY="61.0" prefHeight="200.0" prefWidth="329.0">
+            <VBox layoutX="25.0" layoutY="61.0" prefHeight="264.0" prefWidth="329.0">
                <children>
                   <Pane prefHeight="67.0" prefWidth="329.0">
                      <children>
@@ -48,14 +48,29 @@
                         <PasswordField fx:id="passF" alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="40.0" prefWidth="279.0" />
                      </children>
                   </Pane>
+                  <Pane prefHeight="63.0" prefWidth="329.0">
+                     <children>
+                        <ComboBox fx:id="roles" layoutX="25.0" layoutY="13.0" prefHeight="40.0" prefWidth="279.0" />
+                        <Label layoutX="32.0" layoutY="-1.0" text="Role">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
             </VBox>
-            <Button layoutX="137.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#createBtn" styleClass="create-btn" text="Create User" />
-            <ImageView fx:id="closeBtn" fitHeight="36.0" fitWidth="31.0" layoutX="10.0" layoutY="13.0" onMouseClicked="#closeBtn" pickOnBounds="true" preserveRatio="true" styleClass="closeBtn">
-               <image>
-                  <Image url="@../../images/icons8-return-64.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="137.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#createBtn" styleClass="create-btn" text="Create User" />
+            <Pane prefHeight="57.0" prefWidth="378.0">
+               <children>
+                  <Label layoutX="131.0" layoutY="11.0" prefHeight="34.0" prefWidth="117.0" styleClass="caption" stylesheets="@../../resources/resource.css" text="Add User" />
+                  <ImageView fx:id="closeBtn" fitHeight="27.0" fitWidth="31.0" layoutX="8.0" layoutY="6.0" onMouseClicked="#closeBtn" pickOnBounds="true" preserveRatio="true" styleClass="closeBtn">
+                     <image>
+                        <Image url="@../../images/icons8-return-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

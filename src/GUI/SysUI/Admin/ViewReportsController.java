@@ -26,6 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.shape.Line;
 
 public class ViewReportsController implements Initializable {
 
@@ -80,6 +81,16 @@ public class ViewReportsController implements Initializable {
     private TableColumn<Reports, String> date_generated;
     @FXML
     private Label summary2;
+    @FXML
+    private Label summary21;
+    @FXML
+    private Label summary211;
+    @FXML
+    private Line line1;
+    @FXML
+    private Line line2;
+    @FXML
+    private Line line3;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,6 +114,9 @@ public class ViewReportsController implements Initializable {
         ovTIme.setVisible(false);
         net_pay.setVisible(false);
         emp_idL.setVisible(false);
+        line1.setVisible(false);
+        line2.setVisible(false);
+        line3.setVisible(false);
 
         r_id.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getReportId())));
         emp_id.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEmpId())));
@@ -180,8 +194,9 @@ public class ViewReportsController implements Initializable {
             ovTIme.setText("Overtime Pay: ₱" + noDecimalFormat.format(rs.getDouble("overtime_pay")));
             net_pay.setText("Net Pay: ₱" + noDecimalFormat.format(rs.getDouble("net_pay")));
 
-            
             summary2.setVisible(false);
+            summary21.setVisible(false);
+            summary211.setVisible(false);
             name.setVisible(true);
             dept.setVisible(true);
             position.setVisible(true);
@@ -194,6 +209,10 @@ public class ViewReportsController implements Initializable {
             ovTIme.setVisible(true);
             net_pay.setVisible(true);
             emp_idL.setVisible(true);
+            line1.setVisible(true);
+            line2.setVisible(true);
+            line3.setVisible(true);
+
         } else {
             System.out.println("No report found with report_id: " + reportId);
         }
@@ -301,5 +320,30 @@ public class ViewReportsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void RefreshSummary(MouseEvent event) {
+        
+        summary2.setVisible(true);
+            summary21.setVisible(true);
+            summary211.setVisible(true);
+        name.setVisible(false);
+        dept.setVisible(false);
+        position.setVisible(false);
+        month.setVisible(false);
+        year.setVisible(false);
+        hours_worked.setVisible(false);
+        ovtime.setVisible(false);
+        g_pay.setVisible(false);
+        contribution.setVisible(false);
+        ovTIme.setVisible(false);
+        net_pay.setVisible(false);
+        emp_idL.setVisible(false);
+        line1.setVisible(false);
+        line2.setVisible(false);
+        line3.setVisible(false);
+
+        
     }
 }

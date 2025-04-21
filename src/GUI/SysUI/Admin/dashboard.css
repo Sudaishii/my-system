@@ -250,7 +250,7 @@
     -fx-font-size: 13px;
 }
 
-/* 🔹 Hover Effect */
+/* 🔹 Hover Effesct */
 .combo-box-popup .list-cell:hover {
     -fx-background-color: rgba(180, 130, 90, 0.5);
 }
@@ -302,10 +302,18 @@
 
 .salary-amount {
     -fx-font-family: 'Poppins', sans-serif;
-    -fx-font-size: 30px;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: black; /* Deep black for emphasis */
+}
+
+.salary-amount1 {
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-font-size: 24px;
     -fx-font-weight: 700;
     -fx-text-fill: white; /* Deep black for emphasis */
 }
+
 /* Navigation Bar Container */
 .nav-bar {
     -fx-background-color: #b1c29e; /* Light green background */

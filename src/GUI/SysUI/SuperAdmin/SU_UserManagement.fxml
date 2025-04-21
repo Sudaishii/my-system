@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1080.0" stylesheets="@../Admin/hr_css.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SU_UserManagementController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1080.0" stylesheets="@../Admin/SearchBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SU_UserManagementController">
    <children>
-      <TabPane prefHeight="660.0" prefWidth="1080.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="660.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="            User Management">
+            <Tab>
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="16.0" layoutY="62.0" prefHeight="537.0" prefWidth="1009.0" styleClass="PaneCon">
+                        <Pane layoutX="10.0" layoutY="77.0" prefHeight="517.0" prefWidth="1059.0" styleClass="PaneCon">
                            <children>
-                              <TableView fx:id="UserView1" layoutX="14.0" layoutY="90.0" prefHeight="434.0" prefWidth="974.0" stylesheets="@../../resources/resource.css">
+                              <TableView fx:id="UserView1" layoutX="10.0" layoutY="57.0" prefHeight="452.0" prefWidth="1039.0" stylesheets="@../../resources/resource.css">
                                  <columns>
                                     <TableColumn fx:id="idC1" editable="false" prefWidth="116.0" text="User ID" />
                                     <TableColumn fx:id="usernC1" editable="false" prefWidth="218.0" text="Username" />
@@ -33,26 +34,45 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="956.0" layoutY="54.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="1024.0" layoutY="19.0" onMouseClicked="#refreshButton" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../images/icons8-refresh-26.png" />
                                  </image>
                               </ImageView>
-                              <ComboBox fx:id="filterView1" layoutX="772.0" layoutY="49.0" prefHeight="34.0" prefWidth="176.0" stylesheets="@../../resources/resource.css" />
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="423.0" styleClass="caption" text="User Management" />
-                              <Button layoutX="638.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#activateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ACTIVATE" />
-                              <Button fx:id="assignBtn" layoutX="505.0" layoutY="51.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ASSIGN" />
-                              <Button fx:id="addBtn" layoutX="374.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ADD USER" />
+                              <Button layoutX="890.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#activateBtn" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ACTIVATE" />
+                              <Button fx:id="addBtn" layoutX="756.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#addUser" prefHeight="20.0" prefWidth="127.0" styleClass="btnfile" stylesheets="@../Admin/hr_css.css" text="ADD USER" />
+                              <TextField fx:id="FilterField" layoutX="77.0" layoutY="18.0" prefHeight="25.0" prefWidth="671.0" promptText="Keywords" />
+                              <Label layoutX="12.0" layoutY="21.0" prefHeight="19.0" prefWidth="108.0" text="Search By:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutY="2.0" prefHeight="68.0" prefWidth="1080.0" style="-fx-background-color: #1E1E2C;">
+                           <children>
+                              <Label layoutX="334.0" layoutY="5.0" prefHeight="36.0" prefWidth="415.0" styleClass="captionH" text="System User Account Management" textFill="WHITE" />
+                              <Label layoutX="413.0" layoutY="40.0" prefHeight="17.0" prefWidth="254.0" text="Management and Modification of User Profiles" textFill="#b5b3b3" />
                            </children>
                         </Pane>
                      </children></AnchorPane>
                </content>
                <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/icons8-users-30.png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane prefHeight="22.0" prefWidth="337.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="37.0" layoutX="74.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="105.0" layoutY="1.0" prefHeight="44.0" prefWidth="228.0" text="User Management">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="71.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-manage-50.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </graphic>
             </Tab>
         </tabs>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="666.0" prefWidth="1080.0" stylesheets="@../Admin/SearchBar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="666.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab>
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="324.0" layoutY="242.0" prefHeight="128.0" prefWidth="432.0" text="Expand Roles" textFill="#a8a8a8">
+                           <font>
+                              <Font name="System Bold" size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab>
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="233.0" layoutY="242.0" prefHeight="128.0" prefWidth="615.0" text="Expand Department &amp; Position" textFill="#a8a8a8">
+                           <font>
+                              <Font name="System Bold" size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab>
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="157.0" layoutY="242.0" prefHeight="128.0" prefWidth="766.0" text="Adding new Positions will require Rates" textFill="#a8a8a8">
+                           <font>
+                              <Font name="System Bold" size="39.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

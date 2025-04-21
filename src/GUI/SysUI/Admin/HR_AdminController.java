@@ -152,7 +152,7 @@ public void initialize(URL url, ResourceBundle rb) {
     }
 
   @FXML
-private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Logout Confirmation");
     alert.setHeaderText("Are you sure you want to logout?");

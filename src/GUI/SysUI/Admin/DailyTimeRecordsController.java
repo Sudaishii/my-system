@@ -21,6 +21,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,9 +47,7 @@ import javafx.util.Duration;
  * @author Administrator
  */
 public class DailyTimeRecordsController implements Initializable {
-
-    @FXML
-    private ComboBox<String> filterView1;
+    ObservableList<Reports> searchby = FXCollections.observableArrayList();
     @FXML
     private Button CSV;
     @FXML
@@ -76,6 +76,8 @@ public class DailyTimeRecordsController implements Initializable {
     private dbConnect db = new dbConnect();
     @FXML
     private Label CurrentDandT;
+    @FXML
+    private TextField FilterField;
 
     /**
      * Initializes the controller class.
@@ -83,8 +85,8 @@ public class DailyTimeRecordsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        updateDateTime(); // Set initial time
-        startClock(); // Start auto-updating the label every second
+        updateDateTime(); 
+        startClock(); 
         DTRList = FXCollections.observableArrayList();
 
         recordID.setCellValueFactory(new PropertyValueFactory<>("recordId"));
@@ -154,6 +156,30 @@ public class DailyTimeRecordsController implements Initializable {
             }
 
             DTRView.setItems(DTRList);
+            
+            FilteredList<DTRModel> filteredData = new FilteredList<>(DTRList, b -> true);
+
+          
+            FilterField.textProperty().addListener((observable, oldValue, newValue) -> {
+               filteredData.setPredicate(dtr -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(dtr.getRecordId()).contains(lowerCaseFilter) || 
+                    String.valueOf(dtr.getEmpId()).contains(lowerCaseFilter) ||
+                    (dtr.getEntryDate() != null && dtr.getEntryDate().toString().toLowerCase().contains(lowerCaseFilter)) ||
+                    (dtr.getMonth() != null && dtr.getMonth().toLowerCase().contains(lowerCaseFilter))) {
+                    return true;
+                }
+
+                return false; // Does not match filter
+            });
+            });
+            
+            DTRView.setItems(filteredData);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -209,8 +235,5 @@ public class DailyTimeRecordsController implements Initializable {
 
     }
 
-    @FXML
-    private void handleBrowseFile(ActionEvent event) {
-    }
 
 }

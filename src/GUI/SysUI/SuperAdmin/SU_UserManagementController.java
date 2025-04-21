@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -62,11 +64,11 @@ public class SU_UserManagementController implements Initializable {
     @FXML
     private TableColumn<User, String> statusC1;
     @FXML
-    private ComboBox<User> filterView1;
-    @FXML
-    private Button assignBtn;
-    @FXML
     private Button addBtn;
+    private ObservableList<User> userList;
+    @FXML
+    private TextField FilterField;
+    ObservableList<User> searchby = FXCollections.observableArrayList();
     
     
    
@@ -94,48 +96,66 @@ public class SU_UserManagementController implements Initializable {
     
     
     
-  private void updateUsers() {
-         if (db == null) {
-        System.out.println("Database connection is NULL");
-        return;
-    }
-         
-         usersUpdate.clear();
-         
-        String query = "SELECT user_id, user_name, user_email, status FROM users";
-        try {
-            
-            System.out.println("Executing Query: " + query);
-            ResultSet rs = db.getData(query);
-            
-            if (rs == null) {
-                System.out.println("ResultSet is null");
-                return;
-            }
+        private void updateUsers() {
+           if (db == null) {
+               System.out.println("Database connection is NULL");
+               return;
+           }
 
-            while (rs.next()) {
-                int id = rs.getInt("user_id");
-                String username = rs.getString("user_name");
-                String email = rs.getString("user_email");
-                String status = rs.getString("status");
-              
-                
+           usersUpdate.clear();
 
-                usersUpdate.add(new User(id, username, email, status));
-            }
-            
+           String query = "SELECT user_id, user_name, user_email, status FROM users";
+           try {
+               System.out.println("Executing Query: " + query);
+               ResultSet rs = db.getData(query);
 
-            UserView1.setItems(usersUpdate);
-            
+               if (rs == null) {
+                   System.out.println("ResultSet is null");
+                   return;
+               }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        
-       
-        
-    }
+               while (rs.next()) {
+                   int id = rs.getInt("user_id");
+                   String username = rs.getString("user_name");
+                   String email = rs.getString("user_email");
+                   String status = rs.getString("status");
+
+                   usersUpdate.add(new User(id, username, email, status));
+               }
+
+
+               UserView1.setItems(usersUpdate);
+
+
+               FilteredList<User> filteredData = new FilteredList<>(usersUpdate, b -> true);
+
+
+               FilterField.textProperty().addListener((observable, oldValue, newValue) -> {
+                   filteredData.setPredicate(user -> {
+                       if (newValue == null || newValue.trim().isEmpty()) {
+                           return true;
+                       }
+
+                       String lowerCaseFilter = newValue.toLowerCase();
+
+                       if (String.valueOf(user.getId()).contains(lowerCaseFilter) ||
+                           (user.getUsername() != null && user.getUsername().toLowerCase().contains(lowerCaseFilter)) ||
+                           (user.getEmail() != null && user.getEmail().toLowerCase().contains(lowerCaseFilter)) ||
+                           (user.getStatus() != null && user.getStatus().toLowerCase().contains(lowerCaseFilter))) {
+                           return true;
+                       }
+                       return false;
+                   });
+
+
+                   UserView1.setItems(filteredData);
+               });
+
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+       }
+
 
     @FXML
     private void refreshButton(MouseEvent event) {
