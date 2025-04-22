@@ -506,7 +506,7 @@ private void setEmployeePhoto(Image image) {
             Tcontact.clear();
             Tdate.setValue(null);
 
-             employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
+            employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
             sexcombo1.setValue("Choose Sex");
             deptcombo1.setValue("Choose Department");
             poscombo1.setValue("Choose Position");
@@ -531,12 +531,12 @@ private void choosePhoto(MouseEvent event) {
     File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
 
     if (selectedFile != null) {
-        // Store the file path (but don't copy it yet)
+       
         photoFilePath = selectedFile.getAbsolutePath();
 
-        // Load and display the selected image using the existing method
+        
         Image image = new Image(new File(photoFilePath).toURI().toString());
-        setEmployeePhoto(image);  // ✅ Uses your method
+        setEmployeePhoto(image);  
     }
 }
 

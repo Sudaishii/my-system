@@ -71,12 +71,12 @@
             </VBox>
             <ImageView fx:id="cloudIcon" layoutX="10.0" layoutY="10.0" />
             <Button fx:id="submit" layoutX="393.0" layoutY="572.0" mnemonicParsing="false" onMouseClicked="#AddEmployee" prefHeight="17.0" prefWidth="159.0" styleClass="btnsub" text="UPDATE" />
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="473.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="473.0" layoutY="313.0" onMouseClicked="#updateImage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons8-add-image-24.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="449.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="449.0" layoutY="313.0" onMouseClicked="#setDefaultImage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons8-remove-image-24.png" />
                </image>

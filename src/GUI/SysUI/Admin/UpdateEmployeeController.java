@@ -20,9 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 public class UpdateEmployeeController implements Initializable {
 
@@ -42,8 +43,9 @@ public class UpdateEmployeeController implements Initializable {
     private String currentContact;
     private String currentDept;
     private String currentPos;
-     private File selectedImageFile; 
-    private String currentPhotoPath; 
+    private File selectedImageFile;
+    private String currentPhotoPath;
+    private boolean imageChanged = false;
 
     private int employeeId;
     config con = new config();
@@ -52,6 +54,7 @@ public class UpdateEmployeeController implements Initializable {
     private ImageView employeePhoto;
     @FXML
     private ImageView cloudIcon;
+    private String photoFilePath;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -115,116 +118,75 @@ public class UpdateEmployeeController implements Initializable {
     }
 
     public void setEmployeeId(int employeeId) {
-        
+
         this.employeeId = employeeId;
         System.out.println("Employee ID received in UpdateEmployeeController: " + employeeId);
         loadEmployeeData();
         idLabel.setText("Employee: " + this.employeeId);
-        
+
     }
 
     private void loadEmployeeData() {
         if (employeeId > 0) {
             try (Connection connection = db.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT emp_fname, emp_lname, emp_add, emp_email, emp_contact, emp_dept, emp_position, filePath " +
-                     "FROM employee WHERE emp_id = ?")) {
-                
-                preparedStatement.setInt(1, employeeId);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                         "SELECT emp_fname, emp_lname, emp_add, emp_email, emp_contact, emp_dept, emp_position, filePath " +
+                         "FROM employee WHERE emp_id = ?")) {
 
-                if (resultSet.next()) {
-                    fname.setText(String.format("%s %s",
+            preparedStatement.setInt(1, employeeId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                fname.setText(String.format("%s %s",
                         Optional.ofNullable(resultSet.getString("emp_fname")).orElse(""),
                         Optional.ofNullable(resultSet.getString("emp_lname")).orElse("")
-                    ).trim());
+                ).trim());
 
-                    currentAdd = resultSet.getString("emp_add");
-                    currentEmail = resultSet.getString("emp_email");
-                    currentContact = resultSet.getString("emp_contact");
-                    currentDept = resultSet.getString("emp_dept");
-                    currentPos = resultSet.getString("emp_position");
-                    currentPhotoPath = resultSet.getString("filePath");
-                    
-                    addF.setText(currentAdd);
-                    emailF.setText(currentEmail);
-                    contactF.setText(currentContact);
-                    deptF.setValue(currentDept);
-                    posF.setValue(currentPos);
-                    
-             if (currentPhotoPath != null && !currentPhotoPath.isEmpty()) {
-                File imageFile = new File(currentPhotoPath);
-                if (imageFile.exists()) {
-                    try {
-                        Image image = new Image(imageFile.toURI().toString());
-                       double imgWidth = image.getWidth();
-                        double imgHeight = image.getHeight();
-                        double viewportSize = Math.min(imgWidth, imgHeight);
+                currentAdd = resultSet.getString("emp_add");
+                currentEmail = resultSet.getString("emp_email");
+                currentContact = resultSet.getString("emp_contact");
+                currentDept = resultSet.getString("emp_dept");
+                currentPos = resultSet.getString("emp_position");
+                currentPhotoPath = resultSet.getString("filePath");
 
-                        Rectangle2D viewport = new Rectangle2D(
-                            (imgWidth - viewportSize) / 2,
-                            (imgHeight - viewportSize) / 2,
-                            viewportSize,
-                            viewportSize
-                        );
+                addF.setText(currentAdd);
+                emailF.setText(currentEmail);
+                contactF.setText(currentContact);
+                deptF.setValue(currentDept);
+                posF.setValue(currentPos);
 
-                        employeePhoto.setImage(image);
-                        employeePhoto.setViewport(viewport);
-                        employeePhoto.setFitWidth(207);
-                        employeePhoto.setFitHeight(185);
-                        employeePhoto.setPreserveRatio(false);
-                        employeePhoto.setSmooth(true);
-                        employeePhoto.setCache(true);
+                if (currentPhotoPath != null && !currentPhotoPath.isEmpty()) {
+                    File imageFile = new File(currentPhotoPath);
+                    if (imageFile.exists()) {
+                        try {
+                            Image image = new Image(imageFile.toURI().toString());
+                            setEmployeePhoto(image);
 
-                    } catch (Exception e) {
-                        System.err.println("Error loading image from path: " + currentPhotoPath);
-                        e.printStackTrace();
+                        } catch (Exception e) {
+                            System.err.println("Error loading image from path: " + currentPhotoPath);
+                            e.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("Image file not found at path: " + currentPhotoPath);
+                        employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
                     }
                 } else {
-                    System.out.println("Image file not found at path: " + currentPhotoPath);
-                    employeePhoto.setImage(null);
+                    employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
                 }
-            } else {
-                employeePhoto.setImage(null);
-            }
+                imageChanged = false; // Reset the flag when loading data
 
-                } else {
-                    con.showAlert(Alert.AlertType.ERROR, "Error", "Employee with ID " + employeeId + " not found.");
-                    closeOverlay();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                con.showAlert(Alert.AlertType.ERROR, "Database Error", "Error fetching employee data.");
+            } else {
+                con.showAlert(Alert.AlertType.ERROR, "Error", "Employee with ID " + employeeId + " not found.");
                 closeOverlay();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            con.showAlert(Alert.AlertType.ERROR, "Database Error", "Error fetching employee data.");
+            closeOverlay();
         }
     }
-    
-//    private void setEmployeePhoto(Image image) {
-//    employeePhoto.setImage(image);
-//    employeePhoto.setFitWidth(207);
-//    employeePhoto.setFitHeight(185);
-//    employeePhoto.setSmooth(true);
-//    employeePhoto.setCache(true);
-//
-//    
-//    double imgWidth = image.getWidth();
-//    double imgHeight = image.getHeight();
-//    
-//    double scaleX = 207 / imgWidth;
-//    double scaleY = 185 / imgHeight;
-//    double scale = Math.max(scaleX, scaleY); 
-//
-//    double newWidth = imgWidth * scale;
-//    double newHeight = imgHeight * scale;
-//    
-//    double xOffset = (newWidth - 207) / 2;
-//    double yOffset = (newHeight - 185) / 2;
-//
-//    employeePhoto.setViewport(new Rectangle2D(xOffset, yOffset, 207, 185));
-//}
+    }
 
-    
     @FXML
     private void closeBtn(MouseEvent event) {
         closeOverlay();
@@ -233,28 +195,25 @@ public class UpdateEmployeeController implements Initializable {
     @FXML
     private void AddEmployee(MouseEvent event) {
 
- 
     String newAdd = addF.getText().trim();
     String newEmail = emailF.getText().trim();
     String newContact = contactF.getText().trim();
     String newDept = deptF.getValue();
     String newPos = posF.getValue();
 
-    
     if (newAdd.isEmpty() || newEmail.isEmpty() || newContact.isEmpty() ||
         "Choose Department".equals(newDept) || "Choose Position".equals(newPos)) {
         con.showAlert(Alert.AlertType.WARNING, "Warning", "Please fill out all fields.");
         return;
     }
 
-   
-    if (newAdd.equals(currentAdd) && newEmail.equals(currentEmail) &&
+    if (!imageChanged && newAdd.equals(currentAdd) && newEmail.equals(currentEmail) &&
         newContact.equals(currentContact) && newDept.equals(currentDept) &&
         newPos.equals(currentPos)) {
         con.showAlert(Alert.AlertType.INFORMATION, "Information", "No changes detected.");
         return;
     }
-    
+
     if (!newEmail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
         con.showAlert(Alert.AlertType.ERROR, "Error", "Invalid email format.");
         return;
@@ -265,18 +224,27 @@ public class UpdateEmployeeController implements Initializable {
         return;
     }
 
-    try (Connection connection = db.getConnection();
-         PreparedStatement updateStmt = connection.prepareStatement(
-                 "UPDATE employee SET emp_add = ?, emp_email = ?, emp_contact = ?, " +
-                 "emp_dept = ?, emp_position = ? WHERE `emp_id` = ?")) { 
+    String sql = "UPDATE employee SET emp_add = ?, emp_email = ?, emp_contact = ?, " +
+                 "emp_dept = ?, emp_position = ?";
+    if (imageChanged && photoFilePath != null) {
+        sql += ", filePath = ?";
+    }
+    sql += " WHERE emp_id = ?";
 
-       
-        updateStmt.setString(1, newAdd); 
-        updateStmt.setString(2, newEmail); 
-        updateStmt.setString(3, newContact); 
-        updateStmt.setString(4, newDept); 
-        updateStmt.setString(5, newPos); 
-        updateStmt.setInt(6, employeeId); 
+    try (Connection connection = db.getConnection();
+         PreparedStatement updateStmt = connection.prepareStatement(sql)) {
+
+        updateStmt.setString(1, newAdd);
+        updateStmt.setString(2, newEmail);
+        updateStmt.setString(3, newContact);
+        updateStmt.setString(4, newDept);
+        updateStmt.setString(5, newPos);
+
+        int parameterIndex = 6;
+        if (imageChanged && photoFilePath != null) {
+            updateStmt.setString(parameterIndex++, photoFilePath);
+        }
+        updateStmt.setInt(parameterIndex, employeeId);
 
         int rowsAffected = updateStmt.executeUpdate();
         if (rowsAffected > 0) {
@@ -285,11 +253,60 @@ public class UpdateEmployeeController implements Initializable {
         } else {
             con.showAlert(Alert.AlertType.ERROR, "Error", "Failed to update employee details.");
         }
-
+        imageChanged = false; // Reset the flag
     } catch (SQLException e) {
         e.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "Error updating employee data.");
     }
-}
+    }
+
+    @FXML
+    private void updateImage(MouseEvent event) {
+        config con = new config();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Employee Photo");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (selectedFile != null) {
+
+            photoFilePath = selectedFile.getAbsolutePath();
+            imageChanged = true;
+
+            Image image = new Image(new File(photoFilePath).toURI().toString());
+            setEmployeePhoto(image);
+        }
+    }
+
+    @FXML
+    private void setDefaultImage(MouseEvent event) {
+        employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
+            photoFilePath = null;
+        imageChanged = true;
+    }
+
+    private void setEmployeePhoto(Image image) {
+        double imgWidth = image.getWidth();
+        double imgHeight = image.getHeight();
+        double viewportSize = Math.min(imgWidth, imgHeight);
+
+        Rectangle2D viewport = new Rectangle2D(
+            (imgWidth - viewportSize) / 2,
+            (imgHeight - viewportSize) / 2,
+            viewportSize,
+            viewportSize
+        );
+
+        employeePhoto.setImage(image);
+        employeePhoto.setViewport(viewport);
+        employeePhoto.setFitWidth(207);
+        employeePhoto.setFitHeight(166);
+        employeePhoto.setPreserveRatio(false);
+        employeePhoto.setSmooth(true);
+        employeePhoto.setCache(true);
+    }
 
 }
