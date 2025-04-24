@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Employees.EmployeeController">
+   <children>
+      <BorderPane fx:id="rootPane" prefHeight="720.0" prefWidth="1080.0">
+         <top>
+            <Pane prefHeight="54.0" prefWidth="1080.0" styleClass="customheaderheader" stylesheets="@../Admin/dashboard.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="44.0" layoutY="9.0" text="Pay">
+                     <font>
+                        <Font name="Palatino Linotype" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="90.0" layoutY="10.0" text="Fuse">
+                     <font>
+                        <Font name="Palatino Linotype Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <MenuButton layoutX="1012.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="64.0" stylesheets="@../Admin/dashboard.css">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#profile" text="Settings">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons8-gear-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Log Out">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/icons8-logout-32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                  </MenuButton>
+                  <JFXHamburger fx:id="burger" layoutX="14.0" layoutY="17.0" />
+                  <ImageView fitHeight="47.0" fitWidth="60.0" layoutX="1014.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/money.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+      </BorderPane>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="55.0" prefHeight="666.0" prefWidth="224.0" />
+      <VBox fx:id="vboxBox" layoutX="349.0" layoutY="322.0" prefHeight="200.0" prefWidth="372.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="372.0" text="Proceed to your Navigation" textFill="#9e9a9a">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="11.0" prefWidth="372.0" text="(Click the Hamburger Button)" textFill="#9e9a9a">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

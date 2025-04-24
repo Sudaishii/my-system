@@ -40,8 +40,8 @@ public class SU_DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Session ses = Session.getInstance();
         
-        String uname = Session.getInstance().getUname();
-        uname = ses.getUname();
+        String uname = Session.getInstance().getUsername();
+        uname = ses.getUsername();
     }    
     
 }

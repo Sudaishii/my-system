@@ -119,7 +119,7 @@ public class HR_DashboardController implements Initializable {
 
        
         Session ses = Session.getInstance();
-        String uname = ses.getUname();
+        String uname = ses.getUsername();
         greet.setText("Welcome, " + uname + "!");
     }
 

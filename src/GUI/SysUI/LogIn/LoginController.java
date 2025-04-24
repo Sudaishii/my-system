@@ -105,19 +105,17 @@ public class LoginController implements Initializable {
     });
     }
 
-    @FXML
-    private void LogIntButton(MouseEvent event) throws Exception {
-        
-        
-     config conf = new config();   
-        
+   @FXML
+private void LogIntButton(MouseEvent event) throws Exception {
+    config conf = new config();   
+
     String username = UNField1.getText().trim();
     String password = PassField1.getText().trim();
     String hashedPassword = con.hashPassword(password);
     
     System.out.println("Username Value: " + username);
-    
-    if (username.isEmpty() || password.isEmpty()) {
+
+   if (username.isEmpty() || password.isEmpty()) {
         conf.logAction(username, "Login Attempt", "Failed - Empty fields"); 
         System.out.println("dasdasas");
         con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Username and password cannot be empty."); 
@@ -165,6 +163,7 @@ public class LoginController implements Initializable {
             Map<String, String> rolePaths = new HashMap<>();
             rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
             rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
+            rolePaths.put("Employee", "/GUI/SysUI/Employees/Employee.fxml");
 
             if (rolePaths.containsKey(role)) {
                 Session.getInstance().createSession(1, username);
@@ -193,6 +192,8 @@ public class LoginController implements Initializable {
         con.logAction(username, "Hashing Error", e.getMessage());
     }
   }
+
+
     
     private Map<String, String> authenticateUserWithStatus(String username) throws SQLException {
     Map<String, String> userInfo = new HashMap<>();

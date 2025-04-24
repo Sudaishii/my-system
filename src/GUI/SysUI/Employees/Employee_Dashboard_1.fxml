@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" accessibleText="Dashboard" prefHeight="666.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Employees.Employee_DashboardController">
+   <Pane prefHeight="666.0" prefWidth="1080.0" style="-fx-background-color: #F6F1DE;">
+      <children>
+         <!-- Header Section -->
+         <VBox alignment="CENTER" prefHeight="87.0" prefWidth="1080.0" spacing="10.0" style="-fx-background-color: #1E1E2C; -fx-padding: 20px;">
+            <Text style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: white;" text="Employee Dashboard" />
+            <Text style="-fx-font-size: 16px; -fx-fill: #ecf0f1;" text="Access your personal records and information" />
+         </VBox>
+         
+                  <!-- Main Content Section -->
+         <VBox alignment="CENTER" layoutY="77.0" prefHeight="260.0" prefWidth="1080.0" spacing="30.0" style="-fx-padding: 40px;">
+            <!-- Welcome Card -->
+            <VBox alignment="CENTER_LEFT" prefWidth="900.0" spacing="15.0" style="-fx-padding: 30px; -fx-background-color: #ffffff; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+               <Text style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="Welcome to Your Dashboard" />
+               <Text style="-fx-font-size: 16px; -fx-fill: #34495e;" text="You can now stream your reports." />
+               <Text style="-fx-font-size: 14px; -fx-fill: #7f8c8d;" text="This will allow us to securely access and display your personal records." wrappingWidth="431.45703125" />
+            </VBox>
+         </VBox>
+         <VBox alignment="CENTER_LEFT" layoutX="44.0" layoutY="459.0" prefHeight="178.0" prefWidth="1000.0" spacing="10.0" style="-fx-padding: 20px; -fx-background-color: #ecf0f1; -fx-background-radius: 10px;">
+            <children>
+               <Text style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="What you can do here:" />
+               <Text style="-fx-font-size: 14px; -fx-fill: #34495e;" text="• View your personal information" />
+               <Text style="-fx-font-size: 14px; -fx-fill: #34495e;" text="• Check your daily time records." />
+               <Text style="-fx-font-size: 14px; -fx-fill: #34495e;" text="• Check your payslip records." />
+               <Text layoutX="30.0" layoutY="150.0" style="-fx-font-size: 14px; -fx-fill: #34495e;" text="• To ensure proper oversight of all records." />
+            </children>
+         </VBox>
+         <Pane layoutX="44.0" layoutY="309.0" prefHeight="132.0" prefWidth="1000.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10px;">
+            <children>
+               <Label layoutX="150.0" layoutY="14.0" prefHeight="44.0" prefWidth="135.0" />
+               <Label layoutX="395.0" layoutY="43.0" text="Already Bound!" textFill="#9a9a9a">
+                  <font>
+                     <Font size="31.0" />
+                  </font>
+               </Label>
+            </children>
+         </Pane>
+      </children>
+   </Pane>
+</AnchorPane>

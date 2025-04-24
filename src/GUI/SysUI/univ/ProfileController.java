@@ -51,8 +51,8 @@ import java.security.NoSuchAlgorithmException;
         public void initialize(URL url, ResourceBundle rb) {
 
            Session ses = Session.getInstance();
-           String uname = Session.getInstance().getUname();
-           uname = ses.getUname();
+           String uname = Session.getInstance().getUsername();
+           uname = ses.getUsername();
            ProfName.setText(uname);
 
             fetchUserDetails(uname);
@@ -114,7 +114,7 @@ import java.security.NoSuchAlgorithmException;
             }
 
             Session ses = Session.getInstance();
-            String username = ses.getUname();
+            String username = ses.getUsername();
 
             if (validateOldPassword(username, oldPassword)) {
                 updatePassword(username, newPassword);

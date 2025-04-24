@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="666.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="666.0" prefWidth="1080.0" style="-fx-background-color: #F6F1DE;">
+         <children>
+            <!-- Header Section -->
+            <VBox alignment="CENTER" prefWidth="1080.0" spacing="10.0" style="-fx-background-color: #1E1E2C; -fx-padding: 20px;">
+               <children>
+                  <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: white;" text="Daily Time Records" />
+                  <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 16px; -fx-fill: #ecf0f1;" text="View and manage your attendance records" />
+               </children>
+            </VBox>
+            
+            <!-- Main Content Section -->
+            <VBox alignment="CENTER" layoutY="100.0" prefWidth="1080.0" spacing="20.0" style="-fx-padding: 20px;">
+               <children>
+                  <!-- Search and Filter Section -->
+                  <HBox alignment="CENTER" prefWidth="1000.0" spacing="20.0" styleClass="cont">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Start Date" />
+                              <DatePicker fx:id="startDatePicker" styleClass="tfield" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="End Date" />
+                              <DatePicker fx:id="endDatePicker" styleClass="tfield" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Status" />
+                              <ComboBox fx:id="statusFilter" promptText="Select Status" styleClass="c-box" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Actions" />
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button fx:id="searchButton" styleClass="btnsub" text="Search" />
+                                    <Button fx:id="exportButton" styleClass="btnfile" text="Export" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Main Content Area with Table and Details Panel -->
+                  <HBox prefHeight="400.0" prefWidth="1000.0" spacing="20.0">
+                     <children>
+                        <!-- Records Table Section -->
+                        <VBox prefWidth="700.0" spacing="10.0" styleClass="cont">
+                           <children>
+                              <TableView fx:id="dtrTable" prefHeight="400.0" styleClass="table-view">
+                                 <columns>
+                                    <TableColumn fx:id="dateColumn" prefWidth="100.0" styleClass="table-column" text="Date" />
+                                    <TableColumn fx:id="timeInColumn" prefWidth="100.0" styleClass="table-column" text="Time In" />
+                                    <TableColumn fx:id="timeOutColumn" prefWidth="100.0" styleClass="table-column" text="Time Out" />
+                                    <TableColumn fx:id="totalHoursColumn" prefWidth="100.0" styleClass="table-column" text="Total Hours" />
+                                    <TableColumn fx:id="statusColumn" prefWidth="100.0" styleClass="table-column" text="Status" />
+                                    <TableColumn fx:id="remarksColumn" prefWidth="200.0" styleClass="table-column" text="Remarks" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Details Panel -->
+                        <VBox prefWidth="300.0" spacing="10.0" styleClass="cont">
+                           <children>
+                              <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 18px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="Record Details" />
+                              <Separator />
+                              <VBox spacing="10.0" style="-fx-padding: 10px;">
+                                 <children>
+                                    <VBox prefHeight="31.0" prefWidth="280.0" spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Date:" />
+                                          <Label fx:id="detailDate" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Time In:" />
+                                          <Label fx:id="detailTimeIn" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Time Out:" />
+                                          <Label fx:id="detailTimeOut" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Total Hours:" />
+                                          <Label fx:id="detailTotalHours" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Status:" />
+                                          <Label fx:id="detailStatus" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-text-fill: #34495e;" text="Remarks:" />
+                                          <TextArea fx:id="detailRemarks" editable="false" prefHeight="100.0" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-background-color: transparent; -fx-border-color: #bdc3c7; -fx-border-radius: 5px;" wrapText="true" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Summary Section -->
+                  <HBox alignment="CENTER_RIGHT" spacing="20.0" style="-fx-padding: 10px;">
+                     <children>
+                        <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-fill: #34495e;" text="Total Working Days:" />
+                        <VBox alignment="CENTER_RIGHT" spacing="5.0">
+                           <children>
+                              <Text fx:id="totalDaysText" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: #2c3e50;" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" spacing="5.0">
+                           <children>
+                              <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-fill: #34495e;" text="Total Hours:" />
+                              <Text fx:id="totalHoursText" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-fill: #2c3e50;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Action Buttons -->
+                  <HBox alignment="CENTER" spacing="20.0" style="-fx-padding: 20px;">
+                     <children>
+                        <Button fx:id="requestCorrectionButton" styleClass="btnsub" text="Request Correction" />
+                        <Button fx:id="printButton" styleClass="btnfile" text="Print Records" />
+                        <Button fx:id="refreshButton" styleClass="btnsub" text="Refresh" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

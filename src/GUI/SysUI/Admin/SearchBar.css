@@ -18,6 +18,16 @@
     -fx-font-weight: bold;
     -fx-font-size: 25px;
 }
+
+.captionName{
+    
+     
+   -fx-font-family: 'Poppins', sans-serif; 
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+
 .tab-label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;

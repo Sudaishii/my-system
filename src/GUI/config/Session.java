@@ -2,13 +2,13 @@ package GUI.config;
 
 public class Session {
     private static Session instance;
-    private int userId;
-    private String uname;
+    private int userId;  // Emp_id
+    private String username;
 
-    // Private constructor to enforce singleton pattern
-    private Session() {}
+    // Private constructor to prevent instantiation
+    public Session() {}
 
-    // Singleton instance method
+    // Singleton instance
     public static Session getInstance() {
         if (instance == null) {
             instance = new Session();
@@ -16,20 +16,19 @@ public class Session {
         return instance;
     }
 
-    // Create session
-    public void createSession(int userId, String uname) {
+    // Create a session with employee ID and username
+    public void createSession(int userId, String username) {
         this.userId = userId;
-        this.uname = uname;
+        this.username = username;
     }
 
-    // Retrieve username
-    public String getUname() {
-        return uname;
+    // Getters for session data
+    public int getUserId() {
+        return userId;
     }
 
-    // Clear session
-    public void clearSession() {
-        userId = 0;
-        uname = null;
+    public String getUsername() {
+        return username;
     }
 }
+

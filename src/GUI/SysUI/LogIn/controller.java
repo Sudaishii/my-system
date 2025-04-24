@@ -159,7 +159,9 @@ public class controller {
         String role = userInfo.get("role");
         String status = userInfo.get("status");
         String storedHashedPassword = userInfo.get("hashed_password");
-
+        
+        System.out.println("Role: " + role);
+        
         if (role == null || role.isEmpty()) {
             con.showAlert(Alert.AlertType.WARNING, "Role Not Assigned",
                     "Your role is not properly assigned. Please contact customer service for role activation.");
@@ -184,9 +186,10 @@ public class controller {
             Map<String, String> rolePaths = new HashMap<>();
             rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
             rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
+            rolePaths.put("Super_Admin", "/GUI/SysUI/Employees/Employee.fxml");
 
             if (rolePaths.containsKey(role)) {
-                Session.getInstance().createSession(1, username);
+//                Session.getInstance().createSession(1, username);
                 con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
                         "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
                 con.logAction(username, "Login Successful", "Logged in as " + role);
@@ -229,7 +232,7 @@ public class controller {
                     String role = rs.getString("role_name"); 
                 
                     
-                    ses.createSession(userId, Username);
+//                    ses.createSession(userId, Username);
 
                     return role; 
                 }
