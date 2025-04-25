@@ -8,12 +8,15 @@ package GUI.SysUI.SuperAdmin;
 import GUI.config.config;
 import GUI.config.dbConnect;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,7 +73,8 @@ public class UserAddController implements Initializable {
             roles.getItems().addAll(
                     "SuperAdmin",
                     "HR_Admin",
-                    "Employee"
+                    "Employee",
+                    "Staff"
                 );
             
     }    
@@ -175,11 +179,16 @@ public class UserAddController implements Initializable {
             case "Employee":
                 roleId = 3;
                 break;
+            case "Staff":
+                roleId = 4;
+                break;
             default:
                 con.showAlert(Alert.AlertType.ERROR, "Validation Error", "Invalid role selected.");
                 return;
         }
-       
+        
+       String hashedPassword = con.hashPassword(password);
+        
        String sql = "INSERT INTO users (user_email, user_name, user_pass, status, role_id) VALUES (?, ?, ?, ?, ?)";
 
 
@@ -187,7 +196,7 @@ public class UserAddController implements Initializable {
         try (PreparedStatement pst = db.getConnection().prepareStatement(sql)) {
             pst.setString(1, email);
             pst.setString(2, username);
-            pst.setString(3, password);
+            pst.setString(3, hashedPassword);
             pst.setString(4, "Active");
             pst.setInt(5, roleId);  
             pst.executeUpdate();
@@ -196,7 +205,9 @@ public class UserAddController implements Initializable {
         }
     } catch (SQLException ex) {
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred: " + ex.getMessage());
-    }
+    }   catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UserAddController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }

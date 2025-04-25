@@ -193,7 +193,7 @@ private void activateBtn(MouseEvent event) {
                 pstmt.setInt(1, selectedUser.getId());
                 pstmt.executeUpdate();
 
-                updateUsers(); // ✅ Ensure this method correctly refreshes the table
+                updateUsers();
 
                 configUtil.showAlert(Alert.AlertType.INFORMATION, "Success", "User activated successfully!");
             } catch (SQLException e) {

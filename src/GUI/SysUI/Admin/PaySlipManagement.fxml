@@ -45,13 +45,13 @@
                                  </font>
                               </Label>
                               <Label fx:id="durationLabel" layoutX="53.0" layoutY="33.0" prefHeight="19.0" prefWidth="438.0" styleClass="timeforDTR" stylesheets="@../../resources/resource.css" text="Period of Month" />
-                              <TextField fx:id="FilterField" layoutX="80.0" layoutY="86.0" prefHeight="25.0" prefWidth="604.0" promptText="Keywords" />
+                              <TextField fx:id="FilterField" layoutX="80.0" layoutY="86.0" prefHeight="25.0" prefWidth="610.0" promptText="Keywords" />
                               <ComboBox fx:id="monthBox" layoutX="708.0" layoutY="29.0" prefWidth="150.0" />
-                              <Button layoutX="916.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#GenerateSlips" prefHeight="31.0" prefWidth="143.0" text="GENERATE">
+                              <Button layoutX="915.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#GenerateSlips" prefHeight="23.0" prefWidth="143.0" styleClass="buttonsProfessional" stylesheets="@dashboard.css" text="GENERATE">
                                  <graphic>
                                     <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../images/icons8-create-64.png" />
+                                          <Image url="@../../images/icons8-create-50.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -79,9 +79,9 @@
                                  </font>
                               </Label>
                               <ComboBox fx:id="yearBox" layoutX="909.0" layoutY="29.0" prefWidth="150.0" />
-                              <Button fx:id="viewReports" alignment="BASELINE_LEFT" layoutX="775.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#viewReport" prefHeight="31.0" prefWidth="130.0" text="View Reports">
+                              <Button fx:id="viewReports" alignment="BASELINE_LEFT" layoutX="775.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#viewReport" prefHeight="33.0" prefWidth="128.0" styleClass="buttonsProfessional" stylesheets="@dashboard.css" text="View Reports">
                                  <graphic>
-                                    <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="buttonSoftGold">
                                        <image>
                                           <Image url="@../../images/icons8-view-48.png" />
                                        </image>

@@ -1,11 +1,13 @@
 package GUI.config;
 
+import java.io.File;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Base64;
@@ -34,6 +36,74 @@ import javafx.util.Duration;
  * @author Rasheed
  */
 public class config {
+    
+
+    
+    dbConnect db = new dbConnect();
+    public void loadProfilePicture(String user, ImageView image, double IMAGE_SIZE) {
+    
+    
+  
+    String imagePath = getImagePath(user);
+
+  
+    if (imagePath != null) {
+        Image pfp = new Image(new File(imagePath).toURI().toString());
+        
+        image.setImage(pfp);
+        image.setFitWidth(IMAGE_SIZE);
+        image.setFitHeight(IMAGE_SIZE);
+        image.setPreserveRatio(false);
+        image.setSmooth(true);
+        image.setCache(true);
+        
+        setToCircle(IMAGE_SIZE, image);
+    }
+}
+
+    
+    public String getImagePath(String username) {
+    
+    String query = "SELECT users.emp_id " +
+                   "FROM users " +
+                   "INNER JOIN employee ON users.emp_id = employee.emp_id " +
+                   "WHERE users.user_name = '" + username + "'";
+
+    try (ResultSet result = db.getData(query)) {
+        if (result.next()) {
+            int empId = result.getInt("emp_id");
+
+            
+            String filePathQuery = "SELECT filePath " +
+                                   "FROM employee " +
+                                   "WHERE emp_id = " + empId;
+            try (ResultSet filePathResult = db.getData(filePathQuery)) {
+                if (filePathResult.next()) {
+                    String filePath = filePathResult.getString("filePath");
+                    if (filePath != null && !filePath.isEmpty()) {
+                        return filePath; 
+                    }
+                }
+            }
+
+        }
+    } catch (Exception e) {
+        System.out.println("Database Error: " + e.getMessage());
+        e.printStackTrace();
+    }
+
+   
+    return "path/to/Emp/default.jpg";  
+}
+
+
+    
+    public void setToCircle(double IMAGE_SIZE, ImageView image) {
+        Circle circle = new Circle(IMAGE_SIZE / 2);
+        circle.centerXProperty().bind(image.fitHeightProperty().divide(2));
+        circle.centerYProperty().bind(image.fitHeightProperty().divide(2));
+        image.setClip(circle);
+    }
 
     public void showAlert(Alert.AlertType alertType, String title, String message) {
 
@@ -192,7 +262,7 @@ public class config {
 //    }
 //}   
      
-      dbConnect db = new dbConnect();
+    
      
     public void showAlert(String warning, String selection_Error, String please_select_an_employee_before_updating) {
         throw new UnsupportedOperationException("Not supported yet."); 

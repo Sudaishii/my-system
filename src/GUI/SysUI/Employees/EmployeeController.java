@@ -34,7 +34,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -105,13 +110,19 @@ public class EmployeeController implements Initializable {
                         case "SlipReports":
                             if (empId != 0) {
                                 vboxBox.setVisible(false);
-                                 loadPage("/GUI/SysUI/Employees/ViewReports.fxml");
+                                 loadPage("/GUI/SysUI/Employees/View_Reports.fxml");
                             } else {
                                 con.showAlert(Alert.AlertType.WARNING, "Access Denied", "Please bind your account first.");
                             }
                             break;
                         case "Settings":
-                            loadPage("/GUI/SysUI/univ/Profile.fxml");
+                           
+                             if (empId != 0) {
+                                vboxBox.setVisible(false);
+                                  loadPage("/GUI/SysUI/univ/Profile.fxml");
+                            } else {
+                                con.showAlert(Alert.AlertType.WARNING, "Access Denied", "Please bind your account first.");
+                            }
                             break;
                         case "Logout":
                             logout(new ActionEvent());
@@ -169,7 +180,31 @@ public class EmployeeController implements Initializable {
     }
     return empId;
 }
+    
+    
+    @FXML
+    private void logout(ActionEvent event) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Logout Confirmation");
+    alert.setHeaderText("Are you sure you want to logout?");
+    alert.setContentText("Unsaved progress may be lost.");
 
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        try {
+            Stage stage = (Stage) rootPane.getScene().getWindow(); 
+            Parent root = FXMLLoader.load(getClass().getResource("/GUI/SysUI/LogIn/login.fxml"));
+            Scene scene = new Scene(root, 899, 547);
+
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading login page: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
     
 //    private User getUserByUsername(String username) {
 //        try (Connection conn = DBConnection.getConnection()) {
@@ -212,9 +247,33 @@ public class EmployeeController implements Initializable {
     private void profile(ActionEvent event) {
     }
 
-    @FXML
-    private void logout(ActionEvent event) {
-    }
+   public void showLogoutConfirmationAlert(Node node) {
+    Stage currentStage = (Stage) node.getScene().getWindow();
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText("Logout Confirmation");
+    alert.setContentText("Are you sure you want to logout?");
+    alert.initOwner(currentStage);
+
+    DialogPane dialogPane = alert.getDialogPane();
+ 
+    
+    String loginFXML = "/GUI/SysUI/LogIn/login.fxml"; 
+
+    alert.showAndWait().ifPresent(response -> {
+        if (response == ButtonType.OK) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource(loginFXML));
+                Stage stage = (Stage) node.getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    });
+}
+
     
     public static EmployeeController getInstance() {
         return instance;

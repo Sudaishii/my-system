@@ -44,7 +44,7 @@ public class controller {
     private Label Title1;
 
     public void initialize() {
-        // Initialization logic if needed
+        
     }
 
     @FXML

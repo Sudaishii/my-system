@@ -13,6 +13,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
 
 <AnchorPane id="AnchorPane" prefHeight="666.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -88,6 +90,16 @@
                            <children>
                               <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 18px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="Record Details" />
                               <Separator />
+                              <!-- Profile Image -->
+                              <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;">
+                                 <children>
+                                    <ImageView fx:id="profileImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <clip>
+                                          <Circle centerX="50.0" centerY="50.0" radius="50.0" />
+                                       </clip>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
                               <VBox spacing="10.0" style="-fx-padding: 10px;">
                                  <children>
                                     <VBox prefHeight="31.0" prefWidth="280.0" spacing="5.0">

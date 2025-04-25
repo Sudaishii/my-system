@@ -164,6 +164,7 @@ private void LogIntButton(MouseEvent event) throws Exception {
             rolePaths.put("HR_Admin", "/GUI/SysUI/Admin/HR_Admin.fxml");
             rolePaths.put("Super_Admin", "/GUI/SysUI/SuperAdmin/Super_Admin.fxml");
             rolePaths.put("Employee", "/GUI/SysUI/Employees/Employee.fxml");
+            rolePaths.put("Staff", "/GUI/SysUI/Staff/Staff.fxml");
 
             if (rolePaths.containsKey(role)) {
                 Session.getInstance().createSession(1, username);

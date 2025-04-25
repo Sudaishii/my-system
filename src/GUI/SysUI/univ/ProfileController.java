@@ -15,14 +15,18 @@ import java.security.NoSuchAlgorithmException;
     import java.sql.ResultSet;
     import java.sql.SQLException;
     import java.util.ResourceBundle;
+import javafx.application.Platform;
     import javafx.fxml.FXML;
     import javafx.fxml.Initializable;
     import javafx.scene.control.Alert;
     import javafx.scene.control.Label;
     import javafx.scene.control.PasswordField;
     import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
     import javafx.scene.input.MouseEvent;
     import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 
     /**
      * FXML Controller class
@@ -30,7 +34,8 @@ import java.security.NoSuchAlgorithmException;
      * @author Administrator
      */
     public class ProfileController implements Initializable {
-
+        
+      
         @FXML
         private Label ProfName;
         @FXML
@@ -45,22 +50,64 @@ import java.security.NoSuchAlgorithmException;
         private PasswordField confPass;
         @FXML
         private PasswordField oldPass;
+        @FXML
+        private ImageView Profile;
+        private static final double PROFILE_FIT_WIDTH = 137;
+        private static final double PROFILE_FIT_HEIGHT = 114;
+        private static final double IMAGE_SIZE = 100;
 
       
         @Override
         public void initialize(URL url, ResourceBundle rb) {
 
            Session ses = Session.getInstance();
-           String uname = Session.getInstance().getUsername();
-           uname = ses.getUsername();
+           String uname = ses.getUsername(); 
            ProfName.setText(uname);
 
             fetchUserDetails(uname);
+            
+            final config conf = new config();
+            
+            if (hasEmpId(uname)) {
+                    Platform.runLater(() -> {
+                        conf.loadProfilePicture(uname, Profile, IMAGE_SIZE);  
+                    });
+                } else {
+
+                Image defaultImage = new Image("/GUI/images/default.png", false);
+                Profile.setImage(defaultImage);
+                Profile.setFitWidth(IMAGE_SIZE);
+                Profile.setFitHeight(IMAGE_SIZE);
+                Profile.setPreserveRatio(true);
+                Profile.setSmooth(true);
+                Profile.setCache(true);
+
+                setToCircle(IMAGE_SIZE, Profile); 
+            }
 
         }    
 
         config con = new config();
         dbConnect db = new dbConnect();
+        
+           public boolean hasEmpId(String username) {
+
+            dbConnect db = new dbConnect();    
+
+            String query = "SELECT emp_id FROM users WHERE user_name = ?";
+            try (PreparedStatement stmt = db.getConnection().prepareStatement(query)) {
+                stmt.setString(1, username);
+                ResultSet result = stmt.executeQuery();
+
+                if (result.next()) {
+                    return result.getInt("emp_id") != 0; 
+                }
+            } catch (SQLException e) {
+                System.err.println("Database error: " + e.getMessage());
+                e.printStackTrace();
+            }
+            return false; 
+        }
 
         private void fetchUserDetails(String username) {
         String query = "SELECT user_email FROM users WHERE user_name = ?"; 
@@ -85,6 +132,18 @@ import java.security.NoSuchAlgorithmException;
         }
     }
 
+    public void setToCircle(double IMAGE_SIZE, ImageView image) {
+
+    Circle circle = new Circle(IMAGE_SIZE / 2); 
+    
+
+    circle.centerXProperty().bind(image.fitWidthProperty().divide(2));
+    circle.centerYProperty().bind(image.fitHeightProperty().divide(2));
+    
+
+    image.setClip(circle);
+}
+        
         @FXML
         private void PassChange(MouseEvent event) throws NoSuchAlgorithmException {
 

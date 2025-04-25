@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Employees.ProfileViewController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #F6F1DE; -fx-padding: 20px;">
+         <children>
+            <!-- Profile Image Section -->
+            <VBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <VBox alignment="CENTER" style="-fx-background-color: white; -fx-background-radius: 75px;">
+                     <children>
+                        <ImageView fx:id="profileImageView" 
+                                 fitHeight="150.0" 
+                                 fitWidth="150.0" 
+                                 pickOnBounds="true" 
+                                 preserveRatio="true"
+                                 style="-fx-background-radius: 75px;">
+                           <clip>
+                              <Circle centerX="75.0" centerY="75.0" radius="75.0" />
+                           </clip>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <Button fx:id="changePhotoButton" styleClass="btnsub" text="Change Photo" />
+               </children>
+            </VBox>
+            
+            <!-- Profile Information Section -->
+            <VBox spacing="15.0" style="-fx-padding: 20px;">
+               <children>
+                  <Text style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #2c3e50;" text="Profile Information" />
+                  
+                  <VBox spacing="5.0">
+                     <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 12px; -fx-text-fill: #34495e;" text="Name" />
+                     <Label fx:id="nameLabel" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0">
+                     <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 12px; -fx-text-fill: #34495e;" text="Employee ID" />
+                     <Label fx:id="employeeIdLabel" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0">
+                     <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 12px; -fx-text-fill: #34495e;" text="Department" />
+                     <Label fx:id="departmentLabel" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                  </VBox>
+                  
+                  <VBox spacing="5.0">
+                     <Label style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 12px; -fx-text-fill: #34495e;" text="Position" />
+                     <Label fx:id="positionLabel" style="-fx-font-family: 'Poppins', sans-serif; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                  </VBox>
+               </children>
+            </VBox>
+            
+            <!-- Action Buttons -->
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button fx:id="editButton" styleClass="btnsub" text="Edit Profile" />
+                  <Button fx:id="saveButton" styleClass="btnsub" text="Save Changes" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane> 

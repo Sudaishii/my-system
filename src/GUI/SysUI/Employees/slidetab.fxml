@@ -66,7 +66,7 @@
       <Pane layoutX="10.0" layoutY="77.0" prefHeight="70.0" prefWidth="224.0" styleClass="active" />
       <Pane layoutX="10.0" layoutY="614.0" prefHeight="62.0" prefWidth="224.0" style="-fx-background-color: #F6F1DE;" styleClass="active">
          <children>
-            <VBox alignment="CENTER" layoutX="62.0" layoutY="9.0" prefHeight="41.0" prefWidth="142.0">
+            <VBox alignment="CENTER" layoutX="57.0" layoutY="10.0" prefHeight="41.0" prefWidth="142.0">
                <children>
                   <Label fx:id="greet" alignment="CENTER" prefHeight="20.0" prefWidth="144.0" text="Good Morning," textFill="#2f2d2d">
                      <font>
@@ -80,11 +80,7 @@
                   </Label>
                </children>
             </VBox>
-            <ImageView fitHeight="41.0" fitWidth="52.0" layoutX="21.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/icons8-male-user-100.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="Profile" fitHeight="41.0" fitWidth="52.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>
