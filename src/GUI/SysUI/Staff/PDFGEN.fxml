@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" accessibleText="PAYSLIP_REPORTS" prefHeight="660.0" prefWidth="1080.0" style="-fx-background-color: #F6F1DE;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.Staff.PDFGENController">
+   <children>
+      <!-- Header Section -->
+      <Pane prefHeight="68.0" prefWidth="1081.0" style="-fx-background-color: #1E1E2C;">
+         <children>
+            <Label layoutX="373.0" layoutY="7.0" prefHeight="35.0" prefWidth="335.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" styleClass="captionH" stylesheets="@../Admin/SearchBar.css" text="Employee's Payslip Reports" textFill="WHITE" />
+            <Label layoutX="463.0" layoutY="43.0" prefHeight="17.0" prefWidth="140.0" text="Export Reports as PDF File" textFill="#b5b3b3" />
+         </children>
+      </Pane>
+
+      <!-- Table Section -->
+      <TableView fx:id="reportsTable" layoutX="6.0" layoutY="106.0" prefHeight="548.0" prefWidth="755.0" styleClass="er" stylesheets="@../../resources/resource.css">
+        <columns>
+            <TableColumn fx:id="r_id" prefWidth="90.0" style="-fx-alignment: CENTER;" text="Report ID" />
+            <TableColumn fx:id="emp_id" prefWidth="96.0" style="-fx-alignment: CENTER;" text="Employee ID" />
+          <TableColumn fx:id="monthColumn" prefWidth="122.0" style="-fx-alignment: CENTER;" text="Month" />
+          <TableColumn fx:id="yearColumn" prefWidth="107.0" style="-fx-alignment: CENTER;" text="Year" />
+          <TableColumn fx:id="totalHoursColumn" prefWidth="89.0" style="-fx-alignment: CENTER;" text="Total Hours" />
+          <TableColumn fx:id="netPayColumn" minWidth="0.0" prefWidth="101.0" style="-fx-alignment: CENTER;" text="Net Pay" />
+          <TableColumn fx:id="date_generated" prefWidth="130.0" style="-fx-alignment: CENTER;" text="Date Generated" />
+        </columns>
+      </TableView>
+
+      <!-- Report Summary Section -->
+      <VBox layoutX="770.0" layoutY="74.0" prefHeight="579.0" prefWidth="302.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-padding: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+         <children>
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Report Summary" />
+            <Separator />
+            <VBox prefHeight="382.0" prefWidth="272.0" spacing="15.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="Month &amp; Year:" />
+                        <Label fx:id="summaryMonthYear" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="Total Hours:" />
+                        <Label fx:id="summaryTotalHours" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="Gross Salary:" />
+                        <Label fx:id="summaryGrossSalary" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="SSS Contribution:" />
+                        <Label fx:id="summarySSSContribution" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="PAG-IBIG Contribution:" />
+                        <Label fx:id="summaryPagibigContribution" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="PHILHEALTH Contribution:" />
+                        <Label fx:id="summaryPhilhealthContribution" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="Total Contribution:" />
+                        <Label fx:id="summaryTotalContribution" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #666666;" text="Net Pay:" />
+                        <Label fx:id="summaryNetPay" style="-fx-font-weight: bold;" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <TextField fx:id="FilterField" layoutX="71.0" layoutY="74.0" prefHeight="25.0" prefWidth="577.0" promptText="Keywords" />
+      <Label layoutX="6.0" layoutY="77.0" prefHeight="19.0" prefWidth="108.0" text="Search By:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="25.0" fitWidth="21.0" layoutX="740.0" layoutY="76.0" onMouseClicked="#refreshIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/icons8-refresh-26.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="626.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/icons8-searching-24.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="655.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#ExportButton" prefHeight="25.0" prefWidth="78.0" styleClass="buttonsProfessional" stylesheets="@../Admin/dashboard.css" text="EXPORT" />
+   </children>
+</AnchorPane>

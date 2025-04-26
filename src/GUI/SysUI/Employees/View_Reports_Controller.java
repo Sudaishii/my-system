@@ -37,7 +37,6 @@ import javafx.scene.input.MouseEvent;
  * @author Administrator
  */
 public class View_Reports_Controller implements Initializable {
-
     @FXML
     private Label employeeNameLabel;
     @FXML
@@ -85,6 +84,8 @@ public class View_Reports_Controller implements Initializable {
     @FXML
     private TableColumn<Reports, String> netPay;
     private int reportId;
+    @FXML
+    private TableColumn<?, ?> emp_id;
 
     /**
      * Initializes the controller class.
@@ -92,10 +93,9 @@ public class View_Reports_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    
+       String username = Session.getInstance().getUsername();
     
         r_id.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getReportId())));
-       
         monthColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonth()));
         yearColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getYear())));
         netPay.setCellValueFactory(cellData -> new SimpleStringProperty(
@@ -139,7 +139,7 @@ public class View_Reports_Controller implements Initializable {
 
     private void loadEmployeeInfo() {
         
-        String username = Session.getInstance().getUsername();
+    String username = Session.getInstance().getUsername();
     if (username == null || username.isEmpty()) {
         System.out.println("No active user session");
         return;

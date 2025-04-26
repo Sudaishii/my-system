@@ -169,7 +169,7 @@ private void LogIntButton(MouseEvent event) throws Exception {
             if (rolePaths.containsKey(role)) {
                 Session.getInstance().createSession(1, username);
                 con.showAlert(Alert.AlertType.INFORMATION, "Login Successful!",
-                        "Welcome Back! You are logged in as an " + role + ". Redirecting to your dashboard.");
+                        "Welcome Back! You are logged in as an/a " + role + ". Redirecting to your dashboard.");
                 con.logAction(username, "Login Successful", "Logged in as " + role);
                 con.switchScene(getClass(), event, rolePaths.get(role));
             } else {

@@ -35,6 +35,9 @@
                </children>
             </Pane>
          </top>
+         <center>
+            <fx:include source="PDFGEN.fxml" />
+         </center>
       </BorderPane>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="54.0" prefHeight="666.0" prefWidth="224.0" />
    </children>

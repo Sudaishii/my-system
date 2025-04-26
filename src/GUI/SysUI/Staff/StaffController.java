@@ -60,7 +60,7 @@ public class StaffController implements Initializable {
                 node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                     switch (node.getAccessibleText()) {
                         case "Dashboard":
-                            loadPage("/GUI/SysUI/Admin/HR_Dashboard.fxml");
+                            loadPage("/GUI/SysUI/Staff/Staff.fxml");
                             break;
                         case "Settings":
                             loadPage("/GUI/SysUI/univ/Profile.fxml");
