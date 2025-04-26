@@ -136,7 +136,7 @@ public void initialize(URL url, ResourceBundle rb) {
         }
     });
 
-    // Select All checkbox logic
+
     selectAll.selectedProperty().addListener((observable, oldValue, newValue) -> {
         System.out.println("Select All Selected");
         items = EmpTable.getItems();

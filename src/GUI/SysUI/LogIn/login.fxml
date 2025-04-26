@@ -91,7 +91,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="393.0" layoutY="352.0" styleClass="forgot-password" text="Forgot Password?">
+            <Label fx:id="forgotPasswordLabel" layoutX="393.0" layoutY="352.0" styleClass="forgot-password" text="Forgot Password?" onMouseClicked="#handleForgotPassword">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

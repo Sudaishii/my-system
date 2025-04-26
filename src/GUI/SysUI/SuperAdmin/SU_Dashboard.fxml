@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SysUI.SuperAdmin.SU_DashboardController">
    <children>
+      <BarChart fx:id="EmployeeBarChart" layoutX="29.0" layoutY="253.0" prefHeight="393.0" prefWidth="500.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <PieChart fx:id="UserStatusPieChar" layoutX="561.0" layoutY="245.0" prefHeight="393.0" prefWidth="500.0" />
       <Pane prefHeight="179.0" prefWidth="1080.0" styleClass="custompane" stylesheets="@../Admin/dashboard.css" />
       <AnchorPane layoutX="93.0" layoutY="109.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@../Admin/dashboard.css">
          <children>
             <ImageView fx:id="tEmp" fitHeight="37.0" fitWidth="41.0" layoutX="17.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="clip">
                <image>
-                  <Image url="@../../images/icons8-employees.gif" />
+                  <Image url="@../../images/icons8-employees-30%20(1).png" />
                </image>
             </ImageView>
-            <Label layoutX="6.0" layoutY="56.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Employees" />
-            <Label fx:id="TotalEmp" layoutX="17.0" layoutY="74.0" prefHeight="37.0" prefWidth="106.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
-               <font>
-                  <Font size="42.0" />
-               </font>
-            </Label>
+            <Label layoutX="5.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Employees" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="332.0" layoutY="109.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@../Admin/dashboard.css">
@@ -32,48 +41,52 @@
                   <Image url="@../../images/icons8-salary-50.png" />
                </image>
             </ImageView>
-            <Label layoutX="6.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Active Users" />
-            <Label fx:id="npay" layoutX="15.0" layoutY="74.0" prefHeight="45.0" prefWidth="163.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
-               <font>
-                  <Font size="42.0" />
-               </font>
-            </Label>
+            <Label layoutX="5.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Active Users" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="572.0" layoutY="109.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@../Admin/dashboard.css">
          <children>
             <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8-payment-48.png" />
+                  <Image url="@../../images/icons8-add-administrator-50.png" />
                </image>
             </ImageView>
-            <Label layoutX="9.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Newly Registered" />
-            <Label fx:id="grss" layoutX="14.0" layoutY="74.0" prefHeight="30.0" prefWidth="106.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
-               <font>
-                  <Font size="42.0" />
-               </font>
-            </Label>
+            <Label layoutX="5.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Newly Registered" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="811.0" layoutY="109.0" prefHeight="133.0" prefWidth="186.0" styleClass="card" stylesheets="@../Admin/dashboard.css">
          <children>
             <ImageView fitHeight="37.0" fitWidth="41.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/icons8-contribution-64.png" />
+                  <Image url="@../../images/icons8-users-30.png" />
                </image>
             </ImageView>
-            <Label layoutX="7.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Contributions" />
-            <Label fx:id="contributions" layoutX="14.0" layoutY="74.0" prefHeight="30.0" prefWidth="106.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
+            <Label layoutX="7.0" layoutY="52.0" prefHeight="30.0" prefWidth="176.0" styleClass="cardlabel" text="Total Users" />
+         </children>
+      </AnchorPane>
+      <HBox layoutX="109.0" layoutY="188.0" prefHeight="37.0" prefWidth="916.0">
+         <children>
+            <Label fx:id="TotalEmp" prefHeight="37.0" prefWidth="241.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+            <Label fx:id="TActive" prefHeight="37.0" prefWidth="238.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+            <Label fx:id="TNewly" prefHeight="37.0" prefWidth="241.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+            <Label fx:id="numTUsers" prefHeight="39.0" prefWidth="106.0" styleClass="salary-amount" stylesheets="@../Admin/dashboard.css" text="0">
                <font>
                   <Font size="42.0" />
                </font>
             </Label>
          </children>
-      </AnchorPane>
-      <Label fx:id="greet" layoutX="345.0" layoutY="25.0" prefHeight="15.0" prefWidth="246.0" styleClass="header-title" stylesheets="@../Admin/dashboard.css" text="0">
-         <font>
-            <Font size="42.0" />
-         </font>
-      </Label>
+      </HBox>
    </children>
 </AnchorPane>

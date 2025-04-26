@@ -1,3 +1,27 @@
+
+.chart-pie, .chart-content, .chart-legend {
+    -fx-background-color: transparent !important;
+    -fx-border-color: transparent !important;
+    -fx-border-width: 0 !important;
+    -fx-background-insets: 0 !important;
+    -fx-padding: 0 !important;
+    -fx-effect: null !important;
+}
+
+
+.chart-legend-item-symbol {
+    -fx-background-insets: 0 !important;
+    -fx-border-color: transparent !important;
+    -fx-border-width: 0 !important;
+    -fx-padding: 0 !important;
+}
+
+/* Remove any drop shadow or effect */
+.chart {
+    -fx-effect: null !important;
+}
+
+
 *{
     
     

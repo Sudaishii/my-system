@@ -64,21 +64,16 @@
                   <Font size="33.0" />
                </font>
             </Label>
-            <VBox layoutX="367.0" layoutY="119.0" prefHeight="141.0" prefWidth="177.0" styleClass="img">
+            <VBox layoutX="367.0" layoutY="132.0" prefHeight="141.0" prefWidth="177.0" styleClass="img">
                <children>
                   <ImageView fx:id="employeePhoto" fitHeight="185.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
             <ImageView fx:id="cloudIcon" layoutX="10.0" layoutY="10.0" />
             <Button fx:id="submit" layoutX="393.0" layoutY="572.0" mnemonicParsing="false" onMouseClicked="#AddEmployee" prefHeight="17.0" prefWidth="159.0" styleClass="btnsub" text="UPDATE" />
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="473.0" layoutY="313.0" onMouseClicked="#updateImage" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="461.0" layoutY="310.0" onMouseClicked="#updateImage" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/icons8-add-image-24.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="449.0" layoutY="313.0" onMouseClicked="#setDefaultImage" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/icons8-remove-image-24.png" />
                </image>
             </ImageView>
             <Pane prefHeight="68.0" prefWidth="944.0" style="-fx-background-color: #1E1E2C;">

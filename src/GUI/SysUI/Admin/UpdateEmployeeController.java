@@ -3,6 +3,7 @@ package GUI.SysUI.Admin;
 import GUI.config.config;
 import GUI.config.dbConnect;
 import java.io.File;
+import java.io.IOException;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.*;
 
@@ -103,6 +107,8 @@ public class UpdateEmployeeController implements Initializable {
     }
 
     private void closeOverlay() {
+        
+        
         if (overlayPane != null && rootPane != null) {
             FadeTransition fadeOut = new FadeTransition(Duration.millis(300), overlayPane);
             fadeOut.setFromValue(1);
@@ -115,6 +121,7 @@ public class UpdateEmployeeController implements Initializable {
 
             fadeOut.play();
         }
+        
     }
 
     public void setEmployeeId(int employeeId) {
@@ -127,9 +134,11 @@ public class UpdateEmployeeController implements Initializable {
     }
 
     private void loadEmployeeData() {
+        
         if (employeeId > 0) {
             try (Connection connection = db.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(
+                         
                          "SELECT emp_fname, emp_lname, emp_add, emp_email, emp_contact, emp_dept, emp_position, filePath " +
                          "FROM employee WHERE emp_id = ?")) {
 
@@ -173,7 +182,7 @@ public class UpdateEmployeeController implements Initializable {
                 } else {
                     employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
                 }
-                imageChanged = false; // Reset the flag when loading data
+                imageChanged = false; 
 
             } else {
                 con.showAlert(Alert.AlertType.ERROR, "Error", "Employee with ID " + employeeId + " not found.");
@@ -185,7 +194,8 @@ public class UpdateEmployeeController implements Initializable {
             closeOverlay();
         }
     }
-    }
+        
+  }
 
     @FXML
     private void closeBtn(MouseEvent event) {
@@ -193,8 +203,7 @@ public class UpdateEmployeeController implements Initializable {
     }
 
     @FXML
-    private void AddEmployee(MouseEvent event) {
-
+private void AddEmployee(MouseEvent event) {
     String newAdd = addF.getText().trim();
     String newEmail = emailF.getText().trim();
     String newContact = contactF.getText().trim();
@@ -241,9 +250,22 @@ public class UpdateEmployeeController implements Initializable {
         updateStmt.setString(5, newPos);
 
         int parameterIndex = 6;
+
         if (imageChanged && photoFilePath != null) {
-            updateStmt.setString(parameterIndex++, photoFilePath);
+            try {
+              
+                String destinationPath = "src/GUI/images/Emp/" + new File(photoFilePath).getName();
+                Files.copy(Paths.get(photoFilePath), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+                
+                photoFilePath = destinationPath; 
+                updateStmt.setString(parameterIndex++, destinationPath);
+            } catch (IOException e) {
+                con.showAlert(Alert.AlertType.ERROR, "Error", "Failed to save the new photo.");
+                e.printStackTrace();
+                return; 
+            }
         }
+
         updateStmt.setInt(parameterIndex, employeeId);
 
         int rowsAffected = updateStmt.executeUpdate();
@@ -253,38 +275,41 @@ public class UpdateEmployeeController implements Initializable {
         } else {
             con.showAlert(Alert.AlertType.ERROR, "Error", "Failed to update employee details.");
         }
-        imageChanged = false; // Reset the flag
+        imageChanged = false;
     } catch (SQLException e) {
         e.printStackTrace();
         con.showAlert(Alert.AlertType.ERROR, "Database Error", "Error updating employee data.");
     }
-    }
+}
+
 
     @FXML
     private void updateImage(MouseEvent event) {
-        config con = new config();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Employee Photo");
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
+        
+    config con = new config();
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Choose Employee Photo");
+    fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+    );
 
-        File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
+    File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
 
-        if (selectedFile != null) {
+    if (selectedFile != null) {
+       
+        photoFilePath = selectedFile.getAbsolutePath();
 
-            photoFilePath = selectedFile.getAbsolutePath();
-            imageChanged = true;
-
-            Image image = new Image(new File(photoFilePath).toURI().toString());
-            setEmployeePhoto(image);
-        }
+        
+        Image image = new Image(new File(photoFilePath).toURI().toString());
+        setEmployeePhoto(image); 
+        imageChanged = true;
     }
+  }
 
     @FXML
     private void setDefaultImage(MouseEvent event) {
         employeePhoto.setImage(new Image(getClass().getResourceAsStream("/GUI/images/Emp/default.png")));
-            photoFilePath = null;
+          photoFilePath = null;
         imageChanged = true;
     }
 

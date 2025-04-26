@@ -267,7 +267,6 @@ public class HR_EmployeeManagementController implements Initializable {
         return;
     }
 
-    // Database insertion
     String sql = "INSERT INTO employee (emp_fname, emp_middle, emp_lname, emp_age, emp_sex, emp_add, emp_email, emp_contact, emp_hdate, emp_dept, emp_position, filePath, rates_id) "
                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -307,7 +306,7 @@ public class HR_EmployeeManagementController implements Initializable {
     
     
 private void setEmployeePhoto(Image image) {
-     double imgWidth = image.getWidth();
+    double imgWidth = image.getWidth();
     double imgHeight = image.getHeight();
     double viewportSize = Math.min(imgWidth, imgHeight);
 
@@ -520,7 +519,8 @@ private void setEmployeePhoto(Image image) {
 
     
     @FXML
-private void choosePhoto(MouseEvent event) {
+    private void choosePhoto(MouseEvent event) {
+    
     config con = new config();
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Choose Employee Photo");
@@ -538,6 +538,7 @@ private void choosePhoto(MouseEvent event) {
         Image image = new Image(new File(photoFilePath).toURI().toString());
         setEmployeePhoto(image);  
     }
+    
 }
 
 
@@ -614,8 +615,8 @@ private void choosePhoto(MouseEvent event) {
         
     }
    
-@FXML
-private void updateBtn(MouseEvent event) throws IOException {
+    @FXML
+    private void updateBtn(MouseEvent event) throws IOException {
     
             
             Employees selectedRow = EmployeeView.getSelectionModel().getSelectedItem();

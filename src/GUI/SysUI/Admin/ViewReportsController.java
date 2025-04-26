@@ -70,11 +70,13 @@ public class ViewReportsController implements Initializable {
     private TableColumn<Reports, String> net_payC;
     @FXML
     private TextField FilterField;
+    private static final DecimalFormat twoDecimalFormat = new DecimalFormat("#0.00");
+
 
     private ObservableList<Reports> reportList;
     private dbConnect db = new dbConnect();
 
-    private static final DecimalFormat noDecimalFormat = new DecimalFormat("#");
+
     @FXML
     private Label emp_idL;
     @FXML
@@ -122,9 +124,11 @@ public class ViewReportsController implements Initializable {
         emp_id.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getEmpId())));
         monthC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonth()));
         yearC.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getYear())));
-        net_payC.setCellValueFactory(cellData -> new SimpleStringProperty(
-        noDecimalFormat.format(cellData.getValue().getNetPay())
-        ));
+        net_payC.setCellValueFactory(cellData -> {
+            double netPay = cellData.getValue().getNetPay();
+            String formattedNetPay = "₱" + twoDecimalFormat.format(netPay);
+            return new SimpleStringProperty(formattedNetPay);
+        });
         date_generated.setCellValueFactory(cellData -> {
             LocalDate date = cellData.getValue().getDateGenerated();
             if (date != null) {
@@ -189,10 +193,10 @@ public class ViewReportsController implements Initializable {
             year.setText("Year: " + rs.getInt("year"));
             hours_worked.setText("Total Hours: " + rs.getInt("total_hours"));
             ovtime.setText("Overtime Hours: " + rs.getInt("total_overtime"));
-            g_pay.setText("Gross Pay: ₱" + noDecimalFormat.format(rs.getDouble("gross_salary")));
-            contribution.setText("Total Deductions: ₱" + noDecimalFormat.format(rs.getDouble("t_deductions")));
-            ovTIme.setText("Overtime Pay: ₱" + noDecimalFormat.format(rs.getDouble("overtime_pay")));
-            net_pay.setText("Net Pay: ₱" + noDecimalFormat.format(rs.getDouble("net_pay")));
+            g_pay.setText("Gross Pay: ₱" + twoDecimalFormat.format(rs.getDouble("gross_salary")));
+            contribution.setText("Total Deductions: ₱" + twoDecimalFormat.format(rs.getDouble("t_deductions")));
+            ovTIme.setText("Overtime Pay: ₱" + twoDecimalFormat.format(rs.getDouble("overtime_pay")));
+            net_pay.setText("Net Pay: ₱" + twoDecimalFormat.format(rs.getDouble("net_pay")));
 
             summary2.setVisible(false);
             summary21.setVisible(false);
@@ -311,7 +315,7 @@ public class ViewReportsController implements Initializable {
                            String.valueOf(report.getEmpId()).contains(lowerCaseFilter) ||
                            report.getMonth().toLowerCase().contains(lowerCaseFilter) ||
                            String.valueOf(report.getYear()).contains(lowerCaseFilter) ||
-                           noDecimalFormat.format(report.getNetPay()).contains(lowerCaseFilter);
+                           twoDecimalFormat.format(report.getNetPay()).contains(lowerCaseFilter);
                 });
             });
 
@@ -326,8 +330,8 @@ public class ViewReportsController implements Initializable {
     private void RefreshSummary(MouseEvent event) {
         
         summary2.setVisible(true);
-            summary21.setVisible(true);
-            summary211.setVisible(true);
+        summary21.setVisible(true);
+        summary211.setVisible(true);
         name.setVisible(false);
         dept.setVisible(false);
         position.setVisible(false);

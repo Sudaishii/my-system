@@ -491,8 +491,8 @@
 }
 
 .buttonsProfessional:pressed {
+    
     -fx-background-color: #C0392B; 
-/*/*    -fx-transform: translateY(0);  No lift when pressed 
-    -fx-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);  Slightly more pronounced shadow */
+
 
     }

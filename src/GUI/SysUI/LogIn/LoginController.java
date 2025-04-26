@@ -37,6 +37,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -65,6 +66,9 @@ public class LoginController implements Initializable {
     private TextField UNField1;
     @FXML
     private PasswordField PassField1;
+    @FXML
+    private Label forgotPasswordLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Platform.runLater(() -> rootPane.requestFocus()); 
@@ -222,5 +226,12 @@ private void LogIntButton(MouseEvent event) throws Exception {
     return userInfo.isEmpty() ? null : userInfo;
 }
     
-    
+    @FXML
+    private void handleForgotPassword(MouseEvent event) throws IOException {
+     Parent root = FXMLLoader.load(getClass().getResource("forgot_password_real.fxml"));
+    Stage stage = (Stage) forgotPasswordLabel.getScene().getWindow();
+    stage.setScene(new Scene(root));
+    stage.centerOnScreen(); // ✅ centers the window
+
+    }
 }

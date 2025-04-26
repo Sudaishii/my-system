@@ -3,17 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Staff/StaffController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Staff/PDFSLIP.fxml</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Employees/View_Reports_Controller.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/LogIn/Reset_PasswordController.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/SuperAdmin/SU_Dashboard.fxml</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Employees/dashboard.css</file>
             <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/LogIn/login.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/ViewReports.fxml</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/HR_EmployeeManagementController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Staff/PDFGENController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/HR_AdminController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/Reports.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/LogIn/LoginController.java</file>
-            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Staff/Staff.fxml</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/SuperAdmin/SU_DashboardController.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/dashboard.css</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/UpdateEmployeeController.java</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/SuperAdmin/dashboard.css</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/Admin/hr_css.css</file>
+            <file>file:/D:/temp/PRELIM/SLIDERS/my-system/src/GUI/SysUI/LogIn/ForgotPasswordController.java</file>
         </group>
     </open-files>
 </project-private>

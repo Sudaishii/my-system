@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="GUI-TAPALES-IT2A.jar" size="79384026" download="eager" />
+    <jar href="GUI-TAPALES-IT2A.jar" size="81509616" download="eager" />
     <jar href="lib\SparseBitSet-1.2.jar" size="24510" download="eager" />
     <jar href="lib\barcodes-7.1.9-javadoc.jar" size="195724" download="eager" />
     <jar href="lib\barcodes-7.1.9-sources.jar" size="149691" download="eager" />
@@ -30,6 +30,7 @@
     <jar href="lib\io-7.1.9.jar" size="790630" download="eager" />
     <jar href="lib\jakarta.activation-2.0.1.jar" size="62154" download="eager" />
     <jar href="lib\jakarta.xml.bind-api-3.0.1.jar" size="128941" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
     <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
     <jar href="lib\kernel-7.1.9-javadoc.jar" size="3469885" download="eager" />
     <jar href="lib\kernel-7.1.9-sources.jar" size="1233739" download="eager" />
