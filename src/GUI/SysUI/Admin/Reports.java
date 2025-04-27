@@ -20,7 +20,7 @@ public class Reports {
     private String status;
     private LocalDate dateGenerated;
 
-    // Constructor with all necessary parameters
+
     public Reports(int reportId, int empId, String month, int year, int totalHours, int totalOvertime,
                    double grossSalary, double sss, double philHealth, double pagIbig, double totalDeductions,
                    double overtimePay, double netPay, String status, LocalDate dateGenerated) {
@@ -41,7 +41,7 @@ public class Reports {
         this.dateGenerated = dateGenerated;
     }
 
-    // Getters for all fields (Optional)
+
     public int getReportId() { return reportId; }
     public int getEmpId() { return empId; }
     public String getMonth() { return month; }

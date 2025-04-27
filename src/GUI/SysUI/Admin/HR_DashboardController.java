@@ -99,7 +99,7 @@ public class HR_DashboardController implements Initializable {
 
         greet.setVisible(false);
 
-        // Set current month date range
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Manila")); 
         int yearNow = calendar.get(Calendar.YEAR);
@@ -137,10 +137,10 @@ public class HR_DashboardController implements Initializable {
                 if (rs.next()) {
                     double totalNetPay = rs.getDouble("totalNetPay");
 
-                    // Set the total net pay to the payment label
+                 
                     payment.setText(String.format("₱ %.2f", totalNetPay));
                 } else {
-                    // If no data found, just set 0
+                  
                     payment.setText("0.00");
                 }
             }

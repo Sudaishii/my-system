@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="GUI-TAPALES-IT2A.jar" size="81509616" download="eager" />
+    <jar href="GUI-TAPALES-IT2A.jar" size="81824130" download="eager" />
     <jar href="lib\SparseBitSet-1.2.jar" size="24510" download="eager" />
     <jar href="lib\barcodes-7.1.9-javadoc.jar" size="195724" download="eager" />
     <jar href="lib\barcodes-7.1.9-sources.jar" size="149691" download="eager" />

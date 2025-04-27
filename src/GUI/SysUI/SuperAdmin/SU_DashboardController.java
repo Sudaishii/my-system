@@ -52,7 +52,7 @@ public class SU_DashboardController implements Initializable {
             String uname = ses.getUsername();
             conn = con.getConnection();
 
-            // Initialize charts first
+
             if (EmployeeBarChart != null) {
                 loadEmployeeBarChart();
             }
@@ -61,7 +61,7 @@ public class SU_DashboardController implements Initializable {
                 loadUserStatusPieChart();
             }
 
-            // Load dashboard data
+
             loadDashboardData();
         } catch (SQLException ex) {
             Logger.getLogger(SU_DashboardController.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,52 +163,52 @@ public class SU_DashboardController implements Initializable {
         try (PreparedStatement pst = conn.prepareStatement(sql);
              ResultSet rs = pst.executeQuery()) {
 
-            // Clear existing data
+
             UserStatusPieChar.getData().clear();
 
-            // Calculate total users
+
             int totalUsers = 0;
             while (rs.next()) {
                 totalUsers += rs.getInt("total");
             }
 
-            // Reset ResultSet cursor
+
             rs.beforeFirst();
 
-            // Professional color palette with matching legend colors
+
             String[] pieColors = {
-                "#3498db",  // Blue
-                "#2ecc71",  // Green
-                "#e74c3c",  // Red
-                "#f1c40f",  // Yellow
-                "#9b59b6"   // Purple
+                "#3498db",  
+                "#2ecc71",  
+                "#e74c3c",  
+                "#f1c40f",  
+                "#9b59b6"  
             };
 
-            // Add data to pie chart
+
             int colorIndex = 0;
             while (rs.next()) {
                 String status = rs.getString("status");
                 int count = rs.getInt("total");
                 double percentage = (count * 100.0) / totalUsers;
                 
-                // Format the label with status and percentage
+
                 String label = String.format("%s (%.1f%%)", status, percentage);
                 
                 PieChart.Data slice = new PieChart.Data(label, count);
                 UserStatusPieChar.getData().add(slice);
                 
-                // Assign style class for CSS
+
                 slice.getNode().getStyleClass().add("data" + colorIndex);
                 
                 colorIndex++;
             }
 
-            // Configure pie chart appearance
+
             UserStatusPieChar.setTitle("User Status Distribution");
             UserStatusPieChar.setLegendVisible(true);
             UserStatusPieChar.setLabelsVisible(true);
             
-            // Style the pie chart
+   
             UserStatusPieChar.setStyle(
                 "-fx-background-color: transparent;" +
                 "-fx-pie-label-visible: true;" +
@@ -217,7 +217,7 @@ public class SU_DashboardController implements Initializable {
                 "-fx-pie-label-fill: white;"
             );
 
-            // Style the legend
+
             UserStatusPieChar.getStyleClass().add("pie-chart-legend");
             if (UserStatusPieChar.lookup(".chart-legend") != null) {
                 UserStatusPieChar.lookup(".chart-legend").setStyle(

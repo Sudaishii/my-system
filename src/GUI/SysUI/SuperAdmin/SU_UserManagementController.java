@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI.SysUI.SuperAdmin;
 
 import GUI.SysUI.Admin.Employees;
@@ -41,11 +37,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class SU_UserManagementController implements Initializable {
     
     private ObservableList<User> usersUpdate;

@@ -37,11 +37,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class SlidetabController implements Initializable {
 
     @FXML
@@ -54,9 +50,7 @@ public class SlidetabController implements Initializable {
     private static final double PROFILE_FIT_HEIGHT = 168;
     private static final double IMAGE_SIZE = 50;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      

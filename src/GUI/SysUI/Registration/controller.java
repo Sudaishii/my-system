@@ -97,7 +97,7 @@ public class controller {
             pst.setString(2, username);
             pst.setString(3, hashedPassword);
             pst.setString(4, "Newly Registered");
-            pst.setInt(5, 3); // 3 = Employee role_id
+            pst.setInt(5, 3); 
 
             int rowsAffected = pst.executeUpdate();
 

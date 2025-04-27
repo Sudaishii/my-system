@@ -187,7 +187,7 @@ import java.util.Date;
               BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
 
              String line;
-             br.readLine(); // Skip header row (if it exists)
+             br.readLine(); 
 
              while ((line = br.readLine()) != null) {
                  recordsProcessed++;
@@ -322,7 +322,7 @@ import java.util.Date;
      private int countTotalRecords(File file) {
          int count = 0;
          try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-             reader.readLine(); // Skip header
+             reader.readLine(); 
              while (reader.readLine() != null) {
                  count++;
              }
@@ -364,7 +364,7 @@ import java.util.Date;
          bar.setVisible(false);
          progressPercentage.setVisible(false);
          TimeImporting.setVisible(false);
-         executor = Executors.newSingleThreadExecutor(); // Create a new executor
+         executor = Executors.newSingleThreadExecutor(); 
      }
 
      @FXML

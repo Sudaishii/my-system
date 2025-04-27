@@ -297,10 +297,10 @@ public class HR_EmployeeManagementController implements Initializable {
             rateId = rs.getInt("rates_id"); 
         }
     } catch (SQLException e) {
-        e.printStackTrace(); // Handle exceptions appropriately
+        e.printStackTrace(); 
     }
 
-    return rateId; // Return the found rates_id or -1 if not found
+    return rateId; 
 }
     
     
@@ -698,7 +698,7 @@ private void setEmployeePhoto(Image image) {
 
 
         private Employees getEmployeeById(int employeeId) {
-            for (Employees emp : empList) { // Assuming employeeList contains full details
+            for (Employees emp : empList) { 
                 if (emp.getId() == employeeId) {
                     return emp; 
                 }

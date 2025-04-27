@@ -31,11 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class PDFGENController implements Initializable {
     
     private ObservableList<Reports> reportList;
@@ -76,9 +72,7 @@ public class PDFGENController implements Initializable {
     private TextField FilterField;
     private static final DecimalFormat noDecimalFormat = new DecimalFormat("#");
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -243,7 +237,7 @@ public class PDFGENController implements Initializable {
                 String status = rs.getString("status");
                 LocalDate dateGenerated = rs.getDate("date_generated").toLocalDate();
 
-                // Update summary UI (optional)
+    
                 summaryMonthYear.setText(month + " " + year);
                 summaryTotalHours.setText(String.valueOf(totalHours));
                 summaryGrossSalary.setText(String.format("₱%.2f", grossSalary));

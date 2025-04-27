@@ -29,16 +29,15 @@ public class ProfileViewController {
     private Button saveButton;
     
     public void initialize() {
-        // Set up the image view properties
+      
         profileImageView.setFitWidth(IMAGE_SIZE);
         profileImageView.setFitHeight(IMAGE_SIZE);
         profileImageView.setPreserveRatio(true);
         
-        // Create a circular clip
+ 
         Circle clip = new Circle(IMAGE_SIZE/2, IMAGE_SIZE/2, IMAGE_SIZE/2);
         profileImageView.setClip(clip);
         
-        // Set up the change photo button action
         changePhotoButton.setOnAction(event -> handleChangePhoto());
     }
     
@@ -57,27 +56,27 @@ public class ProfileViewController {
     
     private void loadImage(File imageFile) {
         try {
-            // Load the image
+           
             Image image = new Image(imageFile.toURI().toString());
             
-            // Calculate the scaling factor to ensure the image fills the circle
+         
             double scale = Math.max(
                 IMAGE_SIZE / image.getWidth(),
                 IMAGE_SIZE / image.getHeight()
             );
             
-            // Set the image with proper scaling
+          
             profileImageView.setImage(image);
             profileImageView.setFitWidth(image.getWidth() * scale);
             profileImageView.setFitHeight(image.getHeight() * scale);
             
-            // Center the image
+
             profileImageView.setX((IMAGE_SIZE - profileImageView.getFitWidth()) / 2);
             profileImageView.setY((IMAGE_SIZE - profileImageView.getFitHeight()) / 2);
             
         } catch (Exception e) {
             e.printStackTrace();
-            // Handle error (you might want to show an alert here)
+
         }
     }
 } 

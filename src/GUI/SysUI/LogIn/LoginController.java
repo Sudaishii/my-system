@@ -231,7 +231,7 @@ private void LogIntButton(MouseEvent event) throws Exception {
      Parent root = FXMLLoader.load(getClass().getResource("forgot_password_real.fxml"));
     Stage stage = (Stage) forgotPasswordLabel.getScene().getWindow();
     stage.setScene(new Scene(root));
-    stage.centerOnScreen(); // ✅ centers the window
+    stage.centerOnScreen(); 
 
     }
 }

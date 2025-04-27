@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI.SysUI.SuperAdmin;
 
 import GUI.config.config;
@@ -31,11 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class UserAddController implements Initializable {
 
     @FXML
@@ -56,9 +48,7 @@ public class UserAddController implements Initializable {
     @FXML
     private ComboBox<String> roles;
     
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         

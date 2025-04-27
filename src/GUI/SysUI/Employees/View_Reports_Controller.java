@@ -31,11 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author Administrator
- */
+
 public class View_Reports_Controller implements Initializable {
     @FXML
     private Label employeeNameLabel;
@@ -306,7 +302,7 @@ public class View_Reports_Controller implements Initializable {
         pstmt.setInt(1, reportId);
         try (ResultSet rs = pstmt.executeQuery()) {
             if (rs.next()) {
-                // Extracting report data
+ 
                 String fname = rs.getString("emp_fname");
                 String lname = rs.getString("emp_lname");
                 int empId = rs.getInt("emp_id");
@@ -353,7 +349,7 @@ public class View_Reports_Controller implements Initializable {
 
 
 private void clearSummaryLabels() {
-    // Reset the summary labels to default values
+    
     summaryMonthYear.setText("");
     summaryTotalHours.setText("");
     summaryGrossSalary.setText("");

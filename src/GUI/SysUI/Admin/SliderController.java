@@ -39,9 +39,6 @@ public class SliderController implements Initializable {
     @FXML
     private JFXDrawersStack drawer;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        

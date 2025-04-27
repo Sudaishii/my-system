@@ -226,7 +226,7 @@ public void initialize(URL url, ResourceBundle rb) {
                         employee.getPos().toLowerCase().contains(lowerCaseFilter)) { 
                         return true; 
                     }
-                    return false; // No match
+                    return false; 
                 });
             });
             
@@ -333,7 +333,7 @@ for (Employees emp : selectedEmployees) {
     ResultSet rs = checkStmt.executeQuery();
     if (rs.next()) {
         summary.append("Skipped (already exists): Employee ID ").append(empId).append("\n");
-        continue; // Skip if report exists
+        continue; 
     }
 
     

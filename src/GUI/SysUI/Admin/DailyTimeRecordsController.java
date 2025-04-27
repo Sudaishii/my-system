@@ -59,15 +59,15 @@ public class DailyTimeRecordsController implements Initializable {
     @FXML
     private TableColumn<DTRModel, Date> entry_date;
     @FXML
-    private TableColumn<DTRModel, String> time_in; // Changed to String
+    private TableColumn<DTRModel, String> time_in; 
     @FXML
-    private TableColumn<DTRModel, String> time_out; // Changed to String
+    private TableColumn<DTRModel, String> time_out; 
     @FXML
     private TableColumn<DTRModel, String> month;
     @FXML
-    private TableColumn<DTRModel, String> hours_worked; // Changed to String
+    private TableColumn<DTRModel, String> hours_worked; 
     @FXML
-    private TableColumn<DTRModel, String> overtime_hours; // Changed to String
+    private TableColumn<DTRModel, String> overtime_hours; 
     @FXML
     private TableColumn<DTRModel, String> absent;
 
